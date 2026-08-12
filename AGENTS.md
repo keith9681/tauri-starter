@@ -85,6 +85,20 @@ Windows 优先的 **Tauri 2 桌面应用模板**。示例业务是待办（Vite 
 - 未确认就改打包目标、协议名、或提交无关大重构
 - 把「起 TCP HTTP 服务」当成桌面默认运行方式
 
+## 本地文件与 TSD
+
+切换分支、`git checkout`、大批量读写等系统性文件操作后，部分文件可能被 **TSD** 加密。表现：磁盘内容以 `%TSD-Header-` 开头，编辑器/工具读成乱码或当作 binary，`StrReplace`/`Read` 失败。
+
+用 **`decoy`** 解密后再编辑（一次只传一个路径，或不传参数解密当前目录）：
+
+```powershell
+decoy                 # 解密当前目录下已加密文件
+decoy AGENTS.md       # 解密单个文件
+decoy src             # 解密某个目录
+```
+
+若读写 Markdown / 源码异常，先跑 `decoy`，不要把加密后的二进制提交进仓库。
+
 ## 提交与文档
 
 - 未明确要求时不要 `git commit` / `push`。
