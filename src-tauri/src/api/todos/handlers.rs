@@ -12,6 +12,7 @@ impl From<StoreError> for ApiError {
         match value {
             StoreError::NotFound => ApiError::NotFound("待办不存在".into()),
             StoreError::Invalid(msg) => ApiError::BadRequest(msg),
+            StoreError::Db(msg) => ApiError::Internal(msg),
         }
     }
 }
@@ -29,7 +30,7 @@ impl From<StoreError> for ApiError {
 )]
 pub async fn list(State(state): State<AppState>) -> ApiResult<Json<Vec<Todo>>> {
     let store = state.todos.lock().expect("todos lock");
-    Ok(Json(store.list()))
+    Ok(Json(store.list()?))
 }
 
 /// 新建一条待办。

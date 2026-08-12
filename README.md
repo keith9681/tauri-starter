@@ -1,32 +1,33 @@
 # tauri-starter
 
-Tauri 2 + React + TypeScript 桌面待办应用（Windows 优先）。
+Tauri 2 + React + TypeScript 桌面待办（Windows 优先）。
 
-前端 `src/` **不依赖** `@tauri-apps/*`；与 Rust 的通信在桌面侧走**自定义 URI 协议**（进程内处理，**不监听 TCP 端口**）。后端路由以 **axum `Router` 为唯一源**，桌面 `appapi` 与 `api:dev` 共用。
+前端 `src/` **不依赖** `@tauri-apps/*`。桌面侧经自定义 URI 协议 `appapi` 进程内调用后端（**不监听 TCP**）。**axum `Router` 为唯一路由源**：桌面协议与 `api:dev` 共用同一套 handlers。
 
 ## 技术栈
 
-- **壳**：Tauri 2（窗口与自定义协议 `appapi`）
-- **前端**：Vite 7 + React 19 + TypeScript（纯 Web）
-- **后端路由**：axum（唯一路由源）
-- **API 文档**：utoipa + Scalar（仅 `api:dev`）
-- **包管理**：bun
-- **打包**：便携 exe（`--no-bundle`）/ NSIS 安装包
+| 层 | 选型 |
+|----|------|
+| 壳 | Tauri 2（窗口 + `appapi` 协议） |
+| 前端 | Vite 7 + React 19 + TypeScript（纯 Web / `fetch`） |
+| 后端 | axum（唯一路由源） |
+| 持久化 | SQLite（`rusqlite` bundled） |
+| API 文档 | utoipa + Scalar（仅 `api:dev`） |
+| 包管理 / 打包 | bun；便携 exe 或 NSIS |
 
 ## 架构
 
 ```text
-src/  --fetch-->  http://appapi.localhost/todos...  --oneshot-->  axum Router --> 内存待办
-                     （无 TCP listen）
-
-可选浏览器联调：
-src/  --fetch-->  http://127.0.0.1:8787/todos...   --serve-->  同一 axum Router
+桌面：  src/ --fetch--> http://appapi.localhost/... --oneshot--> axum --> SQLite
+开发旁路：src/ --fetch--> http://127.0.0.1:8787/...  --serve--> 同一 Router
 ```
 
-| 场景 | API Base | 是否占端口 |
-|------|----------|------------|
+| 场景 | API Base | 占端口 |
+|------|----------|--------|
 | `tauri:dev` / 便携 exe | `http://appapi.localhost` | 否 |
-| 纯浏览器 + `api:dev` | `http://127.0.0.1:8787` | 是（仅开发旁路） |
+| 浏览器 + `api:dev` | `http://127.0.0.1:8787` | 是（开发旁路） |
+
+可用 `VITE_API_BASE` 覆盖前端 API 地址。
 
 ### 待办 API
 
@@ -37,25 +38,46 @@ src/  --fetch-->  http://127.0.0.1:8787/todos...   --serve-->  同一 axum Route
 | `PATCH` | `/todos/:id` | 更新 `{ "title"?, "done"? }` |
 | `DELETE` | `/todos/:id` | 删除 |
 
-数据目前存在进程内存中，重启后清空。可用 `VITE_API_BASE` 覆盖默认地址。
+默认库文件：工作目录 `todos.db`（已 gitignore）。可用 `TODOS_DB_PATH` 指定路径：
+
+```powershell
+$env:TODOS_DB_PATH = "todos.test.db"
+bun run api:dev
+```
+
+### API 文档（仅 `api:dev`）
+
+桌面协议 / 便携包**不**挂载文档 UI。
+
+- Scalar：http://127.0.0.1:8787/scalar
+- OpenAPI JSON：http://127.0.0.1:8787/api-docs/openapi.json
+
+由 utoipa 从 handler/DTO 注解生成，与路由同源。
 
 ## 环境要求
 
 | 工具 | 说明 |
 |------|------|
-| [Rust](https://www.rust-lang.org/) + MSVC 工具链 | Windows 构建必需 |
+| [Rust](https://www.rust-lang.org/) + MSVC | Windows 构建必需 |
 | [bun](https://bun.sh/) | 前端依赖与脚本 |
-| Node（建议经 [fnm](https://github.com/Schniz/fnm)） | 部分工具链会用到 |
+| Node（建议 [fnm](https://github.com/Schniz/fnm)） | 部分工具链 |
 | WebView2 | Win10/11 通常已自带 |
 
-IDE 推荐：Cursor / VS Code + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+IDE：Cursor / VS Code + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-analyzer.rust-analyzer)
 
 ## 快速开始
 
 ```powershell
-fnm use   # 若本机通过 fnm 管理 Node
+fnm use   # 若用 fnm 管理 Node
 bun install
 bun run tauri:dev
+```
+
+浏览器联调（两个终端）：
+
+```powershell
+bun run api:dev
+bun run web:dev
 ```
 
 ## 常用命令
@@ -63,74 +85,60 @@ bun run tauri:dev
 | 命令 | 作用 |
 |------|------|
 | `bun run tauri:dev` | 桌面开发（热更新，协议 IPC） |
-| `bun run tauri:portable` | 打便携版 release exe（跳过安装包） |
-| `bun run tauri:run` | portable 打包后立即启动 exe |
-| `bun run tauri:installer` | 生成 NSIS 安装包 |
-| `bun run tauri:clean` | 只清 `src-tauri/target` |
+| `bun run tauri:portable` | 便携 release exe（`--no-bundle`） |
+| `bun run tauri:run` | 打包后立即启动 exe |
+| `bun run tauri:installer` | NSIS 安装包 |
+| `bun run tauri:clean` | 清 `src-tauri/target` |
 | `bun run clean` | 清 `dist` + `src-tauri/target` |
-| `bun run api:dev` | 可选：本机 HTTP API + Scalar（浏览器联调） |
-| `bun run web:dev` | 可选：仅 Vite（需另开 `api:dev`） |
+| `bun run api:dev` | 本机 HTTP API + Scalar |
+| `bun run api:test` | API 集成测试（临时 SQLite，不污染 `todos.db`） |
+| `bun run web:dev` | 仅 Vite（需另开 `api:dev`） |
 
-浏览器联调示例（两个终端）：
+### 测试说明
+
+`api:test` 用 axum `oneshot` + 临时库文件测 `app_router`（路由 → handlers → SQLite），不测 Tauri 窗口 / `appapi` 协议 / Scalar。
 
 ```powershell
-bun run api:dev
-bun run web:dev
+bun run api:test
+# 等价：cargo test --manifest-path src-tauri/Cargo.toml --test todos_api
 ```
-
-API 文档（仅 `api:dev`，桌面 `appapi` / 便携包不挂载）：
-
-- Scalar：http://127.0.0.1:8787/scalar
-- OpenAPI JSON：http://127.0.0.1:8787/api-docs/openapi.json
-
-由 **utoipa** 从 handler/DTO 注解生成，与 axum 路由同源维护。
 
 ## 便携版分发
 
-产物路径：
+产物：`src-tauri/target/release/tauri-app.exe`
 
-```text
-src-tauri/target/release/tauri-app.exe
-```
+纯净机**只需该 exe**；勿带 `*.pdb`、`.d`、`.cargo-*` 或其它 `target` 中间产物。
 
-拷到纯净 Windows 时**只需该 exe**。不要带：
-
-- `*.pdb`（调试符号）
-- `tauri-app.d`、`.cargo-*`
-- `target` 下其它编译中间目录
-
-说明：
-
-- 前端资源已嵌入 exe；主路径 **不** 额外监听端口
-- 目标机需有 WebView2；NSIS 安装包可在缺省时静默拉 bootstrapper，纯拷 exe 不会自动安装
-- 窗口默认背景色为 `#2f2f2f`，减轻深色主题启动闪白
+- 前端已嵌入；主路径不额外监听端口
+- 目标机需 WebView2；NSIS 可在缺省时静默拉 bootstrapper，纯拷 exe 不会自动安装
+- 窗口默认背景 `#2f2f2f`，减轻深色主题启动闪白
 
 ## 目录结构
 
 ```text
 tauri-starter/
-├── src/                    # 纯 React 前端（无 Tauri SDK）
-│   └── api/client.ts       # fetch 封装
+├── src/                      # 纯 React（无 Tauri SDK）
+│   └── api/client.ts         # fetch 封装
 ├── src-tauri/
 │   ├── src/
-│   │   ├── api/            # axum 路由 + todos 领域
-│   │   │   ├── mod.rs      # app_router（唯一路由源，无文档 UI）
-│   │   │   ├── openapi.rs  # utoipa ApiDoc
-│   │   │   ├── protocol.rs # 自定义协议 → Router oneshot
-│   │   │   ├── state.rs
-│   │   │   └── todos/
-│   │   ├── lib.rs          # 异步注册 appapi 协议
-│   │   └── bin/api.rs      # HTTP 旁路 + Scalar
+│   │   ├── api/              # axum 路由 + todos
+│   │   │   ├── mod.rs        # app_router（无文档 UI）
+│   │   │   ├── openapi.rs
+│   │   │   ├── protocol.rs   # appapi → Router oneshot
+│   │   │   ├── state.rs      # AppState / with_db_path
+│   │   │   └── todos/        # handlers + SQLite store
+│   │   ├── lib.rs            # 注册 appapi
+│   │   └── bin/api.rs        # HTTP 旁路 + Scalar
+│   ├── tests/todos_api.rs    # API 集成测试
 │   ├── tauri.conf.json
 │   └── icons/
-├── public/
 ├── package.json
 └── vite.config.ts
 ```
 
 ## 相关配置
 
-- Windows 打包目标：`bundle.targets = ["nsis"]`（见 `src-tauri/tauri.conf.json`）
-- 开发前端地址：`http://localhost:1420`
-- 自定义协议名：`appapi`
-- 后端路由：axum（扩展时 `.nest("/resource", …)`）
+- Windows 打包：`bundle.targets = ["nsis"]`（`src-tauri/tauri.conf.json`）
+- 开发前端：`http://localhost:1420`
+- 协议名：`appapi`
+- 扩展路由：在 `app_router` 上 `.nest("/resource", …)`

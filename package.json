@@ -15,7 +15,8 @@
     "tauri:installer": "tauri build --bundles nsis",
     "tauri:run": "bun run tauri:portable && src-tauri/target/release/tauri-app.exe",
     "web:dev": "vite",
-    "api:dev": "cargo run --manifest-path src-tauri/Cargo.toml --bin api"
+    "api:dev": "cargo run --manifest-path src-tauri/Cargo.toml --bin api",
+    "api:test": "cargo test --manifest-path src-tauri/Cargo.toml --test todos_api"
   },
   "dependencies": {
     "react": "^19.1.0",
