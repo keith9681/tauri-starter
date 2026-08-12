@@ -2,7 +2,7 @@ pub mod handlers;
 pub mod model;
 mod store;
 
-pub use store::{SqliteTodoStore, TodoStore};
+pub use store::{SqliteTodoStore, StoreError, TodoStore};
 
 use crate::api::state::AppState;
 use axum::routing::{get, patch};

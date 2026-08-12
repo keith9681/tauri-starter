@@ -38,7 +38,7 @@ Tauri 2 + React + TypeScript 桌面待办（Windows 优先）。
 | `PATCH` | `/todos/:id` | 更新 `{ "title"?, "done"? }` |
 | `DELETE` | `/todos/:id` | 删除 |
 
-默认库文件：工作目录 `todos.db`（已 gitignore）。可用 `TODOS_DB_PATH` 指定路径：
+默认库文件：工作目录 `todos.db`（已 gitignore）。同目录多开实例时，后启动的进程会因独占锁失败，前端显示**启动异常**页。可用 `TODOS_DB_PATH` 指定路径：
 
 ```powershell
 $env:TODOS_DB_PATH = "todos.test.db"

@@ -2,13 +2,45 @@ import { useCallback, useEffect, useState, type FormEvent } from "react";
 import {
   createTodo,
   deleteTodo,
+  getHealth,
   listTodos,
-  Todo,
+  type Health,
+  type Todo,
   updateTodo,
 } from "./api/client";
 import "./App.css";
 
-function App() {
+function StartupErrorPage({ health }: { health: Health }) {
+  const busy = health.code === "db_busy";
+  return (
+    <main className="app startup-error">
+      <header className="header">
+        <h1>启动异常</h1>
+        <p className="subtitle">
+          {busy
+            ? "数据库已被其他实例占用"
+            : "无法打开本地数据库"}
+        </p>
+      </header>
+      <p className="startup-message">
+        {health.error ??
+          (busy
+            ? "请关闭已打开的应用后重新启动。"
+            : "请检查库文件权限或路径后重试。")}
+      </p>
+      {health.db_path ? (
+        <p className="startup-path">
+          库文件：<code>{health.db_path}</code>
+        </p>
+      ) : null}
+      {busy ? (
+        <p className="startup-hint">关闭占用该库的窗口后，再启动本程序即可。</p>
+      ) : null}
+    </main>
+  );
+}
+
+function TodoApp() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(true);
@@ -126,6 +158,51 @@ function App() {
       ) : null}
     </main>
   );
+}
+
+function App() {
+  const [health, setHealth] = useState<Health | null>(null);
+  const [bootError, setBootError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      try {
+        const next = await getHealth();
+        if (!cancelled) setHealth(next);
+      } catch (e) {
+        if (!cancelled) {
+          setBootError(e instanceof Error ? e.message : String(e));
+          setHealth({
+            ok: false,
+            db_path: "",
+            code: "db_error",
+            error: e instanceof Error ? e.message : String(e),
+          });
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (!health) {
+    return (
+      <main className="app">
+        <header className="header">
+          <h1>待办事项</h1>
+          <p className="subtitle">{bootError ?? "正在检查数据库…"}</p>
+        </header>
+      </main>
+    );
+  }
+
+  if (!health.ok) {
+    return <StartupErrorPage health={health} />;
+  }
+
+  return <TodoApp />;
 }
 
 export default App;

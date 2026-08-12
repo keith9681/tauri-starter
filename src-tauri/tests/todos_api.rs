@@ -1,13 +1,18 @@
 use axum::body::Body;
 use http_body_util::BodyExt;
 use serde_json::{json, Value};
-use tauri_app_lib::api::{app_router, AppState};
+use tauri_app_lib::api::{app_router, AppState, StartupCode};
 use tempfile::NamedTempFile;
 use tower::ServiceExt;
 
 fn test_app() -> (axum::Router, NamedTempFile) {
     let db = NamedTempFile::new().expect("temp db");
     let state = AppState::with_db_path(db.path());
+    assert!(
+        state.failure().is_none(),
+        "expected ready state: {:?}",
+        state.failure()
+    );
     (app_router(state), db)
 }
 
@@ -45,6 +50,43 @@ async fn request(
         serde_json::from_slice(&bytes).unwrap_or(Value::Null)
     };
     (status, json)
+}
+
+#[tokio::test]
+async fn health_ok_when_ready() {
+    let (app, db) = test_app();
+    let (status, body) = request(app, "GET", "/health", None).await;
+    assert_eq!(status, 200);
+    assert_eq!(body["ok"], true);
+    assert_eq!(
+        body["db_path"].as_str().unwrap(),
+        db.path().to_string_lossy().as_ref()
+    );
+}
+
+#[tokio::test]
+async fn second_instance_same_db_is_busy() {
+    let db = NamedTempFile::new().expect("temp db");
+    let first = AppState::with_db_path(db.path());
+    assert!(first.failure().is_none());
+
+    let second = AppState::with_db_path(db.path());
+    let (code, _) = second.failure().expect("second instance should fail");
+    assert_eq!(code, StartupCode::DbBusy);
+
+    let app = app_router(second);
+    let (status, body) = request(app.clone(), "GET", "/health", None).await;
+    assert_eq!(status, 503);
+    assert_eq!(body["ok"], false);
+    assert_eq!(body["code"], "db_busy");
+    assert!(body["error"].as_str().unwrap().contains("占用"));
+
+    let (status, body) = request(app, "GET", "/todos", None).await;
+    assert_eq!(status, 503);
+    assert!(body["error"].as_str().unwrap().contains("占用"));
+
+    // Keep `first` alive until here so the exclusive lock is held.
+    drop(first);
 }
 
 #[tokio::test]

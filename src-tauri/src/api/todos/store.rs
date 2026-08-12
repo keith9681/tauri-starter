@@ -1,16 +1,28 @@
 use super::model::Todo;
-use rusqlite::{params, Connection, OptionalExtension};
+use rusqlite::{params, Connection, ErrorCode, OptionalExtension};
+use std::time::Duration;
 
 #[derive(Debug)]
 pub enum StoreError {
     NotFound,
     Invalid(String),
+    Busy,
     Db(String),
 }
 
 impl From<rusqlite::Error> for StoreError {
     fn from(value: rusqlite::Error) -> Self {
-        StoreError::Db(value.to_string())
+        match &value {
+            rusqlite::Error::SqliteFailure(err, _)
+                if matches!(
+                    err.code,
+                    ErrorCode::DatabaseBusy | ErrorCode::DatabaseLocked
+                ) =>
+            {
+                StoreError::Busy
+            }
+            _ => StoreError::Db(value.to_string()),
+        }
     }
 }
 
@@ -33,6 +45,9 @@ pub struct SqliteTodoStore {
 impl SqliteTodoStore {
     pub fn open(path: impl AsRef<std::path::Path>) -> Result<Self, StoreError> {
         let conn = Connection::open(path.as_ref())?;
+        // Fail fast when another process already holds an exclusive lock.
+        conn.busy_timeout(Duration::ZERO)?;
+        conn.pragma_update(None, "locking_mode", "EXCLUSIVE")?;
         conn.execute_batch(
             "CREATE TABLE IF NOT EXISTS todos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,

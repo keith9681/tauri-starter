@@ -13,7 +13,8 @@ Windows 优先的 Tauri 2 桌面待办：Vite + React + TypeScript 前端，Rust
 3. **桌面主路径不监听 TCP**。进程内自定义协议 `appapi` → `dispatch_protocol` → Router oneshot。不要把「起 HTTP 服务」当成桌面默认方案。
 4. **Scalar / OpenAPI UI 只挂在 `api` bin**（`src-tauri/src/bin/api.rs`），不要塞进 `app_router`。
 5. **测试不要改全局 `TODOS_DB_PATH` 污染开发库**；用 `AppState::with_db_path(临时路径)`。
-6. **Release / `tauri:run` 要能开 DevTools**：依赖 Cargo feature `devtools`（见 `src-tauri/Cargo.toml`）。正式商店分发前再评估是否关闭。
+6. **同目录多实例**：SQLite `locking_mode=EXCLUSIVE`；第二实例 `GET /health` → 503 `db_busy`，前端展示启动异常页（勿 panic）。
+7. **Release / `tauri:run` 要能开 DevTools**：依赖 Cargo feature `devtools`（见 `src-tauri/Cargo.toml`）。正式商店分发前再评估是否关闭。
 
 ## 架构速查
 

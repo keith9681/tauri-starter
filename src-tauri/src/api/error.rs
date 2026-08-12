@@ -16,6 +16,7 @@ pub struct ErrorBody {
 pub enum ApiError {
     BadRequest(String),
     NotFound(String),
+    ServiceUnavailable(String),
     Internal(String),
 }
 
@@ -24,6 +25,7 @@ impl IntoResponse for ApiError {
         let (status, message) = match self {
             ApiError::BadRequest(message) => (StatusCode::BAD_REQUEST, message),
             ApiError::NotFound(message) => (StatusCode::NOT_FOUND, message),
+            ApiError::ServiceUnavailable(message) => (StatusCode::SERVICE_UNAVAILABLE, message),
             ApiError::Internal(message) => (StatusCode::INTERNAL_SERVER_ERROR, message),
         };
 

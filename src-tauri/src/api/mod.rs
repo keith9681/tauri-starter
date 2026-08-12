@@ -1,12 +1,14 @@
 mod error;
+mod health;
 mod openapi;
 mod protocol;
 mod state;
 mod todos;
 
 pub use openapi::ApiDoc;
-pub use state::AppState;
+pub use state::{AppState, StartupCode};
 
+use axum::routing::get;
 use axum::Router;
 use std::sync::LazyLock;
 use tower_http::cors::{Any, CorsLayer};
@@ -22,6 +24,7 @@ pub fn shared_state() -> AppState {
 /// Does not include Scalar UI (mounted only in the HTTP bypass bin).
 pub fn app_router(state: AppState) -> Router {
     Router::new()
+        .route("/health", get(health::health))
         .nest("/todos", todos::routes())
         .layer(
             CorsLayer::new()

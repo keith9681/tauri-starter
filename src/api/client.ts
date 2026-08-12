@@ -10,6 +10,13 @@ export type Todo = {
   done: boolean;
 };
 
+export type Health = {
+  ok: boolean;
+  db_path: string;
+  code?: "db_busy" | "db_error" | string;
+  error?: string;
+};
+
 function resolveApiBase(): string {
   if (import.meta.env.VITE_API_BASE) {
     return import.meta.env.VITE_API_BASE.replace(/\/$/, "");
@@ -43,6 +50,21 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   }
 
   return (await res.json()) as T;
+}
+
+/** Startup probe — 503 still returns a Health JSON body. */
+export async function getHealth(): Promise<Health> {
+  const res = await fetch(`${resolveApiBase()}/health`);
+  try {
+    return (await res.json()) as Health;
+  } catch {
+    return {
+      ok: false,
+      db_path: "",
+      code: "db_error",
+      error: res.ok ? "健康检查响应无效" : `健康检查失败（${res.status}）`,
+    };
+  }
 }
 
 export function listTodos(): Promise<Todo[]> {

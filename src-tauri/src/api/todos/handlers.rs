@@ -4,6 +4,7 @@ use crate::api::error::{ApiError, ErrorBody};
 use crate::api::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
+use std::sync::MutexGuard;
 
 type ApiResult<T> = Result<T, ApiError>;
 
@@ -12,9 +13,19 @@ impl From<StoreError> for ApiError {
         match value {
             StoreError::NotFound => ApiError::NotFound("待办不存在".into()),
             StoreError::Invalid(msg) => ApiError::BadRequest(msg),
+            StoreError::Busy => ApiError::ServiceUnavailable(
+                "数据库已被其他实例占用，请关闭已打开的应用后重试。".into(),
+            ),
             StoreError::Db(msg) => ApiError::Internal(msg),
         }
     }
+}
+
+fn lock_store(state: &AppState) -> ApiResult<MutexGuard<'_, super::store::SqliteTodoStore>> {
+    let todos = state
+        .todos()
+        .map_err(|(_code, message)| ApiError::ServiceUnavailable(message))?;
+    Ok(todos.lock().expect("todos lock"))
 }
 
 /// 获取全部待办列表。
@@ -23,13 +34,14 @@ impl From<StoreError> for ApiError {
     path = "/todos",
     tag = "todos",
     summary = "列出待办",
-    description = "返回当前进程内存中的全部待办事项（按创建顺序）。",
+    description = "返回 SQLite 中的全部待办事项（按创建顺序）。",
     responses(
-        (status = 200, description = "待办列表", body = [Todo])
+        (status = 200, description = "待办列表", body = [Todo]),
+        (status = 503, description = "数据库不可用", body = ErrorBody)
     )
 )]
 pub async fn list(State(state): State<AppState>) -> ApiResult<Json<Vec<Todo>>> {
-    let store = state.todos.lock().expect("todos lock");
+    let store = lock_store(&state)?;
     Ok(Json(store.list()?))
 }
 
@@ -47,14 +59,15 @@ pub async fn list(State(state): State<AppState>) -> ApiResult<Json<Vec<Todo>>> {
     ),
     responses(
         (status = 200, description = "创建成功", body = Todo),
-        (status = 400, description = "参数无效（如标题为空）", body = ErrorBody)
+        (status = 400, description = "参数无效（如标题为空）", body = ErrorBody),
+        (status = 503, description = "数据库不可用", body = ErrorBody)
     )
 )]
 pub async fn create(
     State(state): State<AppState>,
     Json(body): Json<CreateTodo>,
 ) -> ApiResult<Json<Todo>> {
-    let mut store = state.todos.lock().expect("todos lock");
+    let mut store = lock_store(&state)?;
     let todo = store.create(body.title)?;
     Ok(Json(todo))
 }
@@ -77,7 +90,8 @@ pub async fn create(
     responses(
         (status = 200, description = "更新成功", body = Todo),
         (status = 400, description = "参数无效", body = ErrorBody),
-        (status = 404, description = "待办不存在", body = ErrorBody)
+        (status = 404, description = "待办不存在", body = ErrorBody),
+        (status = 503, description = "数据库不可用", body = ErrorBody)
     )
 )]
 pub async fn update(
@@ -85,7 +99,7 @@ pub async fn update(
     Path(id): Path<u64>,
     Json(body): Json<UpdateTodo>,
 ) -> ApiResult<Json<Todo>> {
-    let mut store = state.todos.lock().expect("todos lock");
+    let mut store = lock_store(&state)?;
     let todo = store.update(id, body.title, body.done)?;
     Ok(Json(todo))
 }
@@ -102,11 +116,12 @@ pub async fn update(
     ),
     responses(
         (status = 200, description = "删除成功", body = OkResponse),
-        (status = 404, description = "待办不存在", body = ErrorBody)
+        (status = 404, description = "待办不存在", body = ErrorBody),
+        (status = 503, description = "数据库不可用", body = ErrorBody)
     )
 )]
 pub async fn delete(State(state): State<AppState>, Path(id): Path<u64>) -> ApiResult<Json<OkResponse>> {
-    let mut store = state.todos.lock().expect("todos lock");
+    let mut store = lock_store(&state)?;
     store.delete(id)?;
     Ok(Json(OkResponse { ok: true }))
 }
