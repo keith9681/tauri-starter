@@ -1,14 +1,15 @@
-// Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
+pub mod api;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![greet])
+        // Custom scheme `appapi`: no TCP listen port.
+        // Windows/Android fetch base: http://appapi.localhost
+        // macOS/Linux: appapi://localhost
+        .register_uri_scheme_protocol("appapi", |_ctx, request| {
+            api::protocol_response(request)
+        })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

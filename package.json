@@ -13,13 +13,13 @@
     "tauri:dev": "tauri dev",
     "tauri:portable": "tauri build --no-bundle",
     "tauri:installer": "tauri build --bundles nsis",
-    "tauri:run": "bun run tauri:portable && src-tauri/target/release/tauri-app.exe"
+    "tauri:run": "bun run tauri:portable && src-tauri/target/release/tauri-app.exe",
+    "web:dev": "vite",
+    "api:dev": "cargo run --manifest-path src-tauri/Cargo.toml --bin api"
   },
   "dependencies": {
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-opener": "^2"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.8",
