@@ -1,10 +1,10 @@
 # AGENTS.md
 
-面向 AI / 协作者的项目约定。人类可读总览见 [README.md](README.md)。
+面向 AI / 协作者的**模板约定**。人类可读总览与「开新项目清单」见 [README.md](README.md)。
 
 ## 项目是什么
 
-Windows 优先的 Tauri 2 桌面待办：Vite + React + TypeScript 前端，Rust（axum）后端，SQLite 持久化。
+Windows 优先的 **Tauri 2 桌面应用模板**。示例业务是待办（Vite + React + TypeScript 前端，Rust/axum 后端，SQLite）。新桌面产品应复用本仓库的通信与持久化骨架，替换业务模块即可。
 
 ## 硬性约束（不要破坏）
 
@@ -25,13 +25,14 @@ Windows 优先的 Tauri 2 桌面待办：Vite + React + TypeScript 前端，Rust
 
 | 路径 | 职责 |
 |------|------|
-| `src/api/client.ts` | API base 解析 + todos 客户端 |
+| `src/api/client.ts` | API base 解析 + 业务客户端 |
 | `src-tauri/src/api/mod.rs` | `app_router` / `shared_state` / 协议入口 |
 | `src-tauri/src/api/protocol.rs` | HTTP Request ↔ oneshot |
-| `src-tauri/src/api/state.rs` | `AppState::new` / `with_db_path` |
-| `src-tauri/src/api/todos/` | model / handlers / SQLite store |
+| `src-tauri/src/api/state.rs` | `TAURI_STARTER_HOME` / `app_data.db` / `AppState` |
+| `src-tauri/src/api/todos/` | **示例**业务（model / handlers / store），可整体替换 |
 | `src-tauri/src/bin/api.rs` | 开发 HTTP + Scalar |
 | `src-tauri/tests/todos_api.rs` | 集成测试（oneshot + tempfile） |
+| `src-tauri/src/lib.rs` | 单例插件 + 注册 `appapi` |
 
 ## 常用命令
 
@@ -48,6 +49,14 @@ Windows 优先的 Tauri 2 桌面待办：Vite + React + TypeScript 前端，Rust
 
 ## 扩展指南
 
+### 从模板派生新产品（必做对齐）
+
+改身份时保持一致，否则数据目录会错位：
+
+- `tauri.conf.json`：`productName` / `identifier` / 窗口 title
+- `state.rs`：`APP_IDENTIFIER`（= `identifier`）、`HOME_ENV`、`DB_FILE_NAME`
+- 包名与图标：`package.json`、`Cargo.toml`、`src-tauri/icons/`
+
 ### 新增 API 资源
 
 1. 在 `src-tauri/src/api/<resource>/` 加 model、handlers、store（或复用现有模式）。
@@ -58,14 +67,14 @@ Windows 优先的 Tauri 2 桌面待办：Vite + React + TypeScript 前端，Rust
 
 ### 持久化
 
-- 默认库：`{TAURI_STARTER_HOME|%LOCALAPPDATA%/com.wentongchen.tauri-app}/app_data.db`。
+- 默认库：`{TAURI_STARTER_HOME|%LOCALAPPDATA%/<identifier>}/app_data.db`。
 - 环境变量：`TAURI_STARTER_HOME`（应用数据**目录**；库文件固定为该目录下 `app_data.db`）。测试优先 `with_db_path`。
-- Store 实现：`SqliteTodoStore`（`rusqlite` bundled）。
+- Store：`rusqlite` bundled；示例实现为 `SqliteTodoStore`。
 - 桌面进程单例：`tauri-plugin-single-instance`（重复打开激活已有窗口）。
 
 ### 前端
 
-- React 函数组件；与后端契约以 JSON todos API 为准。
+- React 函数组件；与后端契约以 JSON API 为准（示例为 todos）。
 - API base：`VITE_API_BASE` 可覆盖；否则桌面 `http://appapi.localhost`，浏览器 `http://127.0.0.1:8787`。
 
 ## 明确不做（除非用户明确要求）
@@ -74,8 +83,10 @@ Windows 优先的 Tauri 2 桌面待办：Vite + React + TypeScript 前端，Rust
 - 用 `axum-test` 或真实 TCP 端口做默认集成测试（oneshot 已够）
 - 把 Scalar 打进便携桌面包
 - 未确认就改打包目标、协议名、或提交无关大重构
+- 把「起 TCP HTTP 服务」当成桌面默认运行方式
 
 ## 提交与文档
 
 - 未明确要求时不要 `git commit` / `push`。
 - 行为或命令变更时同步更新 `README.md`；本文件只保留 agent 约束与扩展路径，避免与 README 长文重复。
+- 模板级约定变更（通信方式、HOME、单例、路由源）必须同时改 README「模板定位 / 用本模板开新项目」与本文件硬性约束。

@@ -12,12 +12,9 @@ dist
 dist-ssr
 *.local
 
-# Local SQLite test data
+# Local SQLite test data (cwd leftovers)
 app_data.db
 app_data.db-*
-todos.db
-todos.db-*
-todos.*.db
 *.db-journal
 
 # Editor directories and files
