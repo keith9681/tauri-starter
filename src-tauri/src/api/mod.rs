@@ -4,9 +4,11 @@ mod openapi;
 mod protocol;
 mod state;
 mod todos;
+mod window_chrome;
 
 pub use openapi::ApiDoc;
 pub use state::{AppState, StartupCode};
+pub use window_chrome::{bootstrap_window_chrome, set_app_handle};
 
 use axum::routing::get;
 use axum::Router;
@@ -26,6 +28,7 @@ pub fn app_router(state: AppState) -> Router {
     Router::new()
         .route("/health", get(health::health))
         .nest("/todos", todos::routes())
+        .nest("/ui/window-chrome", window_chrome::routes())
         .layer(
             CorsLayer::new()
                 .allow_origin(Any)

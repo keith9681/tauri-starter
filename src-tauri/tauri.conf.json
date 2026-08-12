@@ -16,7 +16,8 @@
         "width": 800,
         "height": 600,
         "center": true,
-        "backgroundColor": "#2f2f2f",
+        "visible": false,
+        "backgroundColor": "#111112",
         "devtools": true
       }
     ],

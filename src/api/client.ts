@@ -69,3 +69,17 @@ export function updateTodo(
 export function deleteTodo(id: number): Promise<{ ok: boolean }> {
   return request<{ ok: boolean }>(`/todos/${id}`, { method: "DELETE" });
 }
+
+export type ColorModePreference = "system" | "light" | "dark";
+export type EffectiveColorMode = "light" | "dark";
+
+/** Sync native window theme/background (no-op outside the desktop shell). */
+export function setWindowChrome(
+  mode: ColorModePreference,
+  effective: EffectiveColorMode,
+): Promise<{ ok: boolean; applied: boolean }> {
+  return request<{ ok: boolean; applied: boolean }>("/ui/window-chrome", {
+    method: "POST",
+    body: JSON.stringify({ mode, effective }),
+  });
+}

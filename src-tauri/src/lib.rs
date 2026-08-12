@@ -13,6 +13,12 @@ pub fn run() {
             }
         }))
         .plugin(tauri_plugin_opener::init())
+        .setup(|app| {
+            api::set_app_handle(app.handle().clone());
+            // Starts hidden; apply chrome from disk (or wait for frontend) before show.
+            api::bootstrap_window_chrome(app.handle());
+            Ok(())
+        })
         // Custom scheme `appapi`: no TCP listen port.
         // Windows/Android fetch base: http://appapi.localhost
         // macOS/Linux: appapi://localhost

@@ -15,6 +15,10 @@ import {
   HStack,
   VStack,
 } from "@astryxdesign/core/Layout";
+import {
+  SegmentedControl,
+  SegmentedControlItem,
+} from "@astryxdesign/core/SegmentedControl";
 import { Text } from "@astryxdesign/core/Text";
 import { TextInput } from "@astryxdesign/core/TextInput";
 import {
@@ -24,6 +28,7 @@ import {
   type Todo,
   updateTodo,
 } from "./api/client";
+import { useColorMode, type ColorMode } from "./providers";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -103,6 +108,7 @@ function TodoRow({
 }
 
 function TodoApp() {
+  const { mode, setMode } = useColorMode();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(true);
@@ -197,7 +203,7 @@ function TodoApp() {
 
   return (
     <Layout
-      height="auto"
+      height="fill"
       contentWidth={560}
       header={
         <LayoutHeader hasDivider>
@@ -210,14 +216,26 @@ function TodoApp() {
                   : `未完成 ${remaining} / 共 ${todos.length}`}
               </Text>
             </HStack>
-            <Button
-              label="加入10条测试"
-              variant="secondary"
-              size="sm"
-              isLoading={seeding}
-              isDisabled={loading || seeding}
-              onClick={() => void onSeedTestTodos()}
-            />
+            <HStack gap={2} vAlign="center">
+              <SegmentedControl
+                label="主题"
+                size="sm"
+                value={mode}
+                onChange={(next) => setMode(next as ColorMode)}
+              >
+                <SegmentedControlItem value="system" label="系统" />
+                <SegmentedControlItem value="light" label="浅色" />
+                <SegmentedControlItem value="dark" label="深色" />
+              </SegmentedControl>
+              <Button
+                label="加入10条测试"
+                variant="secondary"
+                size="sm"
+                isLoading={seeding}
+                isDisabled={loading || seeding}
+                onClick={() => void onSeedTestTodos()}
+              />
+            </HStack>
           </HStack>
         </LayoutHeader>
       }

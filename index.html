@@ -1,31 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
     <title>待办事项</title>
-    <style>
-      html,
-      body,
-      #root {
-        margin: 0;
-        min-height: 100%;
-        background-color: #f6f6f6;
-      }
-      @media (prefers-color-scheme: dark) {
-        html,
-        body,
-        #root {
-          background-color: #2f2f2f;
-          color-scheme: dark;
-        }
-      }
-    </style>
+    <script>
+      (function () {
+        var KEY = "tauri-starter-color-mode";
+        var mode = "system";
+        try {
+          mode = localStorage.getItem(KEY) || "system";
+        } catch (e) {}
+        var dark =
+          mode === "dark" ||
+          (mode !== "light" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        var bg = dark ? "#111112" : "#F1F4F7";
+        var scheme = dark ? "dark" : "light";
+        var root = document.documentElement;
+        root.style.colorScheme = scheme;
+        root.style.backgroundColor = bg;
+        root.style.setProperty("--app-shell-bg", bg);
+        root.dataset.colorMode = scheme;
+        var meta = document.querySelector('meta[name="color-scheme"]');
+        if (meta) meta.setAttribute("content", scheme);
+        window.__TAURI_STARTER_BOOT_BG__ = bg;
+      })();
+    </script>
   </head>
 
   <body>
+    <script>
+      document.body.style.backgroundColor =
+        window.__TAURI_STARTER_BOOT_BG__ || "#F1F4F7";
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
