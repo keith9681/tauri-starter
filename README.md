@@ -112,6 +112,7 @@ bun run api:test
 - 前端已嵌入；主路径不额外监听端口
 - 目标机需 WebView2；NSIS 可在缺省时静默拉 bootstrapper，纯拷 exe 不会自动安装
 - 窗口默认背景 `#2f2f2f`，减轻深色主题启动闪白
+- 已开 Cargo `devtools`：便携/release 可用 **F12** 或 **Ctrl+Shift+I** 打开 WebView 开发者工具（正式上架前可关掉该 feature）
 
 ## 目录结构
 

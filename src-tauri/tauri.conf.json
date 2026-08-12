@@ -15,7 +15,8 @@
         "title": "待办事项",
         "width": 800,
         "height": 600,
-        "backgroundColor": "#2f2f2f"
+        "backgroundColor": "#2f2f2f",
+        "devtools": true
       }
     ],
     "security": {
