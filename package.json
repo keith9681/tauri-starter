@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "astryx": "node node_modules/@astryxdesign/cli/clients/cli/bin/astryx.mjs",
     "clean": "bun -e \"import { rmSync } from 'fs'; for (const p of ['dist', 'src-tauri/target']) rmSync(p, { recursive: true, force: true })\"",
     "tauri:clean": "bun -e \"import { rmSync } from 'fs'; rmSync('src-tauri/target', { recursive: true, force: true })\"",
     "tauri": "tauri",
@@ -19,6 +20,10 @@
     "api:test": "cargo test --manifest-path src-tauri/Cargo.toml --test todos_api"
   },
   "dependencies": {
+    "@astryxdesign/cli": "^0.3.0",
+    "@astryxdesign/core": "^0.3.0",
+    "@astryxdesign/theme-neutral": "^0.3.0",
+    "@stylexjs/stylex": "^0.19.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

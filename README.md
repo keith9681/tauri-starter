@@ -1,8 +1,10 @@
-# tauri-starter
+# tauri-starter（Astryx UI 变体）
 
 Windows 优先的 **Tauri 2 桌面应用模板**。用「待办」示范端到端骨架；新项目应在此基础上改名、换业务，而不是另起一套通信与持久化方式。
 
-AI / 协作者约束见 [AGENTS.md](AGENTS.md)。
+**本分支 `template/astryx`**：前端使用 [Astryx](https://astryx.atmeta.com/docs/getting-started)（`@astryxdesign/core` + `theme-neutral`）。通信 / 持久化 / axum 骨架与 [main](https://github.com/keith9681/tauri-starter/tree/main) 相同，仅 UI 层不同。朴素 React UI 请切回 `main`。
+
+AI / 协作者约束见 [AGENTS.md](AGENTS.md)。CLI：`bun run astryx component Button` 等。
 
 ## 模板定位
 
@@ -22,7 +24,7 @@ AI / 协作者约束见 [AGENTS.md](AGENTS.md)。
 | 层 | 选型 |
 |----|------|
 | 壳 | Tauri 2（窗口 + `appapi` + 单例） |
-| 前端 | Vite 8 + React 19 + TypeScript（纯 Web / `fetch`） |
+| 前端 | Vite 8 + React 19 + TypeScript + Astryx（纯 Web / `fetch`） |
 | 后端 | axum（唯一路由源） |
 | 持久化 | SQLite（`rusqlite` bundled） |
 | API 文档 | utoipa + Scalar（仅 `api:dev`） |

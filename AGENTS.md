@@ -4,7 +4,7 @@
 
 ## 项目是什么
 
-Windows 优先的 **Tauri 2 桌面应用模板**。示例业务是待办（Vite + React + TypeScript 前端，Rust/axum 后端，SQLite）。新桌面产品应复用本仓库的通信与持久化骨架，替换业务模块即可。
+Windows 优先的 **Tauri 2 桌面应用模板**。示例业务是待办（Vite + React + TypeScript + **Astryx** 前端，Rust/axum 后端，SQLite）。本文件所在分支为 `template/astryx`；新桌面产品应复用本仓库的通信与持久化骨架，替换业务模块即可。
 
 ## 硬性约束（不要破坏）
 
@@ -46,6 +46,7 @@ Windows 优先的 **Tauri 2 桌面应用模板**。示例业务是待办（Vite 
 | `bun run api:test` | API 集成测试 |
 | `bun run tauri:portable` | 便携 exe（`--no-bundle`） |
 | `bun run tauri:installer` | NSIS 安装包 |
+| `bun run astryx …` | Astryx CLI（组件 / 模板 / tokens 文档） |
 
 ## 扩展指南
 
@@ -76,6 +77,40 @@ Windows 优先的 **Tauri 2 桌面应用模板**。示例业务是待办（Vite 
 
 - React 函数组件；与后端契约以 JSON API 为准（示例为 todos）。
 - API base：`VITE_API_BASE` 可覆盖；否则桌面 `http://appapi.localhost`，浏览器 `http://127.0.0.1:8787`。
+- **本分支（`template/astryx`）** 前端使用 [Astryx](https://astryx.atmeta.com/docs/getting-started)（`Theme` + `@astryxdesign/core/*`）；main 为朴素 React UI。
+
+<!-- ASTRYX:START -->
+Astryx v0.3.0 · 155 components
+CLI: run every command as `bun run astryx <cmd>` or `bunx astryx <cmd>` (shown below as `astryx ...`).
+
+SETUP (once, in your app entry e.g. main.tsx) — without these, components render unstyled:
+  import "@astryxdesign/core/reset.css";
+  import "@astryxdesign/core/astryx.css";
+  import "@astryxdesign/theme-neutral/theme.css";
+  Wrap the tree in `<Theme theme={neutralTheme}>` (`@astryxdesign/theme-neutral/built`).
+
+WORKFLOW — discover, don't guess. Before writing UI:
+1. `astryx build "<idea>"` — START HERE: returns a kit (closest [page] + [block]s + [component]s). No args = full playbook.
+2. `astryx template <name> [--skeleton]` — scaffold the [page]/[block]s it named, or study their layout. Templates are reference code.
+3. `astryx component <Name>` — props + examples for every component you use.
+
+RULES:
+- No <div> — components do all layout/spacing. Full page → AppShell; sidebar nav → SideNav.
+- Frame first: pick the shell (AppShell / Layout+LayoutPanel) and budget regions in px BEFORE writing content (`astryx docs layout`).
+- Dense data = rows (Table, List/Item) edge-to-edge — never Card-wrapped list items. Card = dashboard widgets, galleries, settings groups only.
+- Status → StatusDot/Token; Badge only for counts and enumerated states, never decoration.
+- Custom styling: component props first; else style/className with tokens — var(--color-*|--spacing-*|--radius-*). No raw hex/px. (No StyleX/Tailwind compiler here — don't use xstyle/utility classes.)
+- Tokens for every value (`astryx docs tokens`). Brand/accent via `astryx theme` — never override --color-* in :root.
+- SELF-CHECK before you finish: re-read the file and replace any raw <div>/<span> layout, imported .css/@apply, or hardcoded value (#hex, 16px) with the component or a token (var(--color-*|--spacing-*|…)). If unsure a component/prop exists, run `astryx component <Name>` / `astryx search "<thing>"`; don't hand-roll CSS.
+
+MORE CLI:
+  search "<query>"   find any component / hook / doc / template / block
+  component --list   155 components by category
+  template --list    page + block recipes
+  docs <topic>       color, elevation, icons, illustrations, internationalization, layout, migration, motion, principles, shape, spacing, styling, theme, tokens, typography
+  swizzle <Name>     eject component source for deep customization
+  upgrade --apply    run after any @astryxdesign/core bump
+<!-- ASTRYX:END -->
 
 ## 明确不做（除非用户明确要求）
 

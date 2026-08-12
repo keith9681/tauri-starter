@@ -1,4 +1,12 @@
-import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { Banner } from "@astryxdesign/core/Banner";
+import { Button } from "@astryxdesign/core/Button";
+import { CheckboxInput } from "@astryxdesign/core/CheckboxInput";
+import { EmptyState } from "@astryxdesign/core/EmptyState";
+import { Heading } from "@astryxdesign/core/Heading";
+import { Layout, HStack, VStack } from "@astryxdesign/core/Layout";
+import { Text } from "@astryxdesign/core/Text";
+import { TextInput } from "@astryxdesign/core/TextInput";
 import {
   createTodo,
   deleteTodo,
@@ -6,7 +14,6 @@ import {
   type Todo,
   updateTodo,
 } from "./api/client";
-import "./App.css";
 
 function TodoApp() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -30,8 +37,7 @@ function TodoApp() {
     void refresh();
   }, [refresh]);
 
-  async function onAdd(e: FormEvent) {
-    e.preventDefault();
+  async function onAdd() {
     const next = title.trim();
     if (!next) return;
 
@@ -74,57 +80,73 @@ function TodoApp() {
   const remaining = todos.filter((t) => !t.done).length;
 
   return (
-    <main className="app">
-      <header className="header">
-        <h1>待办事项</h1>
-        <p className="subtitle">
-          {loading ? "加载中…" : `未完成 ${remaining} / 共 ${todos.length}`}
-        </p>
-      </header>
+    <Layout
+      height="auto"
+      contentWidth={560}
+      padding={4}
+      header={
+        <VStack gap={1}>
+          <Heading level={1}>待办事项</Heading>
+          <Text type="supporting" color="secondary">
+            {loading ? "加载中…" : `未完成 ${remaining} / 共 ${todos.length}`}
+          </Text>
+        </VStack>
+      }
+    >
+      <VStack gap={3}>
+        <HStack gap={2} vAlign="end">
+          <TextInput
+            label="新待办"
+            isLabelHidden
+            value={title}
+            onChange={setTitle}
+            placeholder="添加一件事…"
+            hasAutoFocus
+            width="100%"
+            onEnter={() => void onAdd()}
+          />
+          <Button
+            label="添加"
+            variant="primary"
+            isDisabled={!title.trim()}
+            onClick={() => void onAdd()}
+          />
+        </HStack>
 
-      <form className="composer" onSubmit={onAdd}>
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.currentTarget.value)}
-          placeholder="添加一件事…"
-          aria-label="新待办"
-          autoFocus
-        />
-        <button type="submit" disabled={!title.trim()}>
-          添加
-        </button>
-      </form>
+        {error ? (
+          <Banner status="error" title="请求失败" description={error} />
+        ) : null}
 
-      {error ? <p className="error">{error}</p> : null}
+        {!loading && todos.length === 0 ? (
+          <EmptyState
+            title="还没有待办"
+            description="先添加一条吧。"
+            isCompact
+          />
+        ) : null}
 
-      <ul className="todo-list">
-        {todos.map((todo) => (
-          <li key={todo.id} className={todo.done ? "done" : undefined}>
-            <label>
-              <input
-                type="checkbox"
-                checked={todo.done}
-                disabled={busyId === todo.id}
+        <VStack gap={1}>
+          {todos.map((todo) => (
+            <HStack key={todo.id} gap={2} vAlign="center" justify="between">
+              <CheckboxInput
+                label={todo.title}
+                value={todo.done}
+                isDisabled={busyId === todo.id}
+                isLoading={busyId === todo.id}
                 onChange={() => void onToggle(todo)}
+                width="100%"
               />
-              <span>{todo.title}</span>
-            </label>
-            <button
-              type="button"
-              className="ghost"
-              disabled={busyId === todo.id}
-              onClick={() => void onRemove(todo.id)}
-            >
-              删除
-            </button>
-          </li>
-        ))}
-      </ul>
-
-      {!loading && todos.length === 0 ? (
-        <p className="empty">还没有待办，先添加一条吧。</p>
-      ) : null}
-    </main>
+              <Button
+                label="删除"
+                variant="ghost"
+                isDisabled={busyId === todo.id}
+                onClick={() => void onRemove(todo.id)}
+              />
+            </HStack>
+          ))}
+        </VStack>
+      </VStack>
+    </Layout>
   );
 }
 
