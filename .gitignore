@@ -13,6 +13,8 @@ dist-ssr
 *.local
 
 # Local SQLite test data
+app_data.db
+app_data.db-*
 todos.db
 todos.db-*
 todos.*.db

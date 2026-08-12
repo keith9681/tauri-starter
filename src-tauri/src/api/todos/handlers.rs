@@ -13,9 +13,6 @@ impl From<StoreError> for ApiError {
         match value {
             StoreError::NotFound => ApiError::NotFound("待办不存在".into()),
             StoreError::Invalid(msg) => ApiError::BadRequest(msg),
-            StoreError::Busy => ApiError::ServiceUnavailable(
-                "数据库已被其他实例占用，请关闭已打开的应用后重试。".into(),
-            ),
             StoreError::Db(msg) => ApiError::Internal(msg),
         }
     }

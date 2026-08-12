@@ -12,8 +12,8 @@ Windows 优先的 Tauri 2 桌面待办：Vite + React + TypeScript 前端，Rust
 2. **axum `app_router` 是唯一路由源**（`src-tauri/src/api/mod.rs`）。新业务在此挂载；桌面 `appapi` 与 `api:dev` 必须共用同一套 handlers。
 3. **桌面主路径不监听 TCP**。进程内自定义协议 `appapi` → `dispatch_protocol` → Router oneshot。不要把「起 HTTP 服务」当成桌面默认方案。
 4. **Scalar / OpenAPI UI 只挂在 `api` bin**（`src-tauri/src/bin/api.rs`），不要塞进 `app_router`。
-5. **测试不要改全局 `TODOS_DB_PATH` 污染开发库**；用 `AppState::with_db_path(临时路径)`。
-6. **同目录多实例**：SQLite `locking_mode=EXCLUSIVE`；第二实例 `GET /health` → 503 `db_busy`，前端展示启动异常页（勿 panic）。
+5. **测试不要改全局 `TAURI_STARTER_HOME` 污染开发库**；用 `AppState::with_db_path(临时路径)`。
+6. **桌面单例**：`tauri-plugin-single-instance`；重复启动激活已有窗口并退出第二进程。默认库 `{TAURI_STARTER_HOME|%LOCALAPPDATA%/<identifier>}/app_data.db`。
 7. **Release / `tauri:run` 要能开 DevTools**：依赖 Cargo feature `devtools`（见 `src-tauri/Cargo.toml`）。正式商店分发前再评估是否关闭。
 
 ## 架构速查
@@ -58,9 +58,10 @@ Windows 优先的 Tauri 2 桌面待办：Vite + React + TypeScript 前端，Rust
 
 ### 持久化
 
-- 默认库：`todos.db`（已 gitignore）。
-- 环境变量：`TODOS_DB_PATH`（仅运行时隔离，**测试优先 `with_db_path`**）。
+- 默认库：`{TAURI_STARTER_HOME|%LOCALAPPDATA%/com.wentongchen.tauri-app}/app_data.db`。
+- 环境变量：`TAURI_STARTER_HOME`（应用数据**目录**；库文件固定为该目录下 `app_data.db`）。测试优先 `with_db_path`。
 - Store 实现：`SqliteTodoStore`（`rusqlite` bundled）。
+- 桌面进程单例：`tauri-plugin-single-instance`（重复打开激活已有窗口）。
 
 ### 前端
 

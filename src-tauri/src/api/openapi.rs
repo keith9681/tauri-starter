@@ -8,7 +8,7 @@ use utoipa::OpenApi;
 #[openapi(
     info(
         title = "待办事项 API",
-        description = "桌面应用本地业务接口。桌面端经自定义协议 `appapi` 访问；浏览器联调可走 `api:dev`（含 Scalar 文档）。数据持久化到 SQLite（默认 `todos.db`）。",
+        description = "桌面应用本地业务接口。桌面端经自定义协议 `appapi` 访问；浏览器联调可走 `api:dev`（含 Scalar 文档）。数据持久化到 SQLite（默认 `{TAURI_STARTER_HOME|/LocalAppData/<identifier>}/app_data.db`）。",
         version = "0.1.0"
     ),
     paths(

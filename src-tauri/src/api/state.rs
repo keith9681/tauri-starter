@@ -1,19 +1,21 @@
-use crate::api::todos::{SqliteTodoStore, StoreError};
+use crate::api::todos::SqliteTodoStore;
+use std::fs;
 use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex};
 
-const DEFAULT_DB_PATH: &str = "todos.db";
+/// Must stay aligned with `identifier` in `tauri.conf.json`.
+const APP_IDENTIFIER: &str = "com.wentongchen.tauri-app";
+const DB_FILE_NAME: &str = "app_data.db";
+const HOME_ENV: &str = "TAURI_STARTER_HOME";
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum StartupCode {
-    DbBusy,
     DbError,
 }
 
 impl StartupCode {
     pub fn as_str(self) -> &'static str {
         match self {
-            StartupCode::DbBusy => "db_busy",
             StartupCode::DbError => "db_error",
         }
     }
@@ -36,28 +38,50 @@ enum AppStateInner {
     },
 }
 
+/// Application data directory: `TAURI_STARTER_HOME` or platform local data + identifier.
+pub fn resolve_app_home() -> PathBuf {
+    if let Ok(home) = std::env::var(HOME_ENV) {
+        let home = home.trim();
+        if !home.is_empty() {
+            return PathBuf::from(home);
+        }
+    }
+
+    dirs::data_local_dir()
+        .unwrap_or_else(|| PathBuf::from("."))
+        .join(APP_IDENTIFIER)
+}
+
+pub fn resolve_db_path() -> PathBuf {
+    resolve_app_home().join(DB_FILE_NAME)
+}
+
 impl AppState {
     pub fn new() -> Self {
-        let path = std::env::var("TODOS_DB_PATH").unwrap_or_else(|_| DEFAULT_DB_PATH.to_string());
-        Self::with_db_path(path)
+        Self::with_db_path(resolve_db_path())
     }
 
     pub fn with_db_path(path: impl AsRef<Path>) -> Self {
         let db_path = path.as_ref().to_path_buf();
+        if let Some(parent) = db_path.parent() {
+            if let Err(err) = fs::create_dir_all(parent) {
+                return Self {
+                    inner: Arc::new(AppStateInner::Failed {
+                        code: StartupCode::DbError,
+                        message: format!(
+                            "无法创建数据目录（{}）：{err}",
+                            parent.display()
+                        ),
+                        db_path,
+                    }),
+                };
+            }
+        }
+
         match SqliteTodoStore::open(&db_path) {
             Ok(store) => Self {
                 inner: Arc::new(AppStateInner::Ready {
                     todos: Mutex::new(store),
-                    db_path,
-                }),
-            },
-            Err(StoreError::Busy) => Self {
-                inner: Arc::new(AppStateInner::Failed {
-                    code: StartupCode::DbBusy,
-                    message: format!(
-                        "数据库已被其他实例占用（{}）。请关闭已打开的应用后重试。",
-                        db_path.display()
-                    ),
                     db_path,
                 }),
             },

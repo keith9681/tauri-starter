@@ -100,30 +100,6 @@ button.ghost:hover:not(:disabled) {
   font-size: 0.9rem;
 }
 
-.startup-error .startup-message {
-  margin: 1.5rem 0 0;
-  color: #5c3b3b;
-  line-height: 1.6;
-}
-
-.startup-error .startup-path {
-  margin: 0.85rem 0 0;
-  color: #666;
-  font-size: 0.9rem;
-  overflow-wrap: anywhere;
-}
-
-.startup-error .startup-path code {
-  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-  font-size: 0.88em;
-}
-
-.startup-error .startup-hint {
-  margin: 1.25rem 0 0;
-  color: #777;
-  font-size: 0.95rem;
-}
-
 .empty {
   margin: 1.5rem 0 0;
   color: #777;
@@ -217,14 +193,5 @@ button.ghost:hover:not(:disabled) {
 
   .error {
     color: #ffb4a9;
-  }
-
-  .startup-error .startup-message {
-    color: #f0c4c4;
-  }
-
-  .startup-error .startup-path,
-  .startup-error .startup-hint {
-    color: #a8a8a8;
   }
 }

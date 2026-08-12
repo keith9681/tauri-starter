@@ -1,28 +1,16 @@
 use super::model::Todo;
-use rusqlite::{params, Connection, ErrorCode, OptionalExtension};
-use std::time::Duration;
+use rusqlite::{params, Connection, OptionalExtension};
 
 #[derive(Debug)]
 pub enum StoreError {
     NotFound,
     Invalid(String),
-    Busy,
     Db(String),
 }
 
 impl From<rusqlite::Error> for StoreError {
     fn from(value: rusqlite::Error) -> Self {
-        match &value {
-            rusqlite::Error::SqliteFailure(err, _)
-                if matches!(
-                    err.code,
-                    ErrorCode::DatabaseBusy | ErrorCode::DatabaseLocked
-                ) =>
-            {
-                StoreError::Busy
-            }
-            _ => StoreError::Db(value.to_string()),
-        }
+        StoreError::Db(value.to_string())
     }
 }
 
@@ -45,9 +33,6 @@ pub struct SqliteTodoStore {
 impl SqliteTodoStore {
     pub fn open(path: impl AsRef<std::path::Path>) -> Result<Self, StoreError> {
         let conn = Connection::open(path.as_ref())?;
-        // Fail fast when another process already holds an exclusive lock.
-        conn.busy_timeout(Duration::ZERO)?;
-        conn.pragma_update(None, "locking_mode", "EXCLUSIVE")?;
         conn.execute_batch(
             "CREATE TABLE IF NOT EXISTS todos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -62,7 +47,7 @@ impl SqliteTodoStore {
         self.conn
             .query_row(
                 "SELECT id, title, done FROM todos WHERE id = ?1",
-                params![id],
+                params![id as i64],
                 |row| {
                     Ok(Todo {
                         id: row.get::<_, i64>(0)? as u64,
@@ -129,7 +114,7 @@ impl TodoStore for SqliteTodoStore {
 
         self.conn.execute(
             "UPDATE todos SET title = ?1, done = ?2 WHERE id = ?3",
-            params![current.title, if current.done { 1 } else { 0 }, id],
+            params![current.title, if current.done { 1 } else { 0 }, id as i64],
         )?;
         Ok(current)
     }
@@ -137,7 +122,7 @@ impl TodoStore for SqliteTodoStore {
     fn delete(&mut self, id: u64) -> Result<(), StoreError> {
         let changed = self
             .conn
-            .execute("DELETE FROM todos WHERE id = ?1", params![id])?;
+            .execute("DELETE FROM todos WHERE id = ?1", params![id as i64])?;
         if changed == 0 {
             return Err(StoreError::NotFound);
         }

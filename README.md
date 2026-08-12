@@ -9,7 +9,7 @@ Tauri 2 + React + TypeScript 桌面待办（Windows 优先）。
 | 层 | 选型 |
 |----|------|
 | 壳 | Tauri 2（窗口 + `appapi` 协议） |
-| 前端 | Vite 7 + React 19 + TypeScript（纯 Web / `fetch`） |
+| 前端 | Vite 8 + React 19 + TypeScript（纯 Web / `fetch`） |
 | 后端 | axum（唯一路由源） |
 | 持久化 | SQLite（`rusqlite` bundled） |
 | API 文档 | utoipa + Scalar（仅 `api:dev`） |
@@ -38,10 +38,10 @@ Tauri 2 + React + TypeScript 桌面待办（Windows 优先）。
 | `PATCH` | `/todos/:id` | 更新 `{ "title"?, "done"? }` |
 | `DELETE` | `/todos/:id` | 删除 |
 
-默认库文件：工作目录 `todos.db`（已 gitignore）。同目录多开实例时，后启动的进程会因独占锁失败，前端显示**启动异常**页。可用 `TODOS_DB_PATH` 指定路径：
+默认库文件：`%LOCALAPPDATA%\com.wentongchen.tauri-app\app_data.db`（可用 `TAURI_STARTER_HOME` 覆盖**应用数据目录**，库文件始终为该目录下的 `app_data.db`）。桌面端通过 `tauri-plugin-single-instance` 保持单例：重复启动会激活已打开窗口并退出新进程。
 
 ```powershell
-$env:TODOS_DB_PATH = "todos.test.db"
+$env:TAURI_STARTER_HOME = "D:\dev\tauri-starter-data"
 bun run api:dev
 ```
 
@@ -91,7 +91,7 @@ bun run web:dev
 | `bun run tauri:clean` | 清 `src-tauri/target` |
 | `bun run clean` | 清 `dist` + `src-tauri/target` |
 | `bun run api:dev` | 本机 HTTP API + Scalar |
-| `bun run api:test` | API 集成测试（临时 SQLite，不污染 `todos.db`） |
+| `bun run api:test` | API 集成测试（临时 SQLite，不污染开发库） |
 | `bun run web:dev` | 仅 Vite（需另开 `api:dev`） |
 
 ### 测试说明
@@ -128,7 +128,7 @@ tauri-starter/
 │   │   │   ├── protocol.rs   # appapi → Router oneshot
 │   │   │   ├── state.rs      # AppState / with_db_path
 │   │   │   └── todos/        # handlers + SQLite store
-│   │   ├── lib.rs            # 注册 appapi
+│   │   ├── lib.rs            # 单例 + 注册 appapi
 │   │   └── bin/api.rs        # HTTP 旁路 + Scalar
 │   ├── tests/todos_api.rs    # API 集成测试
 │   ├── tauri.conf.json
