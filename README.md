@@ -17,6 +17,21 @@ AI / 协作者约束见 [AGENTS.md](AGENTS.md)。
 
 示例业务（todos CRUD + SQLite）可替换；**架构约定应保留**。
 
+### UI 变体
+
+| 分支 | 前端 UI |
+|------|---------|
+| `main`（本分支） | 朴素 React + CSS |
+| [`template/astryx`](https://github.com/keith9681/tauri-starter/tree/template/astryx) | [Astryx](https://astryx.atmeta.com/docs/getting-started)（`@astryxdesign/core` + `theme-neutral`） |
+
+通信、持久化与 axum 骨架相同，仅 UI 层不同：
+
+```powershell
+git checkout template/astryx
+bun install
+bun run tauri:dev
+```
+
 ## 技术栈
 
 | 层 | 选型 |
