@@ -78,6 +78,7 @@ Windows 优先的 **Tauri 2 桌面应用模板**。示例业务是待办（Vite 
 - React 函数组件；与后端契约以 JSON API 为准（示例为 todos）。
 - API base：`VITE_API_BASE` 可覆盖；否则桌面 `http://appapi.localhost`，浏览器 `http://127.0.0.1:8787`。
 - **本分支（`template/astryx`）** 前端使用 [Astryx](https://astryx.atmeta.com/docs/getting-started)（`Theme` + `@astryxdesign/core/*`）；main 为朴素 React UI。
+- **产品文案走 `src/i18n/`**（`t()` / catalogs），勿在组件里写死中文；Astryx 组件字符串由 `InternationalizationProvider` 同步 `locale`。
 
 <!-- ASTRYX:START -->
 Astryx v0.3.0 · 155 components

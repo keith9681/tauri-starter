@@ -8,6 +8,15 @@
     <title>待办事项</title>
     <script>
       (function () {
+        var LOCALE_KEY = "tauri-starter-locale";
+        var locale = "zh-CN";
+        try {
+          locale = localStorage.getItem(LOCALE_KEY) || "zh-CN";
+        } catch (e) {}
+        if (locale !== "zh-CN" && locale !== "en") locale = "zh-CN";
+        document.documentElement.lang = locale;
+        document.title = locale === "en" ? "Todos" : "待办事项";
+
         var KEY = "tauri-starter-color-mode";
         var mode = "system";
         try {

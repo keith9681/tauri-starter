@@ -30,6 +30,8 @@ AI / 协作者约束见 [AGENTS.md](AGENTS.md)。CLI：`bun run astryx component
 | API 文档 | utoipa + Scalar（仅 `api:dev`） |
 | 包管理 / 打包 | bun；便携 exe 或 NSIS |
 
+UI 支持 **中文 / English** 切换（默认 `zh-CN`），偏好存在 `localStorage`（`tauri-starter-locale`）；产品文案目录见 `src/i18n/`。
+
 ## 架构
 
 ```text

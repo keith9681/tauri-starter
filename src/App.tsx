@@ -28,7 +28,8 @@ import {
   type Todo,
   updateTodo,
 } from "./api/client";
-import { useColorMode, type ColorMode } from "./providers";
+import type { AppLocale } from "./i18n";
+import { useColorMode, useLocale, type ColorMode } from "./providers";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -60,6 +61,7 @@ function TodoRow({
   onToggle: (todo: Todo) => void;
   onRemove: (id: number) => void;
 }) {
+  const { t } = useLocale();
   const checkboxRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -94,8 +96,8 @@ function TodoRow({
       }
       endContent={
         <IconButton
-          label="删除"
-          tooltip="删除"
+          label={t("todos.delete")}
+          tooltip={t("todos.delete")}
           icon={<Icon icon="close" />}
           variant="ghost"
           size="sm"
@@ -109,6 +111,7 @@ function TodoRow({
 
 function TodoApp() {
   const { mode, setMode } = useColorMode();
+  const { locale, setLocale, t } = useLocale();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(true);
@@ -154,7 +157,11 @@ function TodoApp() {
       const stamp = Date.now().toString(36).slice(-4);
       const created: Todo[] = [];
       for (let i = 1; i <= 10; i++) {
-        created.push(await createTodo(`测试事项 ${i} · ${stamp}`));
+        created.push(
+          await createTodo(
+            t("todos.seedItem", { n: i, stamp }),
+          ),
+        );
       }
       withListTransition(() => {
         setTodos((prev) => [...prev, ...created]);
@@ -209,26 +216,41 @@ function TodoApp() {
         <LayoutHeader hasDivider>
           <HStack gap={2} vAlign="center" hAlign="between">
             <HStack gap={2} vAlign="center">
-              <Heading level={3}>待办事项</Heading>
+              <Heading level={3}>{t("app.title")}</Heading>
               <Text type="supporting" color="secondary">
                 {loading
-                  ? "加载中…"
-                  : `未完成 ${remaining} / 共 ${todos.length}`}
+                  ? t("todos.loading")
+                  : t("todos.count", {
+                      remaining,
+                      total: todos.length,
+                    })}
               </Text>
             </HStack>
             <HStack gap={2} vAlign="center">
               <SegmentedControl
-                label="主题"
+                label={t("lang.label")}
+                size="sm"
+                value={locale}
+                onChange={(next) => setLocale(next as AppLocale)}
+              >
+                <SegmentedControlItem value="zh-CN" label={t("lang.zh")} />
+                <SegmentedControlItem value="en" label={t("lang.en")} />
+              </SegmentedControl>
+              <SegmentedControl
+                label={t("theme.label")}
                 size="sm"
                 value={mode}
                 onChange={(next) => setMode(next as ColorMode)}
               >
-                <SegmentedControlItem value="system" label="系统" />
-                <SegmentedControlItem value="light" label="浅色" />
-                <SegmentedControlItem value="dark" label="深色" />
+                <SegmentedControlItem
+                  value="system"
+                  label={t("theme.system")}
+                />
+                <SegmentedControlItem value="light" label={t("theme.light")} />
+                <SegmentedControlItem value="dark" label={t("theme.dark")} />
               </SegmentedControl>
               <Button
-                label="加入10条测试"
+                label={t("todos.seed")}
                 variant="secondary"
                 size="sm"
                 isLoading={seeding}
@@ -244,17 +266,17 @@ function TodoApp() {
         <VStack gap={4}>
           <HStack gap={2} vAlign="end">
             <TextInput
-              label="新待办"
+              label={t("todos.newLabel")}
               isLabelHidden
               value={title}
               onChange={setTitle}
-              placeholder="添加一件事…"
+              placeholder={t("todos.placeholder")}
               hasAutoFocus
               width="100%"
               onEnter={() => void onAdd()}
             />
             <Button
-              label="添加"
+              label={t("todos.add")}
               variant="primary"
               isDisabled={!title.trim()}
               onClick={() => void onAdd()}
@@ -262,13 +284,17 @@ function TodoApp() {
           </HStack>
 
           {error ? (
-            <Banner status="error" title="请求失败" description={error} />
+            <Banner
+              status="error"
+              title={t("todos.errorTitle")}
+              description={error}
+            />
           ) : null}
 
           {!loading && todos.length === 0 ? (
             <EmptyState
-              title="还没有待办"
-              description="先添加一条吧。"
+              title={t("todos.emptyTitle")}
+              description={t("todos.emptyDescription")}
               isCompact
             />
           ) : null}
@@ -280,7 +306,7 @@ function TodoApp() {
                   key={todo.id}
                   todo={todo}
                   busy={busyId === todo.id}
-                  onToggle={(t) => void onToggle(t)}
+                  onToggle={(item) => void onToggle(item)}
                   onRemove={(id) => void onRemove(id)}
                 />
               ))}

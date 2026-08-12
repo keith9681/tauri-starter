@@ -7,13 +7,22 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { InternationalizationProvider } from "@astryxdesign/core/i18n";
 import { Theme } from "@astryxdesign/core/theme";
 import { neutralTheme } from "@astryxdesign/theme-neutral/built";
 import { setWindowChrome } from "./api/client";
+import {
+  LOCALE_STORAGE_KEY,
+  readStoredLocale,
+  translate,
+  type AppLocale,
+  type MessageKey,
+  type MessageValues,
+} from "./i18n";
 
 export type ColorMode = "system" | "light" | "dark";
 
-const STORAGE_KEY = "tauri-starter-color-mode";
+const COLOR_STORAGE_KEY = "tauri-starter-color-mode";
 
 function isColorMode(value: string): value is ColorMode {
   return value === "system" || value === "light" || value === "dark";
@@ -21,7 +30,7 @@ function isColorMode(value: string): value is ColorMode {
 
 function readStoredMode(): ColorMode {
   try {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = localStorage.getItem(COLOR_STORAGE_KEY);
     if (stored && isColorMode(stored)) return stored;
   } catch {
     /* ignore */
@@ -73,17 +82,49 @@ export function useColorMode(): ColorModeContextValue {
   return ctx;
 }
 
+type LocaleContextValue = {
+  locale: AppLocale;
+  setLocale: (locale: AppLocale) => void;
+  t: (key: MessageKey, values?: MessageValues) => string;
+};
+
+const LocaleContext = createContext<LocaleContextValue | null>(null);
+
+export function useLocale(): LocaleContextValue {
+  const ctx = useContext(LocaleContext);
+  if (!ctx) {
+    throw new Error("useLocale must be used within Providers");
+  }
+  return ctx;
+}
+
 export function Providers({ children }: { children: ReactNode }) {
   const [mode, setModeState] = useState<ColorMode>(() => readStoredMode());
+  const [locale, setLocaleState] = useState<AppLocale>(() => readStoredLocale());
 
   const setMode = useCallback((next: ColorMode) => {
     setModeState(next);
     try {
-      localStorage.setItem(STORAGE_KEY, next);
+      localStorage.setItem(COLOR_STORAGE_KEY, next);
     } catch {
       /* ignore */
     }
   }, []);
+
+  const setLocale = useCallback((next: AppLocale) => {
+    setLocaleState(next);
+    try {
+      localStorage.setItem(LOCALE_STORAGE_KEY, next);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  const t = useCallback(
+    (key: MessageKey, values?: MessageValues) =>
+      translate(locale, key, values),
+    [locale],
+  );
 
   useEffect(() => {
     const sync = () => {
@@ -104,13 +145,26 @@ export function Providers({ children }: { children: ReactNode }) {
     return () => mq.removeEventListener("change", onChange);
   }, [mode]);
 
-  const value = useMemo(() => ({ mode, setMode }), [mode, setMode]);
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    document.title = translate(locale, "app.title");
+  }, [locale]);
+
+  const colorValue = useMemo(() => ({ mode, setMode }), [mode, setMode]);
+  const localeValue = useMemo(
+    () => ({ locale, setLocale, t }),
+    [locale, setLocale, t],
+  );
 
   return (
-    <ColorModeContext.Provider value={value}>
-      <Theme theme={neutralTheme} mode={mode}>
-        {children}
-      </Theme>
-    </ColorModeContext.Provider>
+    <LocaleContext.Provider value={localeValue}>
+      <InternationalizationProvider locale={locale}>
+        <ColorModeContext.Provider value={colorValue}>
+          <Theme theme={neutralTheme} mode={mode}>
+            {children}
+          </Theme>
+        </ColorModeContext.Provider>
+      </InternationalizationProvider>
+    </LocaleContext.Provider>
   );
 }
