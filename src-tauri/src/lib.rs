@@ -7,8 +7,11 @@ pub fn run() {
         // Custom scheme `appapi`: no TCP listen port.
         // Windows/Android fetch base: http://appapi.localhost
         // macOS/Linux: appapi://localhost
-        .register_uri_scheme_protocol("appapi", |_ctx, request| {
-            api::protocol_response(request)
+        .register_asynchronous_uri_scheme_protocol("appapi", |_ctx, request, responder| {
+            tauri::async_runtime::spawn(async move {
+                let response = api::dispatch_protocol(request).await;
+                responder.respond(response);
+            });
         })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

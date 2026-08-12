@@ -1,36 +1,27 @@
 //! Optional local HTTP API for pure-browser frontend debugging.
-//! Not used by the desktop / portable production path.
+//! Serves the same axum Router as the desktop `appapi` protocol,
+//! plus Scalar / OpenAPI (dev-only; not mounted on desktop).
 
-use axum::body::Bytes;
-use axum::http::{header, Method, StatusCode};
-use axum::response::{IntoResponse, Response};
-use axum::routing::any;
-use axum::Router;
+use axum::routing::get;
+use axum::Json;
 use std::net::SocketAddr;
-use tauri_app_lib::api::handle_request;
-use tower_http::cors::{Any, CorsLayer};
-
-async fn dispatch(method: Method, uri: axum::http::Uri, body: Bytes) -> Response {
-    let (status, content_type, body) = handle_request(method.as_str(), uri.path(), &body);
-    (
-        StatusCode::from_u16(status).unwrap_or(StatusCode::INTERNAL_SERVER_ERROR),
-        [(header::CONTENT_TYPE, content_type)],
-        body,
-    )
-        .into_response()
-}
+use tauri_app_lib::api::{app_router, shared_state, ApiDoc};
+use utoipa::OpenApi;
+use utoipa_scalar::{Scalar, Servable};
 
 #[tokio::main]
 async fn main() {
-    let cors = CorsLayer::new()
-        .allow_origin(Any)
-        .allow_methods(Any)
-        .allow_headers(Any);
-
-    let app = Router::new().fallback(any(dispatch)).layer(cors);
+    let app = app_router(shared_state())
+        .merge(Scalar::with_url("/scalar", ApiDoc::openapi()))
+        .route(
+            "/api-docs/openapi.json",
+            get(|| async { Json(ApiDoc::openapi()) }),
+        );
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 8787));
     println!("browser API listening on http://{addr} (dev bypass only)");
+    println!("Scalar UI: http://{addr}/scalar");
+    println!("OpenAPI JSON: http://{addr}/api-docs/openapi.json");
     let listener = tokio::net::TcpListener::bind(addr)
         .await
         .expect("bind 127.0.0.1:8787");

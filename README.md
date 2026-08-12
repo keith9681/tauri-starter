@@ -2,23 +2,25 @@
 
 Tauri 2 + React + TypeScript 桌面待办应用（Windows 优先）。
 
-前端 `src/` **不依赖** `@tauri-apps/*`；与 Rust 的通信在桌面侧走**自定义 URI 协议**（进程内处理，**不监听 TCP 端口**）。
+前端 `src/` **不依赖** `@tauri-apps/*`；与 Rust 的通信在桌面侧走**自定义 URI 协议**（进程内处理，**不监听 TCP 端口**）。后端路由以 **axum `Router` 为唯一源**，桌面 `appapi` 与 `api:dev` 共用。
 
 ## 技术栈
 
 - **壳**：Tauri 2（窗口与自定义协议 `appapi`）
 - **前端**：Vite 7 + React 19 + TypeScript（纯 Web）
+- **后端路由**：axum（唯一路由源）
+- **API 文档**：utoipa + Scalar（仅 `api:dev`）
 - **包管理**：bun
 - **打包**：便携 exe（`--no-bundle`）/ NSIS 安装包
 
 ## 架构
 
 ```text
-src/  --fetch-->  http://appapi.localhost/todos...  --进程内-->  Rust 内存待办
+src/  --fetch-->  http://appapi.localhost/todos...  --oneshot-->  axum Router --> 内存待办
                      （无 TCP listen）
 
 可选浏览器联调：
-src/  --fetch-->  http://127.0.0.1:8787/todos...   --TCP-->  cargo run --bin api
+src/  --fetch-->  http://127.0.0.1:8787/todos...   --serve-->  同一 axum Router
 ```
 
 | 场景 | API Base | 是否占端口 |
@@ -66,7 +68,7 @@ bun run tauri:dev
 | `bun run tauri:installer` | 生成 NSIS 安装包 |
 | `bun run tauri:clean` | 只清 `src-tauri/target` |
 | `bun run clean` | 清 `dist` + `src-tauri/target` |
-| `bun run api:dev` | 可选：本机 HTTP API（浏览器联调） |
+| `bun run api:dev` | 可选：本机 HTTP API + Scalar（浏览器联调） |
 | `bun run web:dev` | 可选：仅 Vite（需另开 `api:dev`） |
 
 浏览器联调示例（两个终端）：
@@ -75,6 +77,13 @@ bun run tauri:dev
 bun run api:dev
 bun run web:dev
 ```
+
+API 文档（仅 `api:dev`，桌面 `appapi` / 便携包不挂载）：
+
+- Scalar：http://127.0.0.1:8787/scalar
+- OpenAPI JSON：http://127.0.0.1:8787/api-docs/openapi.json
+
+由 **utoipa** 从 handler/DTO 注解生成，与 axum 路由同源维护。
 
 ## 便携版分发
 
@@ -104,9 +113,14 @@ tauri-starter/
 │   └── api/client.ts       # fetch 封装
 ├── src-tauri/
 │   ├── src/
-│   │   ├── api.rs          # 待办业务 + 协议响应
-│   │   ├── lib.rs          # 注册 appapi 协议
-│   │   └── bin/api.rs      # 可选 HTTP 旁路
+│   │   ├── api/            # axum 路由 + todos 领域
+│   │   │   ├── mod.rs      # app_router（唯一路由源，无文档 UI）
+│   │   │   ├── openapi.rs  # utoipa ApiDoc
+│   │   │   ├── protocol.rs # 自定义协议 → Router oneshot
+│   │   │   ├── state.rs
+│   │   │   └── todos/
+│   │   ├── lib.rs          # 异步注册 appapi 协议
+│   │   └── bin/api.rs      # HTTP 旁路 + Scalar
 │   ├── tauri.conf.json
 │   └── icons/
 ├── public/
@@ -119,3 +133,4 @@ tauri-starter/
 - Windows 打包目标：`bundle.targets = ["nsis"]`（见 `src-tauri/tauri.conf.json`）
 - 开发前端地址：`http://localhost:1420`
 - 自定义协议名：`appapi`
+- 后端路由：axum（扩展时 `.nest("/resource", …)`）
