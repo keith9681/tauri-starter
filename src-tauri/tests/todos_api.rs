@@ -16,12 +16,7 @@ fn test_app() -> (axum::Router, NamedTempFile) {
     (app_router(state), db)
 }
 
-async fn request(
-    app: axum::Router,
-    method: &str,
-    uri: &str,
-    body: Option<Value>,
-) -> (u16, Value) {
+async fn request(app: axum::Router, method: &str, uri: &str, body: Option<Value>) -> (u16, Value) {
     let builder = axum::http::Request::builder()
         .method(method)
         .uri(uri)

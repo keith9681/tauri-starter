@@ -4,11 +4,9 @@ mod openapi;
 mod protocol;
 mod state;
 mod todos;
-mod window_chrome;
 
 pub use openapi::ApiDoc;
-pub use state::{AppState, StartupCode};
-pub use window_chrome::{bootstrap_window_chrome, set_app_handle};
+pub use state::{resolve_app_home, AppState, StartupCode};
 
 use axum::routing::get;
 use axum::Router;
@@ -25,17 +23,23 @@ pub fn shared_state() -> AppState {
 /// Canonical API router — used by appapi protocol and `api:dev`.
 /// Does not include Scalar UI (mounted only in the HTTP bypass bin).
 pub fn app_router(state: AppState) -> Router {
+    stateful_router().layer(cors_layer()).with_state(state)
+}
+
+/// Stateful routes (health, todos) before `AppState` is supplied.
+/// Exposed so the desktop router can add native routes (window chrome) on top.
+pub(crate) fn stateful_router() -> Router<AppState> {
     Router::new()
         .route("/health", get(health::health))
         .nest("/todos", todos::routes())
-        .nest("/ui/window-chrome", window_chrome::routes())
-        .layer(
-            CorsLayer::new()
-                .allow_origin(Any)
-                .allow_methods(Any)
-                .allow_headers(Any),
-        )
-        .with_state(state)
+}
+
+/// Shared CORS policy for the API surface.
+pub(crate) fn cors_layer() -> CorsLayer {
+    CorsLayer::new()
+        .allow_origin(Any)
+        .allow_methods(Any)
+        .allow_headers(Any)
 }
 
 pub fn shared_router() -> Router {
@@ -43,5 +47,13 @@ pub fn shared_router() -> Router {
 }
 
 pub async fn dispatch_protocol(request: http::Request<Vec<u8>>) -> http::Response<Vec<u8>> {
-    protocol::dispatch(shared_router(), request).await
+    dispatch_router(shared_router(), request).await
+}
+
+/// Dispatch a protocol request through an arbitrary router (desktop or shared).
+pub async fn dispatch_router(
+    router: Router,
+    request: http::Request<Vec<u8>>,
+) -> http::Response<Vec<u8>> {
+    protocol::dispatch(router, request).await
 }

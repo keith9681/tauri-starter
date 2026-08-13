@@ -5,10 +5,7 @@ use http_body_util::BodyExt;
 use tower::ServiceExt;
 
 /// Dispatch a protocol-level request through the shared axum Router.
-pub async fn dispatch(
-    router: Router,
-    request: http::Request<Vec<u8>>,
-) -> Response<Vec<u8>> {
+pub async fn dispatch(router: Router, request: http::Request<Vec<u8>>) -> Response<Vec<u8>> {
     let (parts, body) = request.into_parts();
     let request = Request::from_parts(parts, Body::from(body));
 

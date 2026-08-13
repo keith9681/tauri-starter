@@ -1,4 +1,5 @@
 pub mod api;
+pub mod window_chrome;
 
 use tauri::Manager;
 
@@ -14,9 +15,9 @@ pub fn run() {
         }))
         .plugin(tauri_plugin_opener::init())
         .setup(|app| {
-            api::set_app_handle(app.handle().clone());
+            window_chrome::set_app_handle(app.handle().clone());
             // Starts hidden; apply chrome from disk (or wait for frontend) before show.
-            api::bootstrap_window_chrome(app.handle());
+            window_chrome::bootstrap_window_chrome(app.handle());
             Ok(())
         })
         // Custom scheme `appapi`: no TCP listen port.
@@ -24,7 +25,11 @@ pub fn run() {
         // macOS/Linux: appapi://localhost
         .register_asynchronous_uri_scheme_protocol("appapi", |_ctx, request, responder| {
             tauri::async_runtime::spawn(async move {
-                let response = api::dispatch_protocol(request).await;
+                let response = api::dispatch_router(
+                    window_chrome::desktop_router(api::shared_state()),
+                    request,
+                )
+                .await;
                 responder.respond(response);
             });
         })

@@ -70,10 +70,7 @@ impl AppState {
                 return Self {
                     inner: Arc::new(AppStateInner::Failed {
                         code: StartupCode::DbError,
-                        message: format!(
-                            "无法创建数据目录（{}）：{err}",
-                            parent.display()
-                        ),
+                        message: format!("无法创建数据目录（{}）：{err}", parent.display()),
                         db_path,
                     }),
                 };

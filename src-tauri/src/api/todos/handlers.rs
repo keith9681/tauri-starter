@@ -117,7 +117,10 @@ pub async fn update(
         (status = 503, description = "数据库不可用", body = ErrorBody)
     )
 )]
-pub async fn delete(State(state): State<AppState>, Path(id): Path<u64>) -> ApiResult<Json<OkResponse>> {
+pub async fn delete(
+    State(state): State<AppState>,
+    Path(id): Path<u64>,
+) -> ApiResult<Json<OkResponse>> {
     let mut store = lock_store(&state)?;
     store.delete(id)?;
     Ok(Json(OkResponse { ok: true }))

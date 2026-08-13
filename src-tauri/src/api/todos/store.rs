@@ -87,8 +87,10 @@ impl TodoStore for SqliteTodoStore {
             return Err(StoreError::Invalid("标题不能为空".into()));
         }
 
-        self.conn
-            .execute("INSERT INTO todos (title, done) VALUES (?1, 0)", params![title])?;
+        self.conn.execute(
+            "INSERT INTO todos (title, done) VALUES (?1, 0)",
+            params![title],
+        )?;
         let id = self.conn.last_insert_rowid() as u64;
         self.get_by_id(id)
     }
