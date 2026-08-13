@@ -214,8 +214,8 @@ function TodoApp() {
       contentWidth={560}
       header={
         <LayoutHeader hasDivider>
-          <HStack gap={2} vAlign="center" hAlign="between">
-            <HStack gap={2} vAlign="center">
+          <VStack gap={2}>
+            <HStack gap={2} vAlign="center" hAlign="between">
               <Heading level={3}>{t("app.title")}</Heading>
               <Text type="supporting" color="secondary">
                 {loading
@@ -226,12 +226,13 @@ function TodoApp() {
                     })}
               </Text>
             </HStack>
-            <HStack gap={2} vAlign="center">
+            <HStack gap={2} vAlign="center" hAlign="end">
               <SegmentedControl
                 label={t("lang.label")}
                 size="sm"
                 value={locale}
                 onChange={(next) => setLocale(next as AppLocale)}
+                style={{ flexShrink: 0 }}
               >
                 <SegmentedControlItem value="zh-CN" label={t("lang.zh")} />
                 <SegmentedControlItem value="en" label={t("lang.en")} />
@@ -241,6 +242,7 @@ function TodoApp() {
                 size="sm"
                 value={mode}
                 onChange={(next) => setMode(next as ColorMode)}
+                style={{ flexShrink: 0 }}
               >
                 <SegmentedControlItem
                   value="system"
@@ -258,7 +260,7 @@ function TodoApp() {
                 onClick={() => void onSeedTestTodos()}
               />
             </HStack>
-          </HStack>
+          </VStack>
         </LayoutHeader>
       }
     >

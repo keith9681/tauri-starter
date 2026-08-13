@@ -10,7 +10,7 @@ export const en: MessageCatalog = {
   "theme.dark": "Dark",
   "lang.label": "Language",
   "lang.zh": "中文",
-  "lang.en": "English",
+  "lang.en": "EN",
   "todos.add": "Add",
   "todos.placeholder": "Add something…",
   "todos.newLabel": "New todo",
@@ -18,6 +18,6 @@ export const en: MessageCatalog = {
   "todos.emptyTitle": "No todos yet",
   "todos.emptyDescription": "Add one to get started.",
   "todos.errorTitle": "Request failed",
-  "todos.seed": "Add 10 test items",
+  "todos.seed": "Seed 10",
   "todos.seedItem": "Test item {n} · {stamp}",
 };

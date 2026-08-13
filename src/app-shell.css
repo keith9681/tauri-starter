@@ -17,3 +17,8 @@ body,
 html {
   color-scheme: light dark;
 }
+
+/* Keep segment labels on one line when the header is dense. */
+.astryx-segmented-control-item {
+  white-space: nowrap;
+}

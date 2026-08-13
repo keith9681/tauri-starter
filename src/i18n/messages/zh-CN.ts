@@ -10,7 +10,7 @@ export const zhCN: MessageCatalog = {
   "theme.dark": "深色",
   "lang.label": "语言",
   "lang.zh": "中文",
-  "lang.en": "English",
+  "lang.en": "EN",
   "todos.add": "添加",
   "todos.placeholder": "添加一件事…",
   "todos.newLabel": "新待办",
