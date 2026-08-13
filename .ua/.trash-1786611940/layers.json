@@ -1,0 +1,98 @@
+[
+  {
+    "id": "layer:api",
+    "name": "后端 API 层",
+    "description": "组装 axum 唯一 Router，承载健康检查、待办 CRUD、窗口外观 endpoint、OpenAPI 描述与 appapi 协议适配。",
+    "nodeIds": [
+      "file:src-tauri/src/api/error.rs",
+      "file:src-tauri/src/api/openapi.rs",
+      "file:src-tauri/src/api/todos/handlers.rs",
+      "file:src-tauri/src/api/todos/mod.rs",
+      "file:src-tauri/src/api/health.rs",
+      "file:src-tauri/src/api/mod.rs",
+      "file:src-tauri/src/api/protocol.rs",
+      "file:src-tauri/src/api/window_chrome.rs"
+    ]
+  },
+  {
+    "id": "layer:data",
+    "name": "领域与数据层",
+    "description": "定义待办领域契约、SQLite CRUD 存储实现，以及应用数据目录和运行依赖状态。",
+    "nodeIds": [
+      "file:src-tauri/src/api/todos/model.rs",
+      "file:src-tauri/src/api/todos/store.rs",
+      "file:src-tauri/src/api/state.rs"
+    ]
+  },
+  {
+    "id": "layer:runtime",
+    "name": "桌面运行时层",
+    "description": "提供 Tauri 桌面启动、单实例与自定义协议接线，并提供复用同一 Router 的本地开发 API 二进制。",
+    "nodeIds": [
+      "file:src-tauri/src/lib.rs",
+      "file:src-tauri/src/bin/api.rs",
+      "file:src-tauri/src/main.rs"
+    ]
+  },
+  {
+    "id": "layer:ui",
+    "name": "React UI 层",
+    "description": "构成 Astryx 待办界面、应用 Providers、浏览器挂载入口、HTML 外壳及主题与 View Transitions 样式。",
+    "nodeIds": [
+      "file:src/App.tsx",
+      "file:src/main.tsx",
+      "file:src/providers.tsx",
+      "file:index.html",
+      "file:src/app-shell.css",
+      "file:src/view-transitions.css"
+    ]
+  },
+  {
+    "id": "layer:frontend-service",
+    "name": "前端服务与契约层",
+    "description": "封装 JSON API 调用，并集中维护国际化目录、locale 契约与 Vite 环境变量类型。",
+    "nodeIds": [
+      "file:src/api/client.ts",
+      "file:src/i18n/index.ts",
+      "file:src/i18n/messages/en.ts",
+      "file:src/i18n/messages/zh-CN.ts",
+      "file:src/i18n/types.ts",
+      "file:src/vite-env.d.ts"
+    ]
+  },
+  {
+    "id": "layer:test",
+    "name": "测试层",
+    "description": "通过 Router oneshot 与临时 SQLite 数据库验证健康检查和待办 API 的完整行为。",
+    "nodeIds": [
+      "file:src-tauri/tests/todos_api.rs"
+    ]
+  },
+  {
+    "id": "layer:config",
+    "name": "工程配置与构建资源",
+    "description": "管理 Bun、TypeScript、Vite、Cargo 与 Tauri 的构建打包配置、权限、图标及知识图谱扫描设置。",
+    "nodeIds": [
+      "config:package.json",
+      "config:tsconfig.json",
+      "config:tsconfig.node.json",
+      "file:.ua/.understandignore",
+      "config:.ua/config.json",
+      "config:src-tauri/Cargo.toml",
+      "file:src-tauri/build.rs",
+      "config:src-tauri/capabilities/default.json",
+      "file:src-tauri/icons/icon.icns",
+      "config:src-tauri/tauri.conf.json",
+      "file:vite.config.ts"
+    ]
+  },
+  {
+    "id": "layer:documentation",
+    "name": "项目文档",
+    "description": "说明模板架构、开发与发布流程，并约束 AI 协作者对通信、持久化和 Astryx UI 的修改方式。",
+    "nodeIds": [
+      "document:AGENTS.md",
+      "document:README.md"
+    ]
+  }
+]

@@ -1,0 +1,205 @@
+{
+  "projectRoot": "D:/Works/tauri-starter",
+  "files": [
+    {
+      "path": ".ua/.understandignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/config.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "index.html",
+      "language": "html",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "language": "toml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "src-tauri/build.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/capabilities/default.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "src-tauri/icons/icon.icns",
+      "language": "icns",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/error.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/health.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/mod.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/openapi.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/protocol.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/state.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/todos/handlers.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/todos/mod.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/todos/model.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/todos/store.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/api/window_chrome.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/bin/api.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/lib.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "src-tauri/tests/todos_api.rs",
+      "language": "rust",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/App.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/api/client.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/app-shell.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "src/i18n/index.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/i18n/messages/en.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/i18n/messages/zh-CN.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/i18n/types.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/main.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/providers.tsx",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/view-transitions.css",
+      "language": "css",
+      "fileCategory": "markup"
+    },
+    {
+      "path": "src/vite-env.d.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    },
+    {
+      "path": "tsconfig.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "tsconfig.node.json",
+      "language": "json",
+      "fileCategory": "config"
+    },
+    {
+      "path": "vite.config.ts",
+      "language": "typescript",
+      "fileCategory": "code"
+    }
+  ]
+}

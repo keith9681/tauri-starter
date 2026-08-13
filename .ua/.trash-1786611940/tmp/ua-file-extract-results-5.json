@@ -1,0 +1,300 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [
+    "index.html"
+  ],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 5,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 5
+    }
+  },
+  "results": [
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 142,
+      "nonEmptyLines": 107,
+      "sections": [
+        {
+          "heading": "AGENTS.md",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "项目是什么",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "硬性约束（不要破坏）",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "架构速查",
+          "level": 2,
+          "line": 19
+        },
+        {
+          "heading": "常用命令",
+          "level": 2,
+          "line": 37
+        },
+        {
+          "heading": "扩展指南",
+          "level": 2,
+          "line": 51
+        },
+        {
+          "heading": "从模板派生新产品（必做对齐）",
+          "level": 3,
+          "line": 53
+        },
+        {
+          "heading": "新增 API 资源",
+          "level": 3,
+          "line": 61
+        },
+        {
+          "heading": "持久化",
+          "level": 3,
+          "line": 69
+        },
+        {
+          "heading": "前端",
+          "level": 3,
+          "line": 76
+        },
+        {
+          "heading": "明确不做（除非用户明确要求）",
+          "level": 2,
+          "line": 116
+        },
+        {
+          "heading": "本地文件与 TSD",
+          "level": 2,
+          "line": 124
+        },
+        {
+          "heading": "提交与文档",
+          "level": 2,
+          "line": 138
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 13
+      }
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 179,
+      "nonEmptyLines": 134,
+      "sections": [
+        {
+          "heading": "tauri-starter（Astryx UI 变体）",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "模板定位",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "技术栈",
+          "level": 2,
+          "line": 22
+        },
+        {
+          "heading": "架构",
+          "level": 2,
+          "line": 35
+        },
+        {
+          "heading": "持久化与单例",
+          "level": 3,
+          "line": 49
+        },
+        {
+          "heading": "示例 API（todos，可替换）",
+          "level": 3,
+          "line": 62
+        },
+        {
+          "heading": "API 文档（仅 `api:dev`）",
+          "level": 3,
+          "line": 72
+        },
+        {
+          "heading": "用本模板开新项目",
+          "level": 2,
+          "line": 79
+        },
+        {
+          "heading": "环境要求",
+          "level": 2,
+          "line": 90
+        },
+        {
+          "heading": "快速开始",
+          "level": 2,
+          "line": 101
+        },
+        {
+          "heading": "常用命令",
+          "level": 2,
+          "line": 116
+        },
+        {
+          "heading": "测试说明",
+          "level": 3,
+          "line": 130
+        },
+        {
+          "heading": "便携版分发",
+          "level": 2,
+          "line": 139
+        },
+        {
+          "heading": "目录结构",
+          "level": 2,
+          "line": 150
+        },
+        {
+          "heading": "相关配置",
+          "level": 2,
+          "line": 174
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 15
+      }
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 38,
+      "nonEmptyLines": 38,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "private",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "type",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "scripts",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "dependencies",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "devDependencies",
+          "level": 1,
+          "line": 30
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "path": "tsconfig.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 25,
+      "nonEmptyLines": 23,
+      "sections": [
+        {
+          "heading": "compilerOptions",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "include",
+          "level": 1,
+          "line": 23
+        },
+        {
+          "heading": "references",
+          "level": 1,
+          "line": 24
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "tsconfig.node.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 10,
+      "nonEmptyLines": 10,
+      "sections": [
+        {
+          "heading": "compilerOptions",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "include",
+          "level": 1,
+          "line": 9
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    }
+  ]
+}

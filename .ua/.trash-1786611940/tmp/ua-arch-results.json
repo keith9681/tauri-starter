@@ -1,0 +1,307 @@
+{
+  "scriptCompleted": true,
+  "directoryGroups": {
+    "src-tauri": [
+      "file:src-tauri/src/api/error.rs",
+      "file:src-tauri/src/api/openapi.rs",
+      "file:src-tauri/src/api/todos/handlers.rs",
+      "file:src-tauri/src/api/todos/mod.rs",
+      "file:src-tauri/src/api/todos/model.rs",
+      "file:src-tauri/src/api/todos/store.rs",
+      "file:src-tauri/src/api/health.rs",
+      "file:src-tauri/src/api/mod.rs",
+      "file:src-tauri/src/api/protocol.rs",
+      "file:src-tauri/src/api/state.rs",
+      "file:src-tauri/src/api/window_chrome.rs",
+      "file:src-tauri/src/lib.rs",
+      "config:src-tauri/Cargo.toml",
+      "file:src-tauri/build.rs",
+      "config:src-tauri/capabilities/default.json",
+      "file:src-tauri/icons/icon.icns",
+      "file:src-tauri/src/bin/api.rs",
+      "file:src-tauri/src/main.rs",
+      "config:src-tauri/tauri.conf.json",
+      "file:src-tauri/tests/todos_api.rs"
+    ],
+    "src": [
+      "file:src/App.tsx",
+      "file:src/api/client.ts",
+      "file:src/main.tsx",
+      "file:src/providers.tsx",
+      "file:src/i18n/index.ts",
+      "file:src/i18n/messages/en.ts",
+      "file:src/i18n/messages/zh-CN.ts",
+      "file:src/i18n/types.ts",
+      "file:src/app-shell.css",
+      "file:src/view-transitions.css",
+      "file:src/vite-env.d.ts"
+    ],
+    "root": [
+      "document:AGENTS.md",
+      "document:README.md",
+      "file:index.html",
+      "config:package.json",
+      "config:tsconfig.json",
+      "config:tsconfig.node.json",
+      "file:vite.config.ts"
+    ],
+    ".ua": [
+      "file:.ua/.understandignore",
+      "config:.ua/config.json"
+    ]
+  },
+  "nodeTypeGroups": {
+    "file": [
+      "file:src-tauri/src/api/error.rs",
+      "file:src-tauri/src/api/openapi.rs",
+      "file:src-tauri/src/api/todos/handlers.rs",
+      "file:src-tauri/src/api/todos/mod.rs",
+      "file:src-tauri/src/api/todos/model.rs",
+      "file:src-tauri/src/api/todos/store.rs",
+      "file:src-tauri/src/api/health.rs",
+      "file:src-tauri/src/api/mod.rs",
+      "file:src-tauri/src/api/protocol.rs",
+      "file:src-tauri/src/api/state.rs",
+      "file:src-tauri/src/api/window_chrome.rs",
+      "file:src-tauri/src/lib.rs",
+      "file:src/App.tsx",
+      "file:src/api/client.ts",
+      "file:src/main.tsx",
+      "file:src/providers.tsx",
+      "file:src/i18n/index.ts",
+      "file:src/i18n/messages/en.ts",
+      "file:src/i18n/messages/zh-CN.ts",
+      "file:src/i18n/types.ts",
+      "file:index.html",
+      "file:.ua/.understandignore",
+      "file:src-tauri/build.rs",
+      "file:src-tauri/icons/icon.icns",
+      "file:src-tauri/src/bin/api.rs",
+      "file:src-tauri/src/main.rs",
+      "file:src-tauri/tests/todos_api.rs",
+      "file:src/app-shell.css",
+      "file:src/view-transitions.css",
+      "file:src/vite-env.d.ts",
+      "file:vite.config.ts"
+    ],
+    "document": [
+      "document:AGENTS.md",
+      "document:README.md"
+    ],
+    "config": [
+      "config:package.json",
+      "config:tsconfig.json",
+      "config:tsconfig.node.json",
+      "config:.ua/config.json",
+      "config:src-tauri/Cargo.toml",
+      "config:src-tauri/capabilities/default.json",
+      "config:src-tauri/tauri.conf.json"
+    ]
+  },
+  "crossCategoryEdges": [
+    {
+      "fromType": "file",
+      "toType": "file",
+      "edgeType": "imports",
+      "count": 35
+    },
+    {
+      "fromType": "document",
+      "toType": "document",
+      "edgeType": "related",
+      "count": 1
+    },
+    {
+      "fromType": "document",
+      "toType": "file",
+      "edgeType": "documents",
+      "count": 1
+    },
+    {
+      "fromType": "config",
+      "toType": "file",
+      "edgeType": "configures",
+      "count": 8
+    },
+    {
+      "fromType": "config",
+      "toType": "config",
+      "edgeType": "depends_on",
+      "count": 1
+    },
+    {
+      "fromType": "config",
+      "toType": "file",
+      "edgeType": "depends_on",
+      "count": 1
+    },
+    {
+      "fromType": "file",
+      "toType": "file",
+      "edgeType": "related",
+      "count": 2
+    },
+    {
+      "fromType": "file",
+      "toType": "file",
+      "edgeType": "configures",
+      "count": 1
+    }
+  ],
+  "interGroupImports": [],
+  "intraGroupDensity": {
+    "src-tauri": {
+      "internalEdges": 21,
+      "totalEdges": 21,
+      "density": 1
+    },
+    "src": {
+      "internalEdges": 14,
+      "totalEdges": 14,
+      "density": 1
+    },
+    "root": {
+      "internalEdges": 0,
+      "totalEdges": 0,
+      "density": 0
+    },
+    ".ua": {
+      "internalEdges": 0,
+      "totalEdges": 0,
+      "density": 0
+    }
+  },
+  "patternMatches": {},
+  "deploymentTopology": {
+    "hasDockerfile": false,
+    "hasCompose": false,
+    "hasK8s": false,
+    "hasTerraform": false,
+    "hasCI": false,
+    "infraFiles": []
+  },
+  "dataPipeline": {
+    "schemaFiles": [],
+    "migrationFiles": [],
+    "dataModelFiles": [
+      "src-tauri/src/api/todos/model.rs"
+    ],
+    "apiHandlerFiles": [
+      "src-tauri/src/api/error.rs",
+      "src-tauri/src/api/todos/handlers.rs",
+      "src-tauri/src/api/todos/mod.rs",
+      "src-tauri/src/api/health.rs",
+      "src-tauri/src/api/mod.rs",
+      "src-tauri/src/api/window_chrome.rs"
+    ]
+  },
+  "docCoverage": {
+    "groupsWithDocs": 1,
+    "totalGroups": 4,
+    "coverageRatio": 0.25,
+    "undocumentedGroups": [
+      "src-tauri",
+      "src",
+      ".ua"
+    ]
+  },
+  "dependencyDirection": [],
+  "fileStats": {
+    "totalFileNodes": 40,
+    "filesPerGroup": {
+      "src-tauri": 20,
+      "src": 11,
+      "root": 7,
+      ".ua": 2
+    },
+    "nodeTypeCounts": {
+      "file": 31,
+      "document": 2,
+      "config": 7
+    }
+  },
+  "fileFanIn": {
+    "file:src-tauri/src/api/error.rs": 3,
+    "file:src-tauri/src/api/openapi.rs": 1,
+    "file:src-tauri/src/api/todos/handlers.rs": 1,
+    "file:src-tauri/src/api/todos/mod.rs": 3,
+    "file:src-tauri/src/api/todos/model.rs": 2,
+    "file:src-tauri/src/api/todos/store.rs": 1,
+    "file:src-tauri/src/api/health.rs": 2,
+    "file:src-tauri/src/api/mod.rs": 1,
+    "file:src-tauri/src/api/protocol.rs": 1,
+    "file:src-tauri/src/api/state.rs": 5,
+    "file:src-tauri/src/api/window_chrome.rs": 1,
+    "file:src-tauri/src/lib.rs": 0,
+    "file:src/App.tsx": 1,
+    "file:src/api/client.ts": 2,
+    "file:src/main.tsx": 0,
+    "file:src/providers.tsx": 2,
+    "file:src/i18n/index.ts": 2,
+    "file:src/i18n/messages/en.ts": 1,
+    "file:src/i18n/messages/zh-CN.ts": 1,
+    "file:src/i18n/types.ts": 3,
+    "document:AGENTS.md": 0,
+    "document:README.md": 0,
+    "file:index.html": 0,
+    "config:package.json": 0,
+    "config:tsconfig.json": 0,
+    "config:tsconfig.node.json": 0,
+    "file:.ua/.understandignore": 0,
+    "config:.ua/config.json": 0,
+    "config:src-tauri/Cargo.toml": 0,
+    "file:src-tauri/build.rs": 0,
+    "config:src-tauri/capabilities/default.json": 0,
+    "file:src-tauri/icons/icon.icns": 0,
+    "file:src-tauri/src/bin/api.rs": 0,
+    "file:src-tauri/src/main.rs": 0,
+    "config:src-tauri/tauri.conf.json": 0,
+    "file:src-tauri/tests/todos_api.rs": 0,
+    "file:src/app-shell.css": 1,
+    "file:src/view-transitions.css": 1,
+    "file:src/vite-env.d.ts": 0,
+    "file:vite.config.ts": 0
+  },
+  "fileFanOut": {
+    "file:src-tauri/src/api/error.rs": 0,
+    "file:src-tauri/src/api/openapi.rs": 4,
+    "file:src-tauri/src/api/todos/handlers.rs": 2,
+    "file:src-tauri/src/api/todos/mod.rs": 4,
+    "file:src-tauri/src/api/todos/model.rs": 0,
+    "file:src-tauri/src/api/todos/store.rs": 0,
+    "file:src-tauri/src/api/health.rs": 1,
+    "file:src-tauri/src/api/mod.rs": 7,
+    "file:src-tauri/src/api/protocol.rs": 0,
+    "file:src-tauri/src/api/state.rs": 1,
+    "file:src-tauri/src/api/window_chrome.rs": 1,
+    "file:src-tauri/src/lib.rs": 1,
+    "file:src/App.tsx": 3,
+    "file:src/api/client.ts": 0,
+    "file:src/main.tsx": 4,
+    "file:src/providers.tsx": 2,
+    "file:src/i18n/index.ts": 3,
+    "file:src/i18n/messages/en.ts": 1,
+    "file:src/i18n/messages/zh-CN.ts": 1,
+    "file:src/i18n/types.ts": 0,
+    "document:AGENTS.md": 0,
+    "document:README.md": 0,
+    "file:index.html": 0,
+    "config:package.json": 0,
+    "config:tsconfig.json": 0,
+    "config:tsconfig.node.json": 0,
+    "file:.ua/.understandignore": 0,
+    "config:.ua/config.json": 0,
+    "config:src-tauri/Cargo.toml": 0,
+    "file:src-tauri/build.rs": 0,
+    "config:src-tauri/capabilities/default.json": 0,
+    "file:src-tauri/icons/icon.icns": 0,
+    "file:src-tauri/src/bin/api.rs": 0,
+    "file:src-tauri/src/main.rs": 0,
+    "config:src-tauri/tauri.conf.json": 0,
+    "file:src-tauri/tests/todos_api.rs": 0,
+    "file:src/app-shell.css": 0,
+    "file:src/view-transitions.css": 0,
+    "file:src/vite-env.d.ts": 0,
+    "file:vite.config.ts": 0
+  }
+}

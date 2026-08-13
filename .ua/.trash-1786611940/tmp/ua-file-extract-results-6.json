@@ -1,0 +1,712 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 10,
+  "filesSkipped": [
+    ".ua/.understandignore",
+    "src-tauri/icons/icon.icns",
+    "src/app-shell.css",
+    "src/view-transitions.css"
+  ],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 10,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 6,
+      "failed": 0,
+      "skipped": 4
+    }
+  },
+  "results": [
+    {
+      "path": ".ua/config.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3,
+      "nonEmptyLines": 3,
+      "sections": [
+        {
+          "heading": "outputLanguage",
+          "level": 1,
+          "line": 2
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "language": "toml",
+      "fileCategory": "config",
+      "totalLines": 47,
+      "nonEmptyLines": 41,
+      "sections": [
+        {
+          "heading": "package",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "lib",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "[[bin]]",
+          "level": 1,
+          "line": 18
+        },
+        {
+          "heading": "build-dependencies",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "dependencies",
+          "level": 1,
+          "line": 25
+        },
+        {
+          "heading": "dev-dependencies",
+          "level": 1,
+          "line": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "src-tauri/build.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 3,
+      "functions": [
+        {
+          "name": "main",
+          "startLine": 1,
+          "endLine": 3,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "main",
+          "callee": "tauri_build::build",
+          "lineNumber": 2
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src-tauri/capabilities/default.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 10,
+      "nonEmptyLines": 10,
+      "sections": [
+        {
+          "heading": "$schema",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "identifier",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "windows",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "permissions",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "src-tauri/src/bin/api.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 26,
+      "functions": [
+        {
+          "name": "main",
+          "startLine": 13,
+          "endLine": 29,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "main",
+          "callee": "app_router(shared_state())\r\n        .merge(Scalar::with_url(\"/scalar\", ApiDoc::openapi())).route",
+          "lineNumber": 14
+        },
+        {
+          "caller": "main",
+          "callee": "app_router(shared_state()).merge",
+          "lineNumber": 14
+        },
+        {
+          "caller": "main",
+          "callee": "app_router",
+          "lineNumber": 14
+        },
+        {
+          "caller": "main",
+          "callee": "shared_state",
+          "lineNumber": 14
+        },
+        {
+          "caller": "main",
+          "callee": "Scalar::with_url",
+          "lineNumber": 15
+        },
+        {
+          "caller": "main",
+          "callee": "ApiDoc::openapi",
+          "lineNumber": 15
+        },
+        {
+          "caller": "main",
+          "callee": "get",
+          "lineNumber": 18
+        },
+        {
+          "caller": "main",
+          "callee": "Json",
+          "lineNumber": 18
+        },
+        {
+          "caller": "main",
+          "callee": "ApiDoc::openapi",
+          "lineNumber": 18
+        },
+        {
+          "caller": "main",
+          "callee": "SocketAddr::from",
+          "lineNumber": 21
+        },
+        {
+          "caller": "main",
+          "callee": "tokio::net::TcpListener::bind(addr)\r\n        .await.expect",
+          "lineNumber": 25
+        },
+        {
+          "caller": "main",
+          "callee": "tokio::net::TcpListener::bind",
+          "lineNumber": 25
+        },
+        {
+          "caller": "main",
+          "callee": "axum::serve(listener, app).await.expect",
+          "lineNumber": 28
+        },
+        {
+          "caller": "main",
+          "callee": "axum::serve",
+          "lineNumber": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 5,
+      "functions": [
+        {
+          "name": "main",
+          "startLine": 4,
+          "endLine": 6,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "main",
+          "callee": "tauri_app_lib::run",
+          "lineNumber": 5
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 45,
+      "nonEmptyLines": 45,
+      "sections": [
+        {
+          "heading": "$schema",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "productName",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "identifier",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "build",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "app",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "bundle",
+          "level": 1,
+          "line": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "path": "src-tauri/tests/todos_api.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 154,
+      "nonEmptyLines": 135,
+      "functions": [
+        {
+          "name": "test_app",
+          "startLine": 8,
+          "endLine": 17,
+          "params": []
+        },
+        {
+          "name": "request",
+          "startLine": 19,
+          "endLine": 53,
+          "params": [
+            "app",
+            "method",
+            "uri",
+            "body"
+          ]
+        },
+        {
+          "name": "health_ok_when_ready",
+          "startLine": 56,
+          "endLine": 65,
+          "params": []
+        },
+        {
+          "name": "list_empty",
+          "startLine": 68,
+          "endLine": 73,
+          "params": []
+        },
+        {
+          "name": "create_and_list",
+          "startLine": 76,
+          "endLine": 95,
+          "params": []
+        },
+        {
+          "name": "create_rejects_empty_title",
+          "startLine": 98,
+          "endLine": 103,
+          "params": []
+        },
+        {
+          "name": "update_and_delete",
+          "startLine": 106,
+          "endLine": 135,
+          "params": []
+        },
+        {
+          "name": "missing_todo_returns_404",
+          "startLine": 138,
+          "endLine": 154,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "test_app",
+          "callee": "NamedTempFile::new().expect",
+          "lineNumber": 9
+        },
+        {
+          "caller": "test_app",
+          "callee": "NamedTempFile::new",
+          "lineNumber": 9
+        },
+        {
+          "caller": "test_app",
+          "callee": "AppState::with_db_path",
+          "lineNumber": 10
+        },
+        {
+          "caller": "test_app",
+          "callee": "db.path",
+          "lineNumber": 10
+        },
+        {
+          "caller": "test_app",
+          "callee": "app_router",
+          "lineNumber": 16
+        },
+        {
+          "caller": "request",
+          "callee": "axum::http::Request::builder()\r\n        .method(method)\r\n        .uri(uri).header",
+          "lineNumber": 25
+        },
+        {
+          "caller": "request",
+          "callee": "axum::http::Request::builder()\r\n        .method(method).uri",
+          "lineNumber": 25
+        },
+        {
+          "caller": "request",
+          "callee": "axum::http::Request::builder().method",
+          "lineNumber": 25
+        },
+        {
+          "caller": "request",
+          "callee": "axum::http::Request::builder",
+          "lineNumber": 25
+        },
+        {
+          "caller": "request",
+          "callee": "builder\r\n            .body(Body::from(serde_json::to_vec(&body).unwrap())).unwrap",
+          "lineNumber": 31
+        },
+        {
+          "caller": "request",
+          "callee": "builder.body",
+          "lineNumber": 31
+        },
+        {
+          "caller": "request",
+          "callee": "Body::from",
+          "lineNumber": 32
+        },
+        {
+          "caller": "request",
+          "callee": "serde_json::to_vec(&body).unwrap",
+          "lineNumber": 32
+        },
+        {
+          "caller": "request",
+          "callee": "serde_json::to_vec",
+          "lineNumber": 32
+        },
+        {
+          "caller": "request",
+          "callee": "builder.body(Body::empty()).unwrap",
+          "lineNumber": 35
+        },
+        {
+          "caller": "request",
+          "callee": "builder.body",
+          "lineNumber": 35
+        },
+        {
+          "caller": "request",
+          "callee": "Body::empty",
+          "lineNumber": 35
+        },
+        {
+          "caller": "request",
+          "callee": "app.oneshot(req).await.expect",
+          "lineNumber": 38
+        },
+        {
+          "caller": "request",
+          "callee": "app.oneshot",
+          "lineNumber": 38
+        },
+        {
+          "caller": "request",
+          "callee": "response.status().as_u16",
+          "lineNumber": 39
+        },
+        {
+          "caller": "request",
+          "callee": "response.status",
+          "lineNumber": 39
+        },
+        {
+          "caller": "request",
+          "callee": "response\r\n        .into_body()\r\n        .collect()\r\n        .await\r\n        .expect(\"body\").to_bytes",
+          "lineNumber": 40
+        },
+        {
+          "caller": "request",
+          "callee": "response\r\n        .into_body()\r\n        .collect()\r\n        .await.expect",
+          "lineNumber": 40
+        },
+        {
+          "caller": "request",
+          "callee": "response\r\n        .into_body().collect",
+          "lineNumber": 40
+        },
+        {
+          "caller": "request",
+          "callee": "response.into_body",
+          "lineNumber": 40
+        },
+        {
+          "caller": "request",
+          "callee": "bytes.is_empty",
+          "lineNumber": 47
+        },
+        {
+          "caller": "request",
+          "callee": "serde_json::from_slice(&bytes).unwrap_or",
+          "lineNumber": 50
+        },
+        {
+          "caller": "request",
+          "callee": "serde_json::from_slice",
+          "lineNumber": 50
+        },
+        {
+          "caller": "health_ok_when_ready",
+          "callee": "test_app",
+          "lineNumber": 57
+        },
+        {
+          "caller": "health_ok_when_ready",
+          "callee": "request",
+          "lineNumber": 58
+        },
+        {
+          "caller": "list_empty",
+          "callee": "test_app",
+          "lineNumber": 69
+        },
+        {
+          "caller": "list_empty",
+          "callee": "request",
+          "lineNumber": 70
+        },
+        {
+          "caller": "create_and_list",
+          "callee": "test_app",
+          "lineNumber": 77
+        },
+        {
+          "caller": "create_and_list",
+          "callee": "request",
+          "lineNumber": 79
+        },
+        {
+          "caller": "create_and_list",
+          "callee": "app.clone",
+          "lineNumber": 80
+        },
+        {
+          "caller": "create_and_list",
+          "callee": "Some",
+          "lineNumber": 83
+        },
+        {
+          "caller": "create_and_list",
+          "callee": "request",
+          "lineNumber": 91
+        },
+        {
+          "caller": "create_rejects_empty_title",
+          "callee": "test_app",
+          "lineNumber": 99
+        },
+        {
+          "caller": "create_rejects_empty_title",
+          "callee": "request",
+          "lineNumber": 100
+        },
+        {
+          "caller": "create_rejects_empty_title",
+          "callee": "Some",
+          "lineNumber": 100
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "test_app",
+          "lineNumber": 107
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "request",
+          "lineNumber": 109
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "app.clone",
+          "lineNumber": 110
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "Some",
+          "lineNumber": 113
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "created[\"id\"].as_u64().unwrap",
+          "lineNumber": 116
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "created[\"id\"].as_u64",
+          "lineNumber": 116
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "request",
+          "lineNumber": 118
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "app.clone",
+          "lineNumber": 119
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "Some",
+          "lineNumber": 122
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "request",
+          "lineNumber": 129
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "app.clone",
+          "lineNumber": 129
+        },
+        {
+          "caller": "update_and_delete",
+          "callee": "request",
+          "lineNumber": 132
+        },
+        {
+          "caller": "missing_todo_returns_404",
+          "callee": "test_app",
+          "lineNumber": 139
+        },
+        {
+          "caller": "missing_todo_returns_404",
+          "callee": "request",
+          "lineNumber": 141
+        },
+        {
+          "caller": "missing_todo_returns_404",
+          "callee": "app.clone",
+          "lineNumber": 142
+        },
+        {
+          "caller": "missing_todo_returns_404",
+          "callee": "Some",
+          "lineNumber": 145
+        },
+        {
+          "caller": "missing_todo_returns_404",
+          "callee": "request",
+          "lineNumber": 151
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 8,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vite-env.d.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 7,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "vite.config.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 29,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,1343 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 6,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 6,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src-tauri/src/api/health.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 66,
+      "nonEmptyLines": 64,
+      "functions": [
+        {
+          "name": "health",
+          "startLine": 37,
+          "endLine": 66,
+          "params": [
+            "State(state)"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "HealthResponse",
+          "startLine": 12,
+          "endLine": 23,
+          "methods": [],
+          "properties": [
+            "ok",
+            "db_path",
+            "code",
+            "error"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "HealthResponse",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "health",
+          "line": 37,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "health",
+          "callee": "state.db_path().display().to_string",
+          "lineNumber": 38
+        },
+        {
+          "caller": "health",
+          "callee": "state.db_path().display",
+          "lineNumber": 38
+        },
+        {
+          "caller": "health",
+          "callee": "state.db_path",
+          "lineNumber": 38
+        },
+        {
+          "caller": "health",
+          "callee": "state.failure",
+          "lineNumber": 39
+        },
+        {
+          "caller": "health",
+          "callee": "(\r\n            StatusCode::OK,\r\n            Json(HealthResponse {\r\n                ok: true,\r\n                db_path,\r\n                code: None,\r\n                error: None,\r\n            }),\r\n        ).into_response",
+          "lineNumber": 40
+        },
+        {
+          "caller": "health",
+          "callee": "Json",
+          "lineNumber": 42
+        },
+        {
+          "caller": "health",
+          "callee": "(\r\n                StatusCode::SERVICE_UNAVAILABLE,\r\n                Json(HealthResponse {\r\n                    ok: false,\r\n                    db_path,\r\n                    code: Some(code.into()),\r\n                    error: Some(message.to_string()),\r\n                }),\r\n            ).into_response",
+          "lineNumber": 54
+        },
+        {
+          "caller": "health",
+          "callee": "Json",
+          "lineNumber": 56
+        },
+        {
+          "caller": "health",
+          "callee": "Some",
+          "lineNumber": 59
+        },
+        {
+          "caller": "health",
+          "callee": "code.into",
+          "lineNumber": 59
+        },
+        {
+          "caller": "health",
+          "callee": "Some",
+          "lineNumber": 60
+        },
+        {
+          "caller": "health",
+          "callee": "message.to_string",
+          "lineNumber": 60
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src-tauri/src/api/mod.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 47,
+      "nonEmptyLines": 40,
+      "functions": [
+        {
+          "name": "shared_state",
+          "startLine": 21,
+          "endLine": 23,
+          "params": []
+        },
+        {
+          "name": "app_router",
+          "startLine": 27,
+          "endLine": 39,
+          "params": [
+            "state"
+          ]
+        },
+        {
+          "name": "shared_router",
+          "startLine": 41,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "dispatch_protocol",
+          "startLine": 45,
+          "endLine": 47,
+          "params": [
+            "request"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "shared_state",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "app_router",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "shared_router",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "dispatch_protocol",
+          "line": 45,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "shared_state",
+          "callee": "STATE.clone",
+          "lineNumber": 22
+        },
+        {
+          "caller": "app_router",
+          "callee": "Router::new()\r\n        .route(\"/health\", get(health::health))\r\n        .nest(\"/todos\", todos::routes())\r\n        .nest(\"/ui/window-chrome\", window_chrome::routes())\r\n        .layer(\r\n            CorsLayer::new()\r\n                .allow_origin(Any)\r\n                .allow_methods(Any)\r\n                .allow_headers(Any),\r\n        ).with_state",
+          "lineNumber": 28
+        },
+        {
+          "caller": "app_router",
+          "callee": "Router::new()\r\n        .route(\"/health\", get(health::health))\r\n        .nest(\"/todos\", todos::routes())\r\n        .nest(\"/ui/window-chrome\", window_chrome::routes()).layer",
+          "lineNumber": 28
+        },
+        {
+          "caller": "app_router",
+          "callee": "Router::new()\r\n        .route(\"/health\", get(health::health))\r\n        .nest(\"/todos\", todos::routes()).nest",
+          "lineNumber": 28
+        },
+        {
+          "caller": "app_router",
+          "callee": "Router::new()\r\n        .route(\"/health\", get(health::health)).nest",
+          "lineNumber": 28
+        },
+        {
+          "caller": "app_router",
+          "callee": "Router::new().route",
+          "lineNumber": 28
+        },
+        {
+          "caller": "app_router",
+          "callee": "Router::new",
+          "lineNumber": 28
+        },
+        {
+          "caller": "app_router",
+          "callee": "get",
+          "lineNumber": 29
+        },
+        {
+          "caller": "app_router",
+          "callee": "todos::routes",
+          "lineNumber": 30
+        },
+        {
+          "caller": "app_router",
+          "callee": "window_chrome::routes",
+          "lineNumber": 31
+        },
+        {
+          "caller": "app_router",
+          "callee": "CorsLayer::new()\r\n                .allow_origin(Any)\r\n                .allow_methods(Any).allow_headers",
+          "lineNumber": 33
+        },
+        {
+          "caller": "app_router",
+          "callee": "CorsLayer::new()\r\n                .allow_origin(Any).allow_methods",
+          "lineNumber": 33
+        },
+        {
+          "caller": "app_router",
+          "callee": "CorsLayer::new().allow_origin",
+          "lineNumber": 33
+        },
+        {
+          "caller": "app_router",
+          "callee": "CorsLayer::new",
+          "lineNumber": 33
+        },
+        {
+          "caller": "shared_router",
+          "callee": "app_router",
+          "lineNumber": 42
+        },
+        {
+          "caller": "shared_router",
+          "callee": "shared_state",
+          "lineNumber": 42
+        },
+        {
+          "caller": "dispatch_protocol",
+          "callee": "protocol::dispatch",
+          "lineNumber": 46
+        },
+        {
+          "caller": "dispatch_protocol",
+          "callee": "shared_router",
+          "lineNumber": 46
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src-tauri/src/api/protocol.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 28,
+      "functions": [
+        {
+          "name": "dispatch",
+          "startLine": 8,
+          "endLine": 32,
+          "params": [
+            "router",
+            "request"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "dispatch",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "dispatch",
+          "callee": "request.into_parts",
+          "lineNumber": 12
+        },
+        {
+          "caller": "dispatch",
+          "callee": "Request::from_parts",
+          "lineNumber": 13
+        },
+        {
+          "caller": "dispatch",
+          "callee": "Body::from",
+          "lineNumber": 13
+        },
+        {
+          "caller": "dispatch",
+          "callee": "router.oneshot",
+          "lineNumber": 15
+        },
+        {
+          "caller": "dispatch",
+          "callee": "Response::builder()\r\n            .status(500)\r\n            .header(http::header::CONTENT_TYPE, \"application/json\")\r\n            .body(Body::from(r#\"{\"error\":\"internal error\"}\"#)).expect",
+          "lineNumber": 17
+        },
+        {
+          "caller": "dispatch",
+          "callee": "Response::builder()\r\n            .status(500)\r\n            .header(http::header::CONTENT_TYPE, \"application/json\").body",
+          "lineNumber": 17
+        },
+        {
+          "caller": "dispatch",
+          "callee": "Response::builder()\r\n            .status(500).header",
+          "lineNumber": 17
+        },
+        {
+          "caller": "dispatch",
+          "callee": "Response::builder().status",
+          "lineNumber": 17
+        },
+        {
+          "caller": "dispatch",
+          "callee": "Response::builder",
+          "lineNumber": 17
+        },
+        {
+          "caller": "dispatch",
+          "callee": "Body::from",
+          "lineNumber": 20
+        },
+        {
+          "caller": "dispatch",
+          "callee": "response.into_parts",
+          "lineNumber": 24
+        },
+        {
+          "caller": "dispatch",
+          "callee": "body\r\n        .collect()\r\n        .await\r\n        .map(|c| c.to_bytes().to_vec()).unwrap_or_default",
+          "lineNumber": 25
+        },
+        {
+          "caller": "dispatch",
+          "callee": "body\r\n        .collect()\r\n        .await.map",
+          "lineNumber": 25
+        },
+        {
+          "caller": "dispatch",
+          "callee": "body.collect",
+          "lineNumber": 25
+        },
+        {
+          "caller": "dispatch",
+          "callee": "c.to_bytes().to_vec",
+          "lineNumber": 28
+        },
+        {
+          "caller": "dispatch",
+          "callee": "c.to_bytes",
+          "lineNumber": 28
+        },
+        {
+          "caller": "dispatch",
+          "callee": "Response::from_parts",
+          "lineNumber": 31
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src-tauri/src/api/state.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 124,
+      "nonEmptyLines": 109,
+      "functions": [
+        {
+          "name": "as_str",
+          "startLine": 17,
+          "endLine": 21,
+          "params": []
+        },
+        {
+          "name": "resolve_app_home",
+          "startLine": 42,
+          "endLine": 53,
+          "params": []
+        },
+        {
+          "name": "resolve_db_path",
+          "startLine": 55,
+          "endLine": 57,
+          "params": []
+        },
+        {
+          "name": "new",
+          "startLine": 60,
+          "endLine": 62,
+          "params": []
+        },
+        {
+          "name": "with_db_path",
+          "startLine": 64,
+          "endLine": 96,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "db_path",
+          "startLine": 98,
+          "endLine": 103,
+          "params": []
+        },
+        {
+          "name": "failure",
+          "startLine": 105,
+          "endLine": 110,
+          "params": []
+        },
+        {
+          "name": "todos",
+          "startLine": 112,
+          "endLine": 117,
+          "params": []
+        },
+        {
+          "name": "default",
+          "startLine": 121,
+          "endLine": 123,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "StartupCode",
+          "startLine": 12,
+          "endLine": 14,
+          "methods": [
+            "as_str"
+          ],
+          "properties": [
+            "DbError"
+          ]
+        },
+        {
+          "name": "AppState",
+          "startLine": 25,
+          "endLine": 27,
+          "methods": [
+            "new",
+            "with_db_path",
+            "db_path",
+            "failure",
+            "todos",
+            "default"
+          ],
+          "properties": [
+            "inner"
+          ]
+        },
+        {
+          "name": "AppStateInner",
+          "startLine": 29,
+          "endLine": 39,
+          "methods": [],
+          "properties": [
+            "Ready",
+            "Failed"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "StartupCode",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "as_str",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "AppState",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "resolve_app_home",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "resolve_db_path",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "new",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "with_db_path",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "db_path",
+          "line": 98,
+          "isDefault": false
+        },
+        {
+          "name": "failure",
+          "line": 105,
+          "isDefault": false
+        },
+        {
+          "name": "todos",
+          "line": 112,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "resolve_app_home",
+          "callee": "std::env::var",
+          "lineNumber": 43
+        },
+        {
+          "caller": "resolve_app_home",
+          "callee": "home.trim",
+          "lineNumber": 44
+        },
+        {
+          "caller": "resolve_app_home",
+          "callee": "home.is_empty",
+          "lineNumber": 45
+        },
+        {
+          "caller": "resolve_app_home",
+          "callee": "PathBuf::from",
+          "lineNumber": 46
+        },
+        {
+          "caller": "resolve_app_home",
+          "callee": "dirs::data_local_dir()\r\n        .unwrap_or_else(|| PathBuf::from(\".\")).join",
+          "lineNumber": 50
+        },
+        {
+          "caller": "resolve_app_home",
+          "callee": "dirs::data_local_dir().unwrap_or_else",
+          "lineNumber": 50
+        },
+        {
+          "caller": "resolve_app_home",
+          "callee": "dirs::data_local_dir",
+          "lineNumber": 50
+        },
+        {
+          "caller": "resolve_app_home",
+          "callee": "PathBuf::from",
+          "lineNumber": 51
+        },
+        {
+          "caller": "resolve_db_path",
+          "callee": "resolve_app_home().join",
+          "lineNumber": 56
+        },
+        {
+          "caller": "resolve_db_path",
+          "callee": "resolve_app_home",
+          "lineNumber": 56
+        },
+        {
+          "caller": "new",
+          "callee": "Self::with_db_path",
+          "lineNumber": 61
+        },
+        {
+          "caller": "new",
+          "callee": "resolve_db_path",
+          "lineNumber": 61
+        },
+        {
+          "caller": "with_db_path",
+          "callee": "path.as_ref().to_path_buf",
+          "lineNumber": 65
+        },
+        {
+          "caller": "with_db_path",
+          "callee": "path.as_ref",
+          "lineNumber": 65
+        },
+        {
+          "caller": "with_db_path",
+          "callee": "db_path.parent",
+          "lineNumber": 66
+        },
+        {
+          "caller": "with_db_path",
+          "callee": "fs::create_dir_all",
+          "lineNumber": 67
+        },
+        {
+          "caller": "with_db_path",
+          "callee": "Arc::new",
+          "lineNumber": 69
+        },
+        {
+          "caller": "with_db_path",
+          "callee": "SqliteTodoStore::open",
+          "lineNumber": 81
+        },
+        {
+          "caller": "with_db_path",
+          "callee": "Arc::new",
+          "lineNumber": 83
+        },
+        {
+          "caller": "with_db_path",
+          "callee": "Mutex::new",
+          "lineNumber": 84
+        },
+        {
+          "caller": "with_db_path",
+          "callee": "Arc::new",
+          "lineNumber": 89
+        },
+        {
+          "caller": "db_path",
+          "callee": "self.inner.as_ref",
+          "lineNumber": 99
+        },
+        {
+          "caller": "failure",
+          "callee": "self.inner.as_ref",
+          "lineNumber": 106
+        },
+        {
+          "caller": "failure",
+          "callee": "Some",
+          "lineNumber": 108
+        },
+        {
+          "caller": "failure",
+          "callee": "message.as_str",
+          "lineNumber": 108
+        },
+        {
+          "caller": "todos",
+          "callee": "self.inner.as_ref",
+          "lineNumber": 113
+        },
+        {
+          "caller": "todos",
+          "callee": "Ok",
+          "lineNumber": 114
+        },
+        {
+          "caller": "todos",
+          "callee": "Err",
+          "lineNumber": 115
+        },
+        {
+          "caller": "todos",
+          "callee": "message.clone",
+          "lineNumber": 115
+        },
+        {
+          "caller": "default",
+          "callee": "Self::new",
+          "lineNumber": 122
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 10,
+        "functionCount": 9,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "src-tauri/src/api/window_chrome.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 189,
+      "nonEmptyLines": 160,
+      "functions": [
+        {
+          "name": "set_app_handle",
+          "startLine": 24,
+          "endLine": 26,
+          "params": [
+            "app"
+          ]
+        },
+        {
+          "name": "as_str",
+          "startLine": 37,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "parse",
+          "startLine": 45,
+          "endLine": 52,
+          "params": [
+            "raw"
+          ]
+        },
+        {
+          "name": "routes",
+          "startLine": 74,
+          "endLine": 76,
+          "params": []
+        },
+        {
+          "name": "color_mode_path",
+          "startLine": 78,
+          "endLine": 80,
+          "params": []
+        },
+        {
+          "name": "has_saved_mode",
+          "startLine": 82,
+          "endLine": 84,
+          "params": []
+        },
+        {
+          "name": "read_saved_mode",
+          "startLine": 86,
+          "endLine": 91,
+          "params": []
+        },
+        {
+          "name": "persist_mode",
+          "startLine": 93,
+          "endLine": 99,
+          "params": [
+            "mode"
+          ]
+        },
+        {
+          "name": "effective_for",
+          "startLine": 101,
+          "endLine": 110,
+          "params": [
+            "window",
+            "mode"
+          ]
+        },
+        {
+          "name": "apply_chrome",
+          "startLine": 112,
+          "endLine": 125,
+          "params": [
+            "window",
+            "mode",
+            "effective"
+          ]
+        },
+        {
+          "name": "show_main",
+          "startLine": 127,
+          "endLine": 130,
+          "params": [
+            "window"
+          ]
+        },
+        {
+          "name": "apply_saved_chrome_and_show",
+          "startLine": 133,
+          "endLine": 142,
+          "params": [
+            "app"
+          ]
+        },
+        {
+          "name": "bootstrap_window_chrome",
+          "startLine": 146,
+          "endLine": 161,
+          "params": [
+            "app"
+          ]
+        },
+        {
+          "name": "set_window_chrome",
+          "startLine": 163,
+          "endLine": 189,
+          "params": [
+            "Json(body)"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ColorMode",
+          "startLine": 30,
+          "endLine": 34,
+          "methods": [
+            "as_str",
+            "parse"
+          ],
+          "properties": [
+            "System",
+            "Light",
+            "Dark"
+          ]
+        },
+        {
+          "name": "WindowChromeRequest",
+          "startLine": 56,
+          "endLine": 59,
+          "methods": [],
+          "properties": [
+            "mode",
+            "effective"
+          ]
+        },
+        {
+          "name": "EffectiveChrome",
+          "startLine": 63,
+          "endLine": 66,
+          "methods": [],
+          "properties": [
+            "Light",
+            "Dark"
+          ]
+        },
+        {
+          "name": "WindowChromeResponse",
+          "startLine": 69,
+          "endLine": 72,
+          "methods": [],
+          "properties": [
+            "ok",
+            "applied"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "set_app_handle",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "ColorMode",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "WindowChromeRequest",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "EffectiveChrome",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "WindowChromeResponse",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "routes",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "apply_saved_chrome_and_show",
+          "line": 133,
+          "isDefault": false
+        },
+        {
+          "name": "bootstrap_window_chrome",
+          "line": 146,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "set_app_handle",
+          "callee": "APP.set",
+          "lineNumber": 25
+        },
+        {
+          "caller": "parse",
+          "callee": "raw.trim",
+          "lineNumber": 46
+        },
+        {
+          "caller": "parse",
+          "callee": "Some",
+          "lineNumber": 47
+        },
+        {
+          "caller": "parse",
+          "callee": "Some",
+          "lineNumber": 48
+        },
+        {
+          "caller": "parse",
+          "callee": "Some",
+          "lineNumber": 49
+        },
+        {
+          "caller": "routes",
+          "callee": "Router::new().route",
+          "lineNumber": 75
+        },
+        {
+          "caller": "routes",
+          "callee": "Router::new",
+          "lineNumber": 75
+        },
+        {
+          "caller": "routes",
+          "callee": "post",
+          "lineNumber": 75
+        },
+        {
+          "caller": "color_mode_path",
+          "callee": "resolve_app_home().join",
+          "lineNumber": 79
+        },
+        {
+          "caller": "color_mode_path",
+          "callee": "resolve_app_home",
+          "lineNumber": 79
+        },
+        {
+          "caller": "has_saved_mode",
+          "callee": "color_mode_path().is_file",
+          "lineNumber": 83
+        },
+        {
+          "caller": "has_saved_mode",
+          "callee": "color_mode_path",
+          "lineNumber": 83
+        },
+        {
+          "caller": "read_saved_mode",
+          "callee": "fs::read_to_string(color_mode_path())\r\n        .ok()\r\n        .and_then(|s| ColorMode::parse(&s)).unwrap_or",
+          "lineNumber": 87
+        },
+        {
+          "caller": "read_saved_mode",
+          "callee": "fs::read_to_string(color_mode_path())\r\n        .ok().and_then",
+          "lineNumber": 87
+        },
+        {
+          "caller": "read_saved_mode",
+          "callee": "fs::read_to_string(color_mode_path()).ok",
+          "lineNumber": 87
+        },
+        {
+          "caller": "read_saved_mode",
+          "callee": "fs::read_to_string",
+          "lineNumber": 87
+        },
+        {
+          "caller": "read_saved_mode",
+          "callee": "color_mode_path",
+          "lineNumber": 87
+        },
+        {
+          "caller": "read_saved_mode",
+          "callee": "ColorMode::parse",
+          "lineNumber": 89
+        },
+        {
+          "caller": "persist_mode",
+          "callee": "color_mode_path",
+          "lineNumber": 94
+        },
+        {
+          "caller": "persist_mode",
+          "callee": "path.parent",
+          "lineNumber": 95
+        },
+        {
+          "caller": "persist_mode",
+          "callee": "fs::create_dir_all",
+          "lineNumber": 96
+        },
+        {
+          "caller": "persist_mode",
+          "callee": "fs::write",
+          "lineNumber": 98
+        },
+        {
+          "caller": "persist_mode",
+          "callee": "mode.as_str",
+          "lineNumber": 98
+        },
+        {
+          "caller": "effective_for",
+          "callee": "window.theme",
+          "lineNumber": 105
+        },
+        {
+          "caller": "apply_chrome",
+          "callee": "Some",
+          "lineNumber": 115
+        },
+        {
+          "caller": "apply_chrome",
+          "callee": "Some",
+          "lineNumber": 116
+        },
+        {
+          "caller": "apply_chrome",
+          "callee": "window.set_theme",
+          "lineNumber": 118
+        },
+        {
+          "caller": "apply_chrome",
+          "callee": "window.set_background_color",
+          "lineNumber": 124
+        },
+        {
+          "caller": "apply_chrome",
+          "callee": "Some",
+          "lineNumber": 124
+        },
+        {
+          "caller": "apply_chrome",
+          "callee": "rgba.into",
+          "lineNumber": 124
+        },
+        {
+          "caller": "show_main",
+          "callee": "window.show",
+          "lineNumber": 128
+        },
+        {
+          "caller": "show_main",
+          "callee": "window.set_focus",
+          "lineNumber": 129
+        },
+        {
+          "caller": "apply_saved_chrome_and_show",
+          "callee": "app.get_webview_window",
+          "lineNumber": 134
+        },
+        {
+          "caller": "apply_saved_chrome_and_show",
+          "callee": "read_saved_mode",
+          "lineNumber": 138
+        },
+        {
+          "caller": "apply_saved_chrome_and_show",
+          "callee": "effective_for",
+          "lineNumber": 139
+        },
+        {
+          "caller": "apply_saved_chrome_and_show",
+          "callee": "apply_chrome",
+          "lineNumber": 140
+        },
+        {
+          "caller": "apply_saved_chrome_and_show",
+          "callee": "show_main",
+          "lineNumber": 141
+        },
+        {
+          "caller": "bootstrap_window_chrome",
+          "callee": "has_saved_mode",
+          "lineNumber": 147
+        },
+        {
+          "caller": "bootstrap_window_chrome",
+          "callee": "apply_saved_chrome_and_show",
+          "lineNumber": 148
+        },
+        {
+          "caller": "bootstrap_window_chrome",
+          "callee": "app.clone",
+          "lineNumber": 152
+        },
+        {
+          "caller": "bootstrap_window_chrome",
+          "callee": "tauri::async_runtime::spawn",
+          "lineNumber": 153
+        },
+        {
+          "caller": "bootstrap_window_chrome",
+          "callee": "tokio::time::sleep",
+          "lineNumber": 154
+        },
+        {
+          "caller": "bootstrap_window_chrome",
+          "callee": "Duration::from_millis",
+          "lineNumber": 154
+        },
+        {
+          "caller": "bootstrap_window_chrome",
+          "callee": "handle.get_webview_window",
+          "lineNumber": 155
+        },
+        {
+          "caller": "bootstrap_window_chrome",
+          "callee": "window.is_visible().unwrap_or",
+          "lineNumber": 156
+        },
+        {
+          "caller": "bootstrap_window_chrome",
+          "callee": "window.is_visible",
+          "lineNumber": 156
+        },
+        {
+          "caller": "bootstrap_window_chrome",
+          "callee": "apply_saved_chrome_and_show",
+          "lineNumber": 157
+        },
+        {
+          "caller": "set_window_chrome",
+          "callee": "persist_mode",
+          "lineNumber": 166
+        },
+        {
+          "caller": "set_window_chrome",
+          "callee": "APP.get",
+          "lineNumber": 168
+        },
+        {
+          "caller": "set_window_chrome",
+          "callee": "Json",
+          "lineNumber": 169
+        },
+        {
+          "caller": "set_window_chrome",
+          "callee": "app.get_webview_window",
+          "lineNumber": 175
+        },
+        {
+          "caller": "set_window_chrome",
+          "callee": "Json",
+          "lineNumber": 176
+        },
+        {
+          "caller": "set_window_chrome",
+          "callee": "apply_chrome",
+          "lineNumber": 182
+        },
+        {
+          "caller": "set_window_chrome",
+          "callee": "show_main",
+          "lineNumber": 183
+        },
+        {
+          "caller": "set_window_chrome",
+          "callee": "Json",
+          "lineNumber": 185
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 8,
+        "functionCount": 14,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "src-tauri/src/lib.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 31,
+      "functions": [
+        {
+          "name": "run",
+          "startLine": 6,
+          "endLine": 33,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "run",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "run",
+          "callee": "tauri::Builder::default()\r\n        .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {\r\n            if let Some(window) = app.get_webview_window(\"main\") {\r\n                let _ = window.unminimize();\r\n                let _ = window.show();\r\n                let _ = window.set_focus();\r\n            }\r\n        }))\r\n        .plugin(tauri_plugin_opener::init())\r\n        .setup(|app| {\r\n            api::set_app_handle(app.handle().clone());\r\n            // Starts hidden; apply chrome from disk (or wait for frontend) before show.\r\n            api::bootstrap_window_chrome(app.handle());\r\n            Ok(())\r\n        })\r\n        // Custom scheme `appapi`: no TCP listen port.\r\n        // Windows/Android fetch base: http://appapi.localhost\r\n        // macOS/Linux: appapi://localhost\r\n        .register_asynchronous_uri_scheme_protocol(\"appapi\", |_ctx, request, responder| {\r\n            tauri::async_runtime::spawn(async move {\r\n                let response = api::dispatch_protocol(request).await;\r\n                responder.respond(response);\r\n            });\r\n        })\r\n        .run(tauri::generate_context!()).expect",
+          "lineNumber": 7
+        },
+        {
+          "caller": "run",
+          "callee": "tauri::Builder::default()\r\n        .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {\r\n            if let Some(window) = app.get_webview_window(\"main\") {\r\n                let _ = window.unminimize();\r\n                let _ = window.show();\r\n                let _ = window.set_focus();\r\n            }\r\n        }))\r\n        .plugin(tauri_plugin_opener::init())\r\n        .setup(|app| {\r\n            api::set_app_handle(app.handle().clone());\r\n            // Starts hidden; apply chrome from disk (or wait for frontend) before show.\r\n            api::bootstrap_window_chrome(app.handle());\r\n            Ok(())\r\n        })\r\n        // Custom scheme `appapi`: no TCP listen port.\r\n        // Windows/Android fetch base: http://appapi.localhost\r\n        // macOS/Linux: appapi://localhost\r\n        .register_asynchronous_uri_scheme_protocol(\"appapi\", |_ctx, request, responder| {\r\n            tauri::async_runtime::spawn(async move {\r\n                let response = api::dispatch_protocol(request).await;\r\n                responder.respond(response);\r\n            });\r\n        }).run",
+          "lineNumber": 7
+        },
+        {
+          "caller": "run",
+          "callee": "tauri::Builder::default()\r\n        .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {\r\n            if let Some(window) = app.get_webview_window(\"main\") {\r\n                let _ = window.unminimize();\r\n                let _ = window.show();\r\n                let _ = window.set_focus();\r\n            }\r\n        }))\r\n        .plugin(tauri_plugin_opener::init())\r\n        .setup(|app| {\r\n            api::set_app_handle(app.handle().clone());\r\n            // Starts hidden; apply chrome from disk (or wait for frontend) before show.\r\n            api::bootstrap_window_chrome(app.handle());\r\n            Ok(())\r\n        }).register_asynchronous_uri_scheme_protocol",
+          "lineNumber": 7
+        },
+        {
+          "caller": "run",
+          "callee": "tauri::Builder::default()\r\n        .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {\r\n            if let Some(window) = app.get_webview_window(\"main\") {\r\n                let _ = window.unminimize();\r\n                let _ = window.show();\r\n                let _ = window.set_focus();\r\n            }\r\n        }))\r\n        .plugin(tauri_plugin_opener::init()).setup",
+          "lineNumber": 7
+        },
+        {
+          "caller": "run",
+          "callee": "tauri::Builder::default()\r\n        .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {\r\n            if let Some(window) = app.get_webview_window(\"main\") {\r\n                let _ = window.unminimize();\r\n                let _ = window.show();\r\n                let _ = window.set_focus();\r\n            }\r\n        })).plugin",
+          "lineNumber": 7
+        },
+        {
+          "caller": "run",
+          "callee": "tauri::Builder::default().plugin",
+          "lineNumber": 7
+        },
+        {
+          "caller": "run",
+          "callee": "tauri::Builder::default",
+          "lineNumber": 7
+        },
+        {
+          "caller": "run",
+          "callee": "tauri_plugin_single_instance::init",
+          "lineNumber": 8
+        },
+        {
+          "caller": "run",
+          "callee": "app.get_webview_window",
+          "lineNumber": 9
+        },
+        {
+          "caller": "run",
+          "callee": "window.unminimize",
+          "lineNumber": 10
+        },
+        {
+          "caller": "run",
+          "callee": "window.show",
+          "lineNumber": 11
+        },
+        {
+          "caller": "run",
+          "callee": "window.set_focus",
+          "lineNumber": 12
+        },
+        {
+          "caller": "run",
+          "callee": "tauri_plugin_opener::init",
+          "lineNumber": 15
+        },
+        {
+          "caller": "run",
+          "callee": "api::set_app_handle",
+          "lineNumber": 17
+        },
+        {
+          "caller": "run",
+          "callee": "app.handle().clone",
+          "lineNumber": 17
+        },
+        {
+          "caller": "run",
+          "callee": "app.handle",
+          "lineNumber": 17
+        },
+        {
+          "caller": "run",
+          "callee": "api::bootstrap_window_chrome",
+          "lineNumber": 19
+        },
+        {
+          "caller": "run",
+          "callee": "app.handle",
+          "lineNumber": 19
+        },
+        {
+          "caller": "run",
+          "callee": "Ok",
+          "lineNumber": 20
+        },
+        {
+          "caller": "run",
+          "callee": "tauri::async_runtime::spawn",
+          "lineNumber": 26
+        },
+        {
+          "caller": "run",
+          "callee": "api::dispatch_protocol",
+          "lineNumber": 27
+        },
+        {
+          "caller": "run",
+          "callee": "responder.respond",
+          "lineNumber": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

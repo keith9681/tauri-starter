@@ -1,7 +1,9 @@
 use crate::api::todos::SqliteTodoStore;
 use std::fs;
 use std::path::{Path, PathBuf};
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
+
+use parking_lot::Mutex;
 
 /// Must stay aligned with `identifier` in `tauri.conf.json`.
 const APP_IDENTIFIER: &str = "com.wentongchen.tauri-app";

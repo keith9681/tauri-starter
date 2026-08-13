@@ -1,0 +1,707 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 40,
+  "totalBatches": 6,
+  "exportsByPath": {
+    ".ua/.understandignore": [],
+    "src-tauri/build.rs": [],
+    "src-tauri/icons/icon.icns": [],
+    "src-tauri/src/api/error.rs": [
+      "ErrorBody",
+      "ApiError"
+    ],
+    "src-tauri/src/api/health.rs": [
+      "HealthResponse",
+      "health"
+    ],
+    "src-tauri/src/api/mod.rs": [
+      "shared_state",
+      "app_router",
+      "shared_router",
+      "dispatch_protocol"
+    ],
+    "src-tauri/src/api/openapi.rs": [
+      "ApiDoc"
+    ],
+    "src-tauri/src/api/protocol.rs": [
+      "dispatch"
+    ],
+    "src-tauri/src/api/state.rs": [
+      "StartupCode",
+      "as_str",
+      "AppState",
+      "resolve_app_home",
+      "resolve_db_path",
+      "new",
+      "with_db_path",
+      "db_path",
+      "failure",
+      "todos"
+    ],
+    "src-tauri/src/api/todos/handlers.rs": [
+      "list",
+      "create",
+      "update",
+      "delete"
+    ],
+    "src-tauri/src/api/todos/mod.rs": [
+      "routes"
+    ],
+    "src-tauri/src/api/todos/model.rs": [
+      "Todo",
+      "CreateTodo",
+      "UpdateTodo",
+      "OkResponse"
+    ],
+    "src-tauri/src/api/todos/store.rs": [
+      "StoreError",
+      "TodoStore",
+      "SqliteTodoStore",
+      "open"
+    ],
+    "src-tauri/src/api/window_chrome.rs": [
+      "set_app_handle",
+      "ColorMode",
+      "WindowChromeRequest",
+      "EffectiveChrome",
+      "WindowChromeResponse",
+      "routes",
+      "apply_saved_chrome_and_show",
+      "bootstrap_window_chrome"
+    ],
+    "src-tauri/src/bin/api.rs": [],
+    "src-tauri/src/lib.rs": [
+      "run"
+    ],
+    "src-tauri/src/main.rs": [],
+    "src-tauri/tests/todos_api.rs": [],
+    "src/App.tsx": [],
+    "src/api/client.ts": [
+      "listTodos",
+      "createTodo",
+      "updateTodo",
+      "deleteTodo",
+      "setWindowChrome"
+    ],
+    "src/i18n/index.ts": [
+      "AppLocale",
+      "MessageKey",
+      "MessageValues",
+      "LOCALE_STORAGE_KEY",
+      "DEFAULT_LOCALE",
+      "catalogs",
+      "isAppLocale",
+      "readStoredLocale",
+      "formatMessage",
+      "translate"
+    ],
+    "src/i18n/messages/en.ts": [
+      "en"
+    ],
+    "src/i18n/messages/zh-CN.ts": [
+      "zhCN"
+    ],
+    "src/i18n/types.ts": [],
+    "src/main.tsx": [],
+    "src/providers.tsx": [
+      "useColorMode",
+      "useLocale",
+      "Providers"
+    ],
+    "src/vite-env.d.ts": [],
+    "vite.config.ts": []
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": "src-tauri/src/api/error.rs",
+          "language": "rust",
+          "sizeLines": 34,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/api/openapi.rs",
+          "language": "rust",
+          "sizeLines": 27,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/api/todos/handlers.rs",
+          "language": "rust",
+          "sizeLines": 124,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/api/todos/mod.rs",
+          "language": "rust",
+          "sizeLines": 15,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/api/todos/model.rs",
+          "language": "rust",
+          "sizeLines": 44,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/api/todos/store.rs",
+          "language": "rust",
+          "sizeLines": 131,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src-tauri/src/api/error.rs": [],
+        "src-tauri/src/api/openapi.rs": [
+          "src-tauri/src/api/error.rs",
+          "src-tauri/src/api/health.rs",
+          "src-tauri/src/api/todos/mod.rs",
+          "src-tauri/src/api/todos/model.rs"
+        ],
+        "src-tauri/src/api/todos/handlers.rs": [
+          "src-tauri/src/api/error.rs",
+          "src-tauri/src/api/state.rs"
+        ],
+        "src-tauri/src/api/todos/mod.rs": [
+          "src-tauri/src/api/state.rs",
+          "src-tauri/src/api/todos/handlers.rs",
+          "src-tauri/src/api/todos/model.rs",
+          "src-tauri/src/api/todos/store.rs"
+        ],
+        "src-tauri/src/api/todos/model.rs": [],
+        "src-tauri/src/api/todos/store.rs": []
+      },
+      "neighborMap": {
+        "src-tauri/src/api/error.rs": [
+          {
+            "path": "src-tauri/src/api/mod.rs",
+            "batchIndex": 2,
+            "symbols": [
+              "shared_state",
+              "app_router",
+              "shared_router",
+              "dispatch_protocol"
+            ]
+          }
+        ],
+        "src-tauri/src/api/openapi.rs": [
+          {
+            "path": "src-tauri/src/api/health.rs",
+            "batchIndex": 2,
+            "symbols": [
+              "HealthResponse",
+              "health"
+            ]
+          },
+          {
+            "path": "src-tauri/src/api/mod.rs",
+            "batchIndex": 2,
+            "symbols": [
+              "shared_state",
+              "app_router",
+              "shared_router",
+              "dispatch_protocol"
+            ]
+          }
+        ],
+        "src-tauri/src/api/todos/handlers.rs": [
+          {
+            "path": "src-tauri/src/api/state.rs",
+            "batchIndex": 2,
+            "symbols": [
+              "StartupCode",
+              "as_str",
+              "AppState",
+              "resolve_app_home",
+              "resolve_db_path",
+              "new",
+              "with_db_path",
+              "db_path",
+              "failure",
+              "todos"
+            ]
+          }
+        ],
+        "src-tauri/src/api/todos/mod.rs": [
+          {
+            "path": "src-tauri/src/api/state.rs",
+            "batchIndex": 2,
+            "symbols": [
+              "StartupCode",
+              "as_str",
+              "AppState",
+              "resolve_app_home",
+              "resolve_db_path",
+              "new",
+              "with_db_path",
+              "db_path",
+              "failure",
+              "todos"
+            ]
+          },
+          {
+            "path": "src-tauri/src/api/mod.rs",
+            "batchIndex": 2,
+            "symbols": [
+              "shared_state",
+              "app_router",
+              "shared_router",
+              "dispatch_protocol"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "src-tauri/src/api/health.rs",
+          "language": "rust",
+          "sizeLines": 66,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/api/mod.rs",
+          "language": "rust",
+          "sizeLines": 47,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/api/protocol.rs",
+          "language": "rust",
+          "sizeLines": 32,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/api/state.rs",
+          "language": "rust",
+          "sizeLines": 124,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/api/window_chrome.rs",
+          "language": "rust",
+          "sizeLines": 189,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/lib.rs",
+          "language": "rust",
+          "sizeLines": 33,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src-tauri/src/api/health.rs": [
+          "src-tauri/src/api/state.rs"
+        ],
+        "src-tauri/src/api/mod.rs": [
+          "src-tauri/src/api/error.rs",
+          "src-tauri/src/api/health.rs",
+          "src-tauri/src/api/openapi.rs",
+          "src-tauri/src/api/protocol.rs",
+          "src-tauri/src/api/state.rs",
+          "src-tauri/src/api/todos/mod.rs",
+          "src-tauri/src/api/window_chrome.rs"
+        ],
+        "src-tauri/src/api/protocol.rs": [],
+        "src-tauri/src/api/state.rs": [
+          "src-tauri/src/api/todos/mod.rs"
+        ],
+        "src-tauri/src/api/window_chrome.rs": [
+          "src-tauri/src/api/state.rs"
+        ],
+        "src-tauri/src/lib.rs": [
+          "src-tauri/src/api/mod.rs"
+        ]
+      },
+      "neighborMap": {
+        "src-tauri/src/api/health.rs": [
+          {
+            "path": "src-tauri/src/api/openapi.rs",
+            "batchIndex": 1,
+            "symbols": [
+              "ApiDoc"
+            ]
+          }
+        ],
+        "src-tauri/src/api/mod.rs": [
+          {
+            "path": "src-tauri/src/api/error.rs",
+            "batchIndex": 1,
+            "symbols": [
+              "ErrorBody",
+              "ApiError"
+            ]
+          },
+          {
+            "path": "src-tauri/src/api/openapi.rs",
+            "batchIndex": 1,
+            "symbols": [
+              "ApiDoc"
+            ]
+          },
+          {
+            "path": "src-tauri/src/api/todos/mod.rs",
+            "batchIndex": 1,
+            "symbols": [
+              "routes"
+            ]
+          }
+        ],
+        "src-tauri/src/api/state.rs": [
+          {
+            "path": "src-tauri/src/api/todos/mod.rs",
+            "batchIndex": 1,
+            "symbols": [
+              "routes"
+            ]
+          },
+          {
+            "path": "src-tauri/src/api/todos/handlers.rs",
+            "batchIndex": 1,
+            "symbols": [
+              "list",
+              "create",
+              "update",
+              "delete"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": "src/App.tsx",
+          "language": "typescript",
+          "sizeLines": 327,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/api/client.ts",
+          "language": "typescript",
+          "sizeLines": 85,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/main.tsx",
+          "language": "typescript",
+          "sizeLines": 17,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/providers.tsx",
+          "language": "typescript",
+          "sizeLines": 170,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/App.tsx": [
+          "src/api/client.ts",
+          "src/i18n/index.ts",
+          "src/providers.tsx"
+        ],
+        "src/api/client.ts": [],
+        "src/main.tsx": [
+          "src/App.tsx",
+          "src/app-shell.css",
+          "src/providers.tsx",
+          "src/view-transitions.css"
+        ],
+        "src/providers.tsx": [
+          "src/api/client.ts",
+          "src/i18n/index.ts"
+        ]
+      },
+      "neighborMap": {
+        "src/App.tsx": [
+          {
+            "path": "src/i18n/index.ts",
+            "batchIndex": 4,
+            "symbols": [
+              "AppLocale",
+              "MessageKey",
+              "MessageValues",
+              "LOCALE_STORAGE_KEY",
+              "DEFAULT_LOCALE",
+              "catalogs",
+              "isAppLocale",
+              "readStoredLocale",
+              "formatMessage",
+              "translate"
+            ]
+          }
+        ],
+        "src/main.tsx": [
+          {
+            "path": "src/app-shell.css",
+            "batchIndex": 6,
+            "symbols": []
+          },
+          {
+            "path": "src/view-transitions.css",
+            "batchIndex": 6,
+            "symbols": []
+          }
+        ],
+        "src/providers.tsx": [
+          {
+            "path": "src/i18n/index.ts",
+            "batchIndex": 4,
+            "symbols": [
+              "AppLocale",
+              "MessageKey",
+              "MessageValues",
+              "LOCALE_STORAGE_KEY",
+              "DEFAULT_LOCALE",
+              "catalogs",
+              "isAppLocale",
+              "readStoredLocale",
+              "formatMessage",
+              "translate"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": "src/i18n/index.ts",
+          "language": "typescript",
+          "sizeLines": 55,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/i18n/messages/en.ts",
+          "language": "typescript",
+          "sizeLines": 23,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/i18n/messages/zh-CN.ts",
+          "language": "typescript",
+          "sizeLines": 23,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/i18n/types.ts",
+          "language": "typescript",
+          "sizeLines": 26,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/i18n/index.ts": [
+          "src/i18n/messages/en.ts",
+          "src/i18n/messages/zh-CN.ts",
+          "src/i18n/types.ts"
+        ],
+        "src/i18n/messages/en.ts": [
+          "src/i18n/types.ts"
+        ],
+        "src/i18n/messages/zh-CN.ts": [
+          "src/i18n/types.ts"
+        ],
+        "src/i18n/types.ts": []
+      },
+      "neighborMap": {
+        "src/i18n/index.ts": [
+          {
+            "path": "src/App.tsx",
+            "batchIndex": 3,
+            "symbols": []
+          },
+          {
+            "path": "src/providers.tsx",
+            "batchIndex": 3,
+            "symbols": [
+              "useColorMode",
+              "useLocale",
+              "Providers"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 5,
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "language": "markdown",
+          "sizeLines": 142,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "README.md",
+          "language": "markdown",
+          "sizeLines": 179,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "index.html",
+          "language": "html",
+          "sizeLines": 51,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "package.json",
+          "language": "json",
+          "sizeLines": 38,
+          "fileCategory": "config"
+        },
+        {
+          "path": "tsconfig.json",
+          "language": "json",
+          "sizeLines": 25,
+          "fileCategory": "config"
+        },
+        {
+          "path": "tsconfig.node.json",
+          "language": "json",
+          "sizeLines": 10,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "AGENTS.md": [],
+        "README.md": [],
+        "index.html": [],
+        "package.json": [],
+        "tsconfig.json": [],
+        "tsconfig.node.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 6,
+      "files": [
+        {
+          "path": ".ua/.understandignore",
+          "language": "unknown",
+          "sizeLines": 81,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".ua/config.json",
+          "language": "json",
+          "sizeLines": 3,
+          "fileCategory": "config"
+        },
+        {
+          "path": "src-tauri/Cargo.toml",
+          "language": "toml",
+          "sizeLines": 47,
+          "fileCategory": "config"
+        },
+        {
+          "path": "src-tauri/build.rs",
+          "language": "rust",
+          "sizeLines": 3,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/capabilities/default.json",
+          "language": "json",
+          "sizeLines": 10,
+          "fileCategory": "config"
+        },
+        {
+          "path": "src-tauri/icons/icon.icns",
+          "language": "icns",
+          "sizeLines": 462,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/bin/api.rs",
+          "language": "rust",
+          "sizeLines": 29,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/src/main.rs",
+          "language": "rust",
+          "sizeLines": 6,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src-tauri/tauri.conf.json",
+          "language": "json",
+          "sizeLines": 45,
+          "fileCategory": "config"
+        },
+        {
+          "path": "src-tauri/tests/todos_api.rs",
+          "language": "rust",
+          "sizeLines": 154,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/app-shell.css",
+          "language": "css",
+          "sizeLines": 24,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "src/view-transitions.css",
+          "language": "css",
+          "sizeLines": 18,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "src/vite-env.d.ts",
+          "language": "typescript",
+          "sizeLines": 9,
+          "fileCategory": "code"
+        },
+        {
+          "path": "vite.config.ts",
+          "language": "typescript",
+          "sizeLines": 32,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        ".ua/.understandignore": [],
+        ".ua/config.json": [],
+        "src-tauri/Cargo.toml": [],
+        "src-tauri/build.rs": [],
+        "src-tauri/capabilities/default.json": [],
+        "src-tauri/icons/icon.icns": [],
+        "src-tauri/src/bin/api.rs": [],
+        "src-tauri/src/main.rs": [],
+        "src-tauri/tauri.conf.json": [],
+        "src-tauri/tests/todos_api.rs": [],
+        "src/app-shell.css": [],
+        "src/view-transitions.css": [],
+        "src/vite-env.d.ts": [],
+        "vite.config.ts": []
+      },
+      "neighborMap": {
+        "src/app-shell.css": [
+          {
+            "path": "src/main.tsx",
+            "batchIndex": 3,
+            "symbols": []
+          }
+        ],
+        "src/view-transitions.css": [
+          {
+            "path": "src/main.tsx",
+            "batchIndex": 3,
+            "symbols": []
+          }
+        ]
+      }
+    }
+  ]
+}

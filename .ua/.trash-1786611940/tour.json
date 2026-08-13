@@ -1,0 +1,80 @@
+[
+  {
+    "order": 1,
+    "title": "项目全景",
+    "description": "先从 README 建立项目地图：它把本仓库描述为 Windows 优先的 Tauri 2 桌面模板，并概括 React/Astryx、axum 与 SQLite 的组合方式。把这些内容视为阅读线索而非实现事实，后续步骤会沿真实入口和依赖关系逐一核对关键设计。",
+    "nodeIds": ["document:README.md", "document:AGENTS.md"]
+  },
+  {
+    "order": 2,
+    "title": "双端启动入口",
+    "description": "前端从 main.tsx 装配 Providers 与 App，桌面端则由最小 main.rs 转入 lib.rs 的 Tauri 运行逻辑。把这三个入口并排阅读，可以先理解 Web UI 与原生宿主如何分别启动、最终又在同一个桌面应用中会合。",
+    "nodeIds": ["file:src/main.tsx", "file:src-tauri/src/main.rs", "file:src-tauri/src/lib.rs"],
+    "languageLesson": "React 入口通常只负责挂载根组件和全局 Provider；Rust 则常用很薄的 binary crate 入口，把可复用启动逻辑留在 library crate。"
+  },
+  {
+    "order": 3,
+    "title": "统一路由核心",
+    "description": "在启动骨架之后，mod.rs 是后端最重要的总装点：health、todos 和窗口外观都汇入唯一的 axum Router。桌面自定义协议与开发 HTTP 旁路复用这个 Router，因此业务 handler 不必为不同传输通道维护两套实现。",
+    "nodeIds": ["file:src-tauri/src/api/mod.rs", "function:src-tauri/src/api/mod.rs:app_router", "function:src-tauri/src/api/mod.rs:dispatch_protocol"],
+    "languageLesson": "axum Router 可以作为 Tower Service 被 oneshot 调用；这种组合方式让同一套路由既能由 TCP server 服务，也能在进程内完成请求分派。"
+  },
+  {
+    "order": 4,
+    "title": "进程内协议桥",
+    "description": "protocol.rs 承接上一步的 dispatch，把 Tauri HTTP Request 规范化后送入 Router oneshot，再转换回宿主可接受的响应。它解释了桌面主路径为何无需监听 TCP，同时仍能让前端坚持使用标准 fetch 与 JSON API。",
+    "nodeIds": ["file:src-tauri/src/api/protocol.rs", "function:src-tauri/src/api/protocol.rs:dispatch"]
+  },
+  {
+    "order": 5,
+    "title": "运行状态与数据",
+    "description": "请求进入 Router 后，state.rs 提供共享运行依赖：它解析应用数据目录、确定 app_data.db，并把 SQLite store 初始化结果封装为 Ready 或 Failed。这个边界既让健康检查能报告启动故障，也让测试可通过指定数据库路径避免污染开发数据。",
+    "nodeIds": ["file:src-tauri/src/api/state.rs", "class:src-tauri/src/api/state.rs:AppState", "function:src-tauri/src/api/state.rs:with_db_path"],
+    "languageLesson": "Rust 枚举适合表达互斥的运行状态，配合 pattern matching 可以迫使调用方显式处理就绪与失败分支。"
+  },
+  {
+    "order": 6,
+    "title": "待办领域闭环",
+    "description": "在共享状态之上，待办模块按契约、HTTP handler 与存储实现分层：model 定义交换数据，handlers 编排 CRUD，store 负责校验和 SQLite 操作。模块 routes 再把集合路径与单项路径接回统一 Router，形成一条可替换的示例业务纵切。",
+    "nodeIds": ["file:src-tauri/src/api/todos/mod.rs", "file:src-tauri/src/api/todos/model.rs", "file:src-tauri/src/api/todos/handlers.rs", "file:src-tauri/src/api/todos/store.rs"],
+    "languageLesson": "Rust trait（特征）把 TodoStore 定义为存储契约，使 handler 依赖能力而不是具体 SQLite 类型；所有权与借用规则则帮助约束共享连接的访问方式。"
+  },
+  {
+    "order": 7,
+    "title": "错误与可观测性",
+    "description": "业务闭环还需要稳定的失败语义：error.rs 将领域失败映射为统一 HTTP 状态码和 JSON 响应，health.rs 则暴露数据库路径与启动错误。openapi.rs 汇聚这些模型和 endpoint，为开发工具提供与真实 handler 对齐的契约描述。",
+    "nodeIds": ["file:src-tauri/src/api/error.rs", "file:src-tauri/src/api/health.rs", "file:src-tauri/src/api/openapi.rs"]
+  },
+  {
+    "order": 8,
+    "title": "开发 API 旁路",
+    "description": "api.rs 在桌面协议之外提供浏览器联调入口，但仍复用前面建立的共享 Router。Scalar UI 与 OpenAPI JSON 只在这个本地 HTTP 二进制上挂载，从而把开发文档能力与桌面发布路径清晰隔离。",
+    "nodeIds": ["file:src-tauri/src/bin/api.rs", "function:src-tauri/src/bin/api.rs:main"]
+  },
+  {
+    "order": 9,
+    "title": "前端服务边界",
+    "description": "回到前端，client.ts 是 UI 与后端之间的唯一服务边界：它根据宿主环境选择 appapi 或本地 HTTP base，并统一处理 JSON 请求与错误。App.tsx 只消费这些 CRUD 函数，因此不会直接耦合 Tauri SDK 或后端传输细节。",
+    "nodeIds": ["file:src/api/client.ts", "function:src/api/client.ts:resolveApiBase", "file:src/App.tsx"]
+  },
+  {
+    "order": 10,
+    "title": "界面上下文",
+    "description": "Providers 集中管理颜色模式与 locale，并把用户偏好同步到 DOM、Astryx 和原生窗口；i18n 模块则提供类型安全消息键、持久化与回退。建立在上一步 API 客户端之上，TodoApp 才能专注于异步 CRUD、列表交互和加载错误状态。",
+    "nodeIds": ["file:src/providers.tsx", "file:src/i18n/index.ts", "file:src/i18n/types.ts", "function:src/App.tsx:TodoApp"],
+    "languageLesson": "React Context 适合承载跨组件树共享且更新频率可控的主题与语言状态；TypeScript 类型收窄可让运行时 locale 校验同时改善编译期推断。"
+  },
+  {
+    "order": 11,
+    "title": "窗口视觉同步",
+    "description": "主题选择不只改变 React 页面，window_chrome.rs 还会持久化模式、解析系统主题，并在显示窗口前应用原生 chrome。它与前端 setWindowChrome 调用配合，避免 Web 内容和 Windows 原生标题区域在启动或切换主题时出现割裂与闪烁。",
+    "nodeIds": ["file:src-tauri/src/api/window_chrome.rs", "function:src-tauri/src/api/window_chrome.rs:bootstrap_window_chrome", "function:src/api/client.ts:setWindowChrome"]
+  },
+  {
+    "order": 12,
+    "title": "测试与交付配置",
+    "description": "最后用 todos_api.rs 验证整条后端链路：测试通过 Router oneshot 和临时 SQLite 文件覆盖健康检查及待办生命周期。package.json、Cargo.toml 与 tauri.conf.json 则把 Bun 命令、Rust feature、产品身份和 NSIS 打包连接起来，构成从验证到桌面交付的工程收尾。",
+    "nodeIds": ["file:src-tauri/tests/todos_api.rs", "config:package.json", "config:src-tauri/Cargo.toml", "config:src-tauri/tauri.conf.json"],
+    "languageLesson": "集成测试直接驱动 Router Service，可以在不绑定真实端口的情况下验证完整 HTTP 语义；临时数据库让每个测试拥有隔离且可重复的持久化环境。"
+  }
+]

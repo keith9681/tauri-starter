@@ -1,0 +1,1171 @@
+{
+  "fileNodes": [
+    {
+      "id": "file:src-tauri/src/api/error.rs",
+      "type": "file",
+      "name": "error.rs",
+      "filePath": "src-tauri/src/api/error.rs",
+      "summary": "定义 API 统一错误枚举与 JSON 错误响应，将业务失败映射为稳定的 HTTP 状态码和中文消息。",
+      "tags": [
+        "错误处理",
+        "api-handler",
+        "serialization"
+      ],
+      "complexity": "simple",
+      "languageNotes": "通过 Rust 的 IntoResponse trait 将领域错误集中转换为 axum 响应。"
+    },
+    {
+      "id": "file:src-tauri/src/api/openapi.rs",
+      "type": "file",
+      "name": "openapi.rs",
+      "filePath": "src-tauri/src/api/openapi.rs",
+      "summary": "聚合健康检查和待办 API 的 utoipa 路径、数据模型与错误模型，生成开发侧 OpenAPI 文档。",
+      "tags": [
+        "api-schema",
+        "documentation",
+        "openapi"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 utoipa derive 宏声明式汇总 endpoints 与 schemas。"
+    },
+    {
+      "id": "file:src-tauri/src/api/todos/handlers.rs",
+      "type": "file",
+      "name": "handlers.rs",
+      "filePath": "src-tauri/src/api/todos/handlers.rs",
+      "summary": "实现待办资源的 list、create、update、delete axum handlers，并统一处理 store 锁与领域错误转换。",
+      "tags": [
+        "api-handler",
+        "待办",
+        "错误处理",
+        "crud"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src-tauri/src/api/todos/mod.rs",
+      "type": "file",
+      "name": "mod.rs",
+      "filePath": "src-tauri/src/api/todos/mod.rs",
+      "summary": "组织待办模块并构建 / 与 /{id} 的 CRUD Router，是待办业务挂入 app_router 的入口。",
+      "tags": [
+        "barrel",
+        "路由",
+        "待办",
+        "api-handler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src-tauri/src/api/todos/model.rs",
+      "type": "file",
+      "name": "model.rs",
+      "filePath": "src-tauri/src/api/todos/model.rs",
+      "summary": "定义待办实体、创建与更新请求体以及通用成功响应，供 handlers、store 和 OpenAPI 共用。",
+      "tags": [
+        "data-model",
+        "待办",
+        "serialization",
+        "api-schema"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src-tauri/src/api/todos/store.rs",
+      "type": "file",
+      "name": "store.rs",
+      "filePath": "src-tauri/src/api/todos/store.rs",
+      "summary": "定义待办存储接口并以 rusqlite 实现 SQLite CRUD、建表、输入校验和错误归一化。",
+      "tags": [
+        "database",
+        "service",
+        "待办",
+        "crud"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "通过 trait 隔离存储契约，具体实现使用 bundled SQLite 与参数化 SQL。"
+    },
+    {
+      "id": "file:src-tauri/src/api/health.rs",
+      "type": "file",
+      "name": "health.rs",
+      "filePath": "src-tauri/src/api/health.rs",
+      "summary": "提供健康检查 endpoint，报告应用状态、数据库路径以及启动失败代码和消息。",
+      "tags": [
+        "api-handler",
+        "健康检查",
+        "monitoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src-tauri/src/api/mod.rs",
+      "type": "file",
+      "name": "mod.rs",
+      "filePath": "src-tauri/src/api/mod.rs",
+      "summary": "作为 axum API 的唯一组装入口，挂载 health、todos 与 window chrome 路由，并复用同一 Router 支持 TCP 旁路和 appapi 协议。",
+      "tags": [
+        "barrel",
+        "路由",
+        "api-handler",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src-tauri/src/api/protocol.rs",
+      "type": "file",
+      "name": "protocol.rs",
+      "filePath": "src-tauri/src/api/protocol.rs",
+      "summary": "桥接 Tauri HTTP Request 与 axum Router oneshot，规范 appapi 请求 URI 并在失败时生成响应。",
+      "tags": [
+        "协议适配",
+        "middleware",
+        "路由"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 tower ServiceExt::oneshot 在进程内执行 Router，不监听 TCP。"
+    },
+    {
+      "id": "file:src-tauri/src/api/state.rs",
+      "type": "file",
+      "name": "state.rs",
+      "filePath": "src-tauri/src/api/state.rs",
+      "summary": "解析应用数据目录和 SQLite 路径，初始化待办 store，并以 Ready/Failed 状态安全暴露运行依赖。",
+      "tags": [
+        "状态管理",
+        "database",
+        "初始化",
+        "singleton"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src-tauri/src/api/window_chrome.rs",
+      "type": "file",
+      "name": "window_chrome.rs",
+      "filePath": "src-tauri/src/api/window_chrome.rs",
+      "summary": "管理桌面窗口明暗模式持久化、系统主题解析、原生 chrome 应用和启动显示时序，并暴露设置 endpoint。",
+      "tags": [
+        "窗口管理",
+        "主题",
+        "api-handler",
+        "持久化"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "结合 OnceLock 保存 Tauri AppHandle，并用异步延迟作为前端未及时设置 chrome 时的启动兜底。"
+    },
+    {
+      "id": "file:src-tauri/src/lib.rs",
+      "type": "file",
+      "name": "lib.rs",
+      "filePath": "src-tauri/src/lib.rs",
+      "summary": "Tauri 库入口，注册单实例与 opener 插件、初始化窗口 chrome，并把 appapi 自定义协议接入 axum Router。",
+      "tags": [
+        "entry-point",
+        "tauri",
+        "协议适配",
+        "启动流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/App.tsx",
+      "type": "file",
+      "name": "App.tsx",
+      "filePath": "src/App.tsx",
+      "summary": "实现 Astryx 待办应用主界面，协调待办 CRUD、加载与错误状态、语言和主题切换，并通过 View Transitions API 动画化列表更新。",
+      "tags": [
+        "component",
+        "todo-ui",
+        "state-management",
+        "internationalization",
+        "view-transitions"
+      ],
+      "complexity": "complex",
+      "languageNotes": "大型 React 函数组件将异步业务动作、派生状态与 Astryx 组件布局集中在同一文件中。"
+    },
+    {
+      "id": "file:src/api/client.ts",
+      "type": "file",
+      "name": "client.ts",
+      "filePath": "src/api/client.ts",
+      "summary": "封装前端 JSON API 客户端，根据桌面自定义协议或浏览器开发环境选择 API base，并暴露待办 CRUD 与原生窗口外观同步操作。",
+      "tags": [
+        "api-client",
+        "serialization",
+        "todo-service",
+        "window-chrome"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用泛型 request<T> 统一响应反序列化，并保持前端不依赖 @tauri-apps SDK。"
+    },
+    {
+      "id": "file:src/main.tsx",
+      "type": "file",
+      "name": "main.tsx",
+      "filePath": "src/main.tsx",
+      "summary": "前端启动入口，加载 Astryx 与应用样式，并在 StrictMode 下用 Providers 包裹 App 后挂载到 root。",
+      "tags": [
+        "entry-point",
+        "react",
+        "astryx",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/providers.tsx",
+      "type": "file",
+      "name": "providers.tsx",
+      "filePath": "src/providers.tsx",
+      "summary": "集中提供颜色模式和 locale React Context，持久化用户偏好，同步 DOM 与原生窗口外观，并组合 Astryx Theme 和国际化 Provider。",
+      "tags": [
+        "provider",
+        "theme",
+        "internationalization",
+        "context",
+        "persistence"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "通过 Context hooks、memoized values 和 matchMedia 监听器联动 WebView 文档与 Tauri 原生窗口。"
+    },
+    {
+      "id": "file:src/i18n/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/i18n/index.ts",
+      "summary": "汇总中英文消息目录和国际化类型，定义 locale 持久化、占位符插值及带默认语言回退的翻译入口。",
+      "tags": [
+        "internationalization",
+        "barrel",
+        "localization",
+        "utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "以 MessageKey 联合类型和 Record 目录约束编译期消息键完整性。"
+    },
+    {
+      "id": "file:src/i18n/messages/en.ts",
+      "type": "file",
+      "name": "en.ts",
+      "filePath": "src/i18n/messages/en.ts",
+      "summary": "定义待办界面、主题和语言控件所需的完整英文消息目录，包括计数与测试数据占位符。",
+      "tags": [
+        "internationalization",
+        "message-catalog",
+        "english",
+        "localization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/i18n/messages/zh-CN.ts",
+      "type": "file",
+      "name": "zh-CN.ts",
+      "filePath": "src/i18n/messages/zh-CN.ts",
+      "summary": "定义待办界面、主题和语言控件所需的简体中文消息目录，与英文目录共享同一类型契约。",
+      "tags": [
+        "internationalization",
+        "message-catalog",
+        "简体中文",
+        "localization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/i18n/types.ts",
+      "type": "file",
+      "name": "types.ts",
+      "filePath": "src/i18n/types.ts",
+      "summary": "声明支持的 locale、全部消息键、消息目录映射及插值值类型，为各语言目录和翻译调用提供编译期契约。",
+      "tags": [
+        "type-definition",
+        "internationalization",
+        "message-schema",
+        "typescript"
+      ],
+      "complexity": "simple",
+      "languageNotes": "MessageCatalog 使用 Record<MessageKey, string> 强制每个 locale 覆盖全部消息键。"
+    },
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "面向 AI 与协作者的模板约定，规定 Tauri 2 桌面通信、axum 路由、SQLite 持久化、Astryx 前端和发布流程的硬性边界。还提供从模板派生产品、扩展 API 与处理 TSD 加密文件的操作指南。",
+      "tags": [
+        "项目文档",
+        "协作规范",
+        "架构约束",
+        "开发指南"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "介绍 Windows 优先的 Tauri 2 + React/Astryx + axum/SQLite 模板，包括双通道 API 架构、快速开始、测试、打包和新产品派生流程。",
+      "tags": [
+        "项目文档",
+        "入口文档",
+        "快速开始",
+        "架构说明"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "index.html",
+      "summary": "Vite 前端 HTML 入口，在 React 挂载前同步恢复语言和明暗模式，以避免启动阶段的标题、背景与主题闪烁。随后加载 src/main.tsx 挂载应用。",
+      "tags": [
+        "前端入口",
+        "启动主题",
+        "国际化",
+        "markup"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "内联脚本在首屏渲染前直接更新 documentElement，并通过全局变量把启动背景传递给 body。"
+    },
+    {
+      "id": "config:package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "package.json",
+      "summary": "定义前端与桌面项目的 Bun 脚本及 React、Astryx、Vite、TypeScript 和 Tauri CLI 依赖，覆盖开发、API 测试、便携版与 NSIS 打包。",
+      "tags": [
+        "配置",
+        "依赖管理",
+        "构建系统",
+        "bun"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "tsconfig.json",
+      "summary": "配置浏览器端 TypeScript 严格检查、React JSX 与 bundler 模块解析，并把 src 作为编译范围、引用 Node 侧 Vite 配置。",
+      "tags": [
+        "配置",
+        "typescript",
+        "严格模式",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tsconfig.node.json",
+      "type": "config",
+      "name": "tsconfig.node.json",
+      "filePath": "tsconfig.node.json",
+      "summary": "为 vite.config.ts 提供独立的 TypeScript composite 配置，采用 ESNext 与 bundler 模块解析。",
+      "tags": [
+        "配置",
+        "typescript",
+        "vite",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.ua/.understandignore",
+      "type": "file",
+      "name": ".understandignore",
+      "filePath": ".ua/.understandignore",
+      "summary": "Understand Anything 的扫描排除模板，列出默认忽略项以及各语言测试文件模式；当前建议项均保持注释，因此测试仍会纳入分析。",
+      "tags": [
+        "分析配置",
+        "忽略规则",
+        "代码扫描",
+        "模板"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:.ua/config.json",
+      "type": "config",
+      "name": "config.json",
+      "filePath": ".ua/config.json",
+      "summary": "指定 Understand Anything 知识图谱的文本输出语言为中文。",
+      "tags": [
+        "配置",
+        "知识图谱",
+        "中文输出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:src-tauri/Cargo.toml",
+      "type": "config",
+      "name": "Cargo.toml",
+      "filePath": "src-tauri/Cargo.toml",
+      "summary": "定义 Tauri Rust crate、桌面库与开发 API 二进制，并配置 axum、SQLite、OpenAPI、单例插件和 devtools 等依赖与 feature。",
+      "tags": [
+        "配置",
+        "rust",
+        "依赖管理",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src-tauri/build.rs",
+      "type": "file",
+      "name": "build.rs",
+      "filePath": "src-tauri/build.rs",
+      "summary": "Rust 构建脚本入口，委托 tauri-build 生成 Tauri 编译期资源与配置。",
+      "tags": [
+        "构建脚本",
+        "tauri",
+        "rust"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:src-tauri/capabilities/default.json",
+      "type": "config",
+      "name": "default.json",
+      "filePath": "src-tauri/capabilities/default.json",
+      "summary": "授予主窗口 Tauri core 与 opener 的默认 capability 权限，限定权限作用于 main 窗口。",
+      "tags": [
+        "配置",
+        "权限模型",
+        "安全",
+        "tauri"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src-tauri/icons/icon.icns",
+      "type": "file",
+      "name": "icon.icns",
+      "filePath": "src-tauri/icons/icon.icns",
+      "summary": "Tauri 应用的 macOS ICNS 打包图标二进制资源，由 bundle 配置引用。",
+      "tags": [
+        "应用图标",
+        "二进制资源",
+        "打包"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src-tauri/src/bin/api.rs",
+      "type": "file",
+      "name": "api.rs",
+      "filePath": "src-tauri/src/bin/api.rs",
+      "summary": "面向浏览器联调的本地 HTTP API 二进制，复用桌面 app_router，并仅在该旁路挂载 Scalar 与 OpenAPI JSON。服务监听 127.0.0.1:8787。",
+      "tags": [
+        "入口点",
+        "开发服务",
+        "axum",
+        "openapi"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 #[tokio::main] 启动异步 runtime，并把共享 Router 与开发期文档路由组合后交给 axum::serve。"
+    },
+    {
+      "id": "file:src-tauri/src/main.rs",
+      "type": "file",
+      "name": "main.rs",
+      "filePath": "src-tauri/src/main.rs",
+      "summary": "桌面二进制的最小入口，在 Windows release 下隐藏控制台并调用库 crate 的 run 启动 Tauri 应用。",
+      "tags": [
+        "入口点",
+        "tauri",
+        "rust",
+        "桌面应用"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:src-tauri/tauri.conf.json",
+      "type": "config",
+      "name": "tauri.conf.json",
+      "filePath": "src-tauri/tauri.conf.json",
+      "summary": "配置 Tauri 产品身份、Vite 开发与构建命令、主窗口属性、安全策略，以及默认 NSIS 打包目标和平台图标。",
+      "tags": [
+        "配置",
+        "tauri",
+        "桌面窗口",
+        "打包"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src-tauri/tests/todos_api.rs",
+      "type": "file",
+      "name": "todos_api.rs",
+      "filePath": "src-tauri/tests/todos_api.rs",
+      "summary": "通过 axum Router oneshot 和临时 SQLite 文件集成测试 health 与 todos API，覆盖空列表、创建、校验、更新、删除和 404 行为。",
+      "tags": [
+        "test",
+        "api-集成测试",
+        "axum",
+        "sqlite"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "测试直接驱动 tower::ServiceExt::oneshot，避免真实 TCP 端口，并用 NamedTempFile 隔离每个测试的数据库。"
+    },
+    {
+      "id": "file:src/app-shell.css",
+      "type": "file",
+      "name": "app-shell.css",
+      "filePath": "src/app-shell.css",
+      "summary": "定义应用根节点的全视口尺寸、启动背景与 color-scheme，并防止密集页头中的 Astryx 分段控件标签换行。",
+      "tags": [
+        "样式",
+        "应用外壳",
+        "主题",
+        "astryx"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/view-transitions.css",
+      "type": "file",
+      "name": "view-transitions.css",
+      "filePath": "src/view-transitions.css",
+      "summary": "配置列表重排的 View Transitions 动画，禁用根页面交叉淡入淡出，并尊重 prefers-reduced-motion。",
+      "tags": [
+        "样式",
+        "动效",
+        "无障碍",
+        "view-transitions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vite-env.d.ts",
+      "type": "file",
+      "name": "vite-env.d.ts",
+      "filePath": "src/vite-env.d.ts",
+      "summary": "扩展 Vite 的 ImportMetaEnv 类型，声明可选 VITE_API_BASE 环境变量供前端覆盖 API 基址。",
+      "tags": [
+        "type-definition",
+        "vite",
+        "环境变量",
+        "api-配置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "vite.config.ts",
+      "summary": "为 Tauri 开发定制 Vite React 服务：固定 1420 端口、支持 TAURI_DEV_HOST 的 HMR，并忽略 src-tauri 文件监听。",
+      "tags": [
+        "配置",
+        "vite",
+        "react",
+        "开发服务器"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "importEdges": [
+    {
+      "source": "file:src-tauri/src/api/openapi.rs",
+      "target": "file:src-tauri/src/api/error.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/openapi.rs",
+      "target": "file:src-tauri/src/api/health.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/openapi.rs",
+      "target": "file:src-tauri/src/api/todos/mod.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/openapi.rs",
+      "target": "file:src-tauri/src/api/todos/model.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/handlers.rs",
+      "target": "file:src-tauri/src/api/error.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/handlers.rs",
+      "target": "file:src-tauri/src/api/state.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/mod.rs",
+      "target": "file:src-tauri/src/api/state.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/mod.rs",
+      "target": "file:src-tauri/src/api/todos/handlers.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/mod.rs",
+      "target": "file:src-tauri/src/api/todos/model.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/mod.rs",
+      "target": "file:src-tauri/src/api/todos/store.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/health.rs",
+      "target": "file:src-tauri/src/api/state.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/error.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/health.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/openapi.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/protocol.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/state.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/todos/mod.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/window_chrome.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/state.rs",
+      "target": "file:src-tauri/src/api/todos/mod.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/window_chrome.rs",
+      "target": "file:src-tauri/src/api/state.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/lib.rs",
+      "target": "file:src-tauri/src/api/mod.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/App.tsx",
+      "target": "file:src/api/client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/App.tsx",
+      "target": "file:src/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/App.tsx",
+      "target": "file:src/providers.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.tsx",
+      "target": "file:src/App.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.tsx",
+      "target": "file:src/app-shell.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.tsx",
+      "target": "file:src/providers.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.tsx",
+      "target": "file:src/view-transitions.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/providers.tsx",
+      "target": "file:src/api/client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/providers.tsx",
+      "target": "file:src/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/i18n/index.ts",
+      "target": "file:src/i18n/messages/en.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/i18n/index.ts",
+      "target": "file:src/i18n/messages/zh-CN.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/i18n/index.ts",
+      "target": "file:src/i18n/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/i18n/messages/en.ts",
+      "target": "file:src/i18n/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/i18n/messages/zh-CN.ts",
+      "target": "file:src/i18n/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ],
+  "allEdges": [
+    {
+      "source": "file:src-tauri/src/api/openapi.rs",
+      "target": "file:src-tauri/src/api/error.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/openapi.rs",
+      "target": "file:src-tauri/src/api/health.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/openapi.rs",
+      "target": "file:src-tauri/src/api/todos/mod.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/openapi.rs",
+      "target": "file:src-tauri/src/api/todos/model.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/handlers.rs",
+      "target": "file:src-tauri/src/api/error.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/handlers.rs",
+      "target": "file:src-tauri/src/api/state.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/mod.rs",
+      "target": "file:src-tauri/src/api/state.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/mod.rs",
+      "target": "file:src-tauri/src/api/todos/handlers.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/mod.rs",
+      "target": "file:src-tauri/src/api/todos/model.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/todos/mod.rs",
+      "target": "file:src-tauri/src/api/todos/store.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/health.rs",
+      "target": "file:src-tauri/src/api/state.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/error.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/health.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/openapi.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/protocol.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/state.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/todos/mod.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/mod.rs",
+      "target": "file:src-tauri/src/api/window_chrome.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/state.rs",
+      "target": "file:src-tauri/src/api/todos/mod.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/api/window_chrome.rs",
+      "target": "file:src-tauri/src/api/state.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src-tauri/src/lib.rs",
+      "target": "file:src-tauri/src/api/mod.rs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/App.tsx",
+      "target": "file:src/api/client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/App.tsx",
+      "target": "file:src/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/App.tsx",
+      "target": "file:src/providers.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.tsx",
+      "target": "file:src/App.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.tsx",
+      "target": "file:src/app-shell.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.tsx",
+      "target": "file:src/providers.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.tsx",
+      "target": "file:src/view-transitions.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/providers.tsx",
+      "target": "file:src/api/client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/providers.tsx",
+      "target": "file:src/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/i18n/index.ts",
+      "target": "file:src/i18n/messages/en.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/i18n/index.ts",
+      "target": "file:src/i18n/messages/zh-CN.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/i18n/index.ts",
+      "target": "file:src/i18n/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/i18n/messages/en.ts",
+      "target": "file:src/i18n/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/i18n/messages/zh-CN.ts",
+      "target": "file:src/i18n/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "document:README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:index.html",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:package.json",
+      "target": "file:index.html",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:tsconfig.json",
+      "target": "config:tsconfig.node.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:.ua/config.json",
+      "target": "file:.ua/.understandignore",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src-tauri/Cargo.toml",
+      "target": "file:src-tauri/build.rs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src-tauri/Cargo.toml",
+      "target": "file:src-tauri/src/bin/api.rs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src-tauri/Cargo.toml",
+      "target": "file:src-tauri/src/main.rs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src-tauri/Cargo.toml",
+      "target": "file:src-tauri/tests/todos_api.rs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src-tauri/capabilities/default.json",
+      "target": "file:src-tauri/src/main.rs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src-tauri/tauri.conf.json",
+      "target": "file:src-tauri/src/main.rs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src-tauri/tauri.conf.json",
+      "target": "file:src-tauri/icons/icon.icns",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/app-shell.css",
+      "target": "file:src/main.tsx",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/view-transitions.css",
+      "target": "file:src/main.tsx",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:vite.config.ts",
+      "target": "file:src/vite-env.d.ts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

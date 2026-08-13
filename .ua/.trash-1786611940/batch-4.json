@@ -1,0 +1,29 @@
+{
+  "nodes": [
+    {"id":"file:src/i18n/index.ts","type":"file","name":"index.ts","filePath":"src/i18n/index.ts","summary":"汇总中英文消息目录和国际化类型，定义 locale 持久化、占位符插值及带默认语言回退的翻译入口。","tags":["internationalization","barrel","localization","utility"],"complexity":"simple","languageNotes":"以 MessageKey 联合类型和 Record 目录约束编译期消息键完整性。"},
+    {"id":"function:src/i18n/index.ts:isAppLocale","type":"function","name":"isAppLocale","filePath":"src/i18n/index.ts","lineRange":[21,23],"summary":"校验字符串是否为应用支持的 zh-CN 或 en locale，并提供 TypeScript 类型收窄。","tags":["validation","type-guard","internationalization"],"complexity":"simple"},
+    {"id":"function:src/i18n/index.ts:readStoredLocale","type":"function","name":"readStoredLocale","filePath":"src/i18n/index.ts","lineRange":[25,33],"summary":"安全读取并验证 localStorage 中的语言偏好，失败或无效时回退到默认语言。","tags":["persistence","internationalization","fallback"],"complexity":"simple"},
+    {"id":"function:src/i18n/index.ts:formatMessage","type":"function","name":"formatMessage","filePath":"src/i18n/index.ts","lineRange":[36,45],"summary":"替换消息模板中的命名占位符，并保留缺少值的原始占位符。","tags":["utility","formatting","interpolation"],"complexity":"simple"},
+    {"id":"function:src/i18n/index.ts:translate","type":"function","name":"translate","filePath":"src/i18n/index.ts","lineRange":[47,55],"summary":"按 locale 和类型安全消息键查找模板，逐级回退到默认目录或键名后执行插值。","tags":["internationalization","translation","fallback","formatting"],"complexity":"simple"},
+    {"id":"file:src/i18n/messages/en.ts","type":"file","name":"en.ts","filePath":"src/i18n/messages/en.ts","summary":"定义待办界面、主题和语言控件所需的完整英文消息目录，包括计数与测试数据占位符。","tags":["internationalization","message-catalog","english","localization"],"complexity":"simple"},
+    {"id":"file:src/i18n/messages/zh-CN.ts","type":"file","name":"zh-CN.ts","filePath":"src/i18n/messages/zh-CN.ts","summary":"定义待办界面、主题和语言控件所需的简体中文消息目录，与英文目录共享同一类型契约。","tags":["internationalization","message-catalog","简体中文","localization"],"complexity":"simple"},
+    {"id":"file:src/i18n/types.ts","type":"file","name":"types.ts","filePath":"src/i18n/types.ts","summary":"声明支持的 locale、全部消息键、消息目录映射及插值值类型，为各语言目录和翻译调用提供编译期契约。","tags":["type-definition","internationalization","message-schema","typescript"],"complexity":"simple","languageNotes":"MessageCatalog 使用 Record<MessageKey, string> 强制每个 locale 覆盖全部消息键。"}
+  ],
+  "edges": [
+    {"source":"file:src/i18n/index.ts","target":"file:src/i18n/messages/en.ts","type":"imports","direction":"forward","weight":0.7},
+    {"source":"file:src/i18n/index.ts","target":"file:src/i18n/messages/zh-CN.ts","type":"imports","direction":"forward","weight":0.7},
+    {"source":"file:src/i18n/index.ts","target":"file:src/i18n/types.ts","type":"imports","direction":"forward","weight":0.7},
+    {"source":"file:src/i18n/messages/en.ts","target":"file:src/i18n/types.ts","type":"imports","direction":"forward","weight":0.7},
+    {"source":"file:src/i18n/messages/zh-CN.ts","target":"file:src/i18n/types.ts","type":"imports","direction":"forward","weight":0.7},
+    {"source":"file:src/i18n/index.ts","target":"function:src/i18n/index.ts:isAppLocale","type":"contains","direction":"forward","weight":1.0},
+    {"source":"file:src/i18n/index.ts","target":"function:src/i18n/index.ts:readStoredLocale","type":"contains","direction":"forward","weight":1.0},
+    {"source":"file:src/i18n/index.ts","target":"function:src/i18n/index.ts:formatMessage","type":"contains","direction":"forward","weight":1.0},
+    {"source":"file:src/i18n/index.ts","target":"function:src/i18n/index.ts:translate","type":"contains","direction":"forward","weight":1.0},
+    {"source":"file:src/i18n/index.ts","target":"function:src/i18n/index.ts:isAppLocale","type":"exports","direction":"forward","weight":0.8},
+    {"source":"file:src/i18n/index.ts","target":"function:src/i18n/index.ts:readStoredLocale","type":"exports","direction":"forward","weight":0.8},
+    {"source":"file:src/i18n/index.ts","target":"function:src/i18n/index.ts:formatMessage","type":"exports","direction":"forward","weight":0.8},
+    {"source":"file:src/i18n/index.ts","target":"function:src/i18n/index.ts:translate","type":"exports","direction":"forward","weight":0.8},
+    {"source":"function:src/i18n/index.ts:readStoredLocale","target":"function:src/i18n/index.ts:isAppLocale","type":"calls","direction":"forward","weight":0.8},
+    {"source":"function:src/i18n/index.ts:translate","target":"function:src/i18n/index.ts:formatMessage","type":"calls","direction":"forward","weight":0.8}
+  ]
+}

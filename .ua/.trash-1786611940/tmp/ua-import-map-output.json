@@ -1,0 +1,99 @@
+{
+  "scriptCompleted": true,
+  "stats": {
+    "filesScanned": 40,
+    "filesWithImports": 14,
+    "totalEdges": 35
+  },
+  "importMap": {
+    ".ua/.understandignore": [],
+    ".ua/config.json": [],
+    "AGENTS.md": [],
+    "README.md": [],
+    "index.html": [],
+    "package.json": [],
+    "src-tauri/Cargo.toml": [],
+    "src-tauri/build.rs": [],
+    "src-tauri/capabilities/default.json": [],
+    "src-tauri/icons/icon.icns": [],
+    "src-tauri/src/api/error.rs": [],
+    "src-tauri/src/api/health.rs": [
+      "src-tauri/src/api/state.rs"
+    ],
+    "src-tauri/src/api/mod.rs": [
+      "src-tauri/src/api/error.rs",
+      "src-tauri/src/api/health.rs",
+      "src-tauri/src/api/openapi.rs",
+      "src-tauri/src/api/protocol.rs",
+      "src-tauri/src/api/state.rs",
+      "src-tauri/src/api/todos/mod.rs",
+      "src-tauri/src/api/window_chrome.rs"
+    ],
+    "src-tauri/src/api/openapi.rs": [
+      "src-tauri/src/api/error.rs",
+      "src-tauri/src/api/health.rs",
+      "src-tauri/src/api/todos/mod.rs",
+      "src-tauri/src/api/todos/model.rs"
+    ],
+    "src-tauri/src/api/protocol.rs": [],
+    "src-tauri/src/api/state.rs": [
+      "src-tauri/src/api/todos/mod.rs"
+    ],
+    "src-tauri/src/api/todos/handlers.rs": [
+      "src-tauri/src/api/error.rs",
+      "src-tauri/src/api/state.rs"
+    ],
+    "src-tauri/src/api/todos/mod.rs": [
+      "src-tauri/src/api/state.rs",
+      "src-tauri/src/api/todos/handlers.rs",
+      "src-tauri/src/api/todos/model.rs",
+      "src-tauri/src/api/todos/store.rs"
+    ],
+    "src-tauri/src/api/todos/model.rs": [],
+    "src-tauri/src/api/todos/store.rs": [],
+    "src-tauri/src/api/window_chrome.rs": [
+      "src-tauri/src/api/state.rs"
+    ],
+    "src-tauri/src/bin/api.rs": [],
+    "src-tauri/src/lib.rs": [
+      "src-tauri/src/api/mod.rs"
+    ],
+    "src-tauri/src/main.rs": [],
+    "src-tauri/tauri.conf.json": [],
+    "src-tauri/tests/todos_api.rs": [],
+    "src/App.tsx": [
+      "src/api/client.ts",
+      "src/i18n/index.ts",
+      "src/providers.tsx"
+    ],
+    "src/api/client.ts": [],
+    "src/app-shell.css": [],
+    "src/i18n/index.ts": [
+      "src/i18n/messages/en.ts",
+      "src/i18n/messages/zh-CN.ts",
+      "src/i18n/types.ts"
+    ],
+    "src/i18n/messages/en.ts": [
+      "src/i18n/types.ts"
+    ],
+    "src/i18n/messages/zh-CN.ts": [
+      "src/i18n/types.ts"
+    ],
+    "src/i18n/types.ts": [],
+    "src/main.tsx": [
+      "src/App.tsx",
+      "src/app-shell.css",
+      "src/providers.tsx",
+      "src/view-transitions.css"
+    ],
+    "src/providers.tsx": [
+      "src/api/client.ts",
+      "src/i18n/index.ts"
+    ],
+    "src/view-transitions.css": [],
+    "src/vite-env.d.ts": [],
+    "tsconfig.json": [],
+    "tsconfig.node.json": [],
+    "vite.config.ts": []
+  }
+}

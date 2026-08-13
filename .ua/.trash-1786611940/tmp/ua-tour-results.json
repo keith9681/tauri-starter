@@ -1,0 +1,999 @@
+{
+  "scriptCompleted": true,
+  "entryPointCandidates": [
+    {
+      "id": "document:README.md",
+      "score": 5,
+      "name": "README.md",
+      "summary": "介绍 Windows 优先的 Tauri 2 + React/Astryx + axum/SQLite 模板，包括双通道 API 架构、快速开始、测试、打包和新产品派生流程。"
+    },
+    {
+      "id": "file:src-tauri/src/api/mod.rs",
+      "score": 5,
+      "name": "mod.rs",
+      "summary": "作为 axum API 的唯一组装入口，挂载 health、todos 与 window chrome 路由，并复用同一 Router 支持 TCP 旁路和 appapi 协议。"
+    },
+    {
+      "id": "file:src-tauri/src/api/todos/mod.rs",
+      "score": 4,
+      "name": "mod.rs",
+      "summary": "组织待办模块并构建 / 与 /{id} 的 CRUD Router，是待办业务挂入 app_router 的入口。"
+    },
+    {
+      "id": "file:src/i18n/index.ts",
+      "score": 4,
+      "name": "index.ts",
+      "summary": "汇总中英文消息目录和国际化类型，定义 locale 持久化、占位符插值及带默认语言回退的翻译入口。"
+    },
+    {
+      "id": "file:src-tauri/src/main.rs",
+      "score": 3,
+      "name": "main.rs",
+      "summary": "桌面二进制的最小入口，在 Windows release 下隐藏控制台并调用库 crate 的 run 启动 Tauri 应用。"
+    }
+  ],
+  "fanInRanking": [
+    {
+      "id": "file:src-tauri/src/api/state.rs",
+      "fanIn": 5,
+      "name": "state.rs"
+    },
+    {
+      "id": "function:src-tauri/tests/todos_api.rs:request",
+      "fanIn": 5,
+      "name": "request"
+    },
+    {
+      "id": "function:src-tauri/tests/todos_api.rs:test_app",
+      "fanIn": 5,
+      "name": "test_app"
+    },
+    {
+      "id": "function:src/providers.tsx:useLocale",
+      "fanIn": 4,
+      "name": "useLocale"
+    },
+    {
+      "id": "file:src-tauri/src/api/error.rs",
+      "fanIn": 3,
+      "name": "error.rs"
+    },
+    {
+      "id": "file:src-tauri/src/api/todos/mod.rs",
+      "fanIn": 3,
+      "name": "mod.rs"
+    },
+    {
+      "id": "file:src-tauri/src/main.rs",
+      "fanIn": 3,
+      "name": "main.rs"
+    },
+    {
+      "id": "file:src/i18n/types.ts",
+      "fanIn": 3,
+      "name": "types.ts"
+    },
+    {
+      "id": "function:src-tauri/src/api/mod.rs:dispatch_protocol",
+      "fanIn": 3,
+      "name": "dispatch_protocol"
+    },
+    {
+      "id": "function:src-tauri/src/api/todos/handlers.rs:create",
+      "fanIn": 3,
+      "name": "create"
+    },
+    {
+      "id": "function:src-tauri/src/api/todos/handlers.rs:delete",
+      "fanIn": 3,
+      "name": "delete"
+    },
+    {
+      "id": "function:src-tauri/src/api/todos/handlers.rs:list",
+      "fanIn": 3,
+      "name": "list"
+    },
+    {
+      "id": "function:src-tauri/src/api/todos/handlers.rs:update",
+      "fanIn": 3,
+      "name": "update"
+    },
+    {
+      "id": "function:src-tauri/src/api/todos/mod.rs:routes",
+      "fanIn": 3,
+      "name": "routes"
+    },
+    {
+      "id": "function:src-tauri/src/api/todos/store.rs:open",
+      "fanIn": 3,
+      "name": "open"
+    },
+    {
+      "id": "function:src/api/client.ts:createTodo",
+      "fanIn": 3,
+      "name": "createTodo"
+    },
+    {
+      "id": "function:src/api/client.ts:deleteTodo",
+      "fanIn": 3,
+      "name": "deleteTodo"
+    },
+    {
+      "id": "function:src/api/client.ts:listTodos",
+      "fanIn": 3,
+      "name": "listTodos"
+    },
+    {
+      "id": "function:src/api/client.ts:setWindowChrome",
+      "fanIn": 3,
+      "name": "setWindowChrome"
+    },
+    {
+      "id": "function:src/api/client.ts:updateTodo",
+      "fanIn": 3,
+      "name": "updateTodo"
+    }
+  ],
+  "fanOutRanking": [
+    {
+      "id": "file:src-tauri/src/api/state.rs",
+      "fanOut": 21,
+      "name": "state.rs"
+    },
+    {
+      "id": "file:src-tauri/src/api/window_chrome.rs",
+      "fanOut": 20,
+      "name": "window_chrome.rs"
+    },
+    {
+      "id": "file:src-tauri/src/api/mod.rs",
+      "fanOut": 15,
+      "name": "mod.rs"
+    },
+    {
+      "id": "file:src-tauri/src/api/todos/store.rs",
+      "fanOut": 12,
+      "name": "store.rs"
+    },
+    {
+      "id": "file:src/api/client.ts",
+      "fanOut": 12,
+      "name": "client.ts"
+    },
+    {
+      "id": "file:src/i18n/index.ts",
+      "fanOut": 11,
+      "name": "index.ts"
+    },
+    {
+      "id": "file:src-tauri/src/api/todos/handlers.rs",
+      "fanOut": 10,
+      "name": "handlers.rs"
+    },
+    {
+      "id": "file:src/providers.tsx",
+      "fanOut": 9,
+      "name": "providers.tsx"
+    },
+    {
+      "id": "file:src-tauri/src/api/todos/model.rs",
+      "fanOut": 8,
+      "name": "model.rs"
+    },
+    {
+      "id": "file:src/App.tsx",
+      "fanOut": 8,
+      "name": "App.tsx"
+    },
+    {
+      "id": "file:src-tauri/src/api/openapi.rs",
+      "fanOut": 6,
+      "name": "openapi.rs"
+    },
+    {
+      "id": "file:src-tauri/src/api/todos/mod.rs",
+      "fanOut": 6,
+      "name": "mod.rs"
+    },
+    {
+      "id": "file:src-tauri/tests/todos_api.rs",
+      "fanOut": 6,
+      "name": "todos_api.rs"
+    },
+    {
+      "id": "function:src/App.tsx:TodoApp",
+      "fanOut": 6,
+      "name": "TodoApp"
+    },
+    {
+      "id": "file:src-tauri/src/api/health.rs",
+      "fanOut": 5,
+      "name": "health.rs"
+    },
+    {
+      "id": "config:src-tauri/Cargo.toml",
+      "fanOut": 4,
+      "name": "Cargo.toml"
+    },
+    {
+      "id": "file:src-tauri/src/api/error.rs",
+      "fanOut": 4,
+      "name": "error.rs"
+    },
+    {
+      "id": "file:src/main.tsx",
+      "fanOut": 4,
+      "name": "main.tsx"
+    },
+    {
+      "id": "function:src-tauri/src/api/todos/mod.rs:routes",
+      "fanOut": 4,
+      "name": "routes"
+    },
+    {
+      "id": "file:src-tauri/src/lib.rs",
+      "fanOut": 3,
+      "name": "lib.rs"
+    }
+  ],
+  "bfsTraversal": {
+    "startNode": "file:src-tauri/src/api/mod.rs",
+    "order": [
+      "file:src-tauri/src/api/mod.rs",
+      "file:src-tauri/src/api/error.rs",
+      "file:src-tauri/src/api/health.rs",
+      "file:src-tauri/src/api/openapi.rs",
+      "file:src-tauri/src/api/protocol.rs",
+      "file:src-tauri/src/api/state.rs",
+      "file:src-tauri/src/api/todos/mod.rs",
+      "file:src-tauri/src/api/window_chrome.rs",
+      "file:src-tauri/src/api/todos/model.rs",
+      "file:src-tauri/src/api/todos/handlers.rs",
+      "file:src-tauri/src/api/todos/store.rs"
+    ],
+    "depthMap": {
+      "file:src-tauri/src/api/mod.rs": 0,
+      "file:src-tauri/src/api/error.rs": 1,
+      "file:src-tauri/src/api/health.rs": 1,
+      "file:src-tauri/src/api/openapi.rs": 1,
+      "file:src-tauri/src/api/protocol.rs": 1,
+      "file:src-tauri/src/api/state.rs": 1,
+      "file:src-tauri/src/api/todos/mod.rs": 1,
+      "file:src-tauri/src/api/window_chrome.rs": 1,
+      "file:src-tauri/src/api/todos/model.rs": 2,
+      "file:src-tauri/src/api/todos/handlers.rs": 2,
+      "file:src-tauri/src/api/todos/store.rs": 2
+    },
+    "byDepth": {
+      "0": [
+        "file:src-tauri/src/api/mod.rs"
+      ],
+      "1": [
+        "file:src-tauri/src/api/error.rs",
+        "file:src-tauri/src/api/health.rs",
+        "file:src-tauri/src/api/openapi.rs",
+        "file:src-tauri/src/api/protocol.rs",
+        "file:src-tauri/src/api/state.rs",
+        "file:src-tauri/src/api/todos/mod.rs",
+        "file:src-tauri/src/api/window_chrome.rs"
+      ],
+      "2": [
+        "file:src-tauri/src/api/todos/model.rs",
+        "file:src-tauri/src/api/todos/handlers.rs",
+        "file:src-tauri/src/api/todos/store.rs"
+      ]
+    }
+  },
+  "nonCodeFiles": {
+    "documentation": [
+      {
+        "id": "document:AGENTS.md",
+        "name": "AGENTS.md",
+        "type": "document",
+        "summary": "面向 AI 与协作者的模板约定，规定 Tauri 2 桌面通信、axum 路由、SQLite 持久化、Astryx 前端和发布流程的硬性边界。还提供从模板派生产品、扩展 API 与处理 TSD 加密文件的操作指南。"
+      },
+      {
+        "id": "document:README.md",
+        "name": "README.md",
+        "type": "document",
+        "summary": "介绍 Windows 优先的 Tauri 2 + React/Astryx + axum/SQLite 模板，包括双通道 API 架构、快速开始、测试、打包和新产品派生流程。"
+      }
+    ],
+    "infrastructure": [],
+    "data": [],
+    "config": [
+      {
+        "id": "config:package.json",
+        "name": "package.json",
+        "type": "config",
+        "summary": "定义前端与桌面项目的 Bun 脚本及 React、Astryx、Vite、TypeScript 和 Tauri CLI 依赖，覆盖开发、API 测试、便携版与 NSIS 打包。"
+      },
+      {
+        "id": "config:tsconfig.json",
+        "name": "tsconfig.json",
+        "type": "config",
+        "summary": "配置浏览器端 TypeScript 严格检查、React JSX 与 bundler 模块解析，并把 src 作为编译范围、引用 Node 侧 Vite 配置。"
+      },
+      {
+        "id": "config:tsconfig.node.json",
+        "name": "tsconfig.node.json",
+        "type": "config",
+        "summary": "为 vite.config.ts 提供独立的 TypeScript composite 配置，采用 ESNext 与 bundler 模块解析。"
+      },
+      {
+        "id": "config:.ua/config.json",
+        "name": "config.json",
+        "type": "config",
+        "summary": "指定 Understand Anything 知识图谱的文本输出语言为中文。"
+      },
+      {
+        "id": "config:src-tauri/Cargo.toml",
+        "name": "Cargo.toml",
+        "type": "config",
+        "summary": "定义 Tauri Rust crate、桌面库与开发 API 二进制，并配置 axum、SQLite、OpenAPI、单例插件和 devtools 等依赖与 feature。"
+      },
+      {
+        "id": "config:src-tauri/capabilities/default.json",
+        "name": "default.json",
+        "type": "config",
+        "summary": "授予主窗口 Tauri core 与 opener 的默认 capability 权限，限定权限作用于 main 窗口。"
+      },
+      {
+        "id": "config:src-tauri/tauri.conf.json",
+        "name": "tauri.conf.json",
+        "type": "config",
+        "summary": "配置 Tauri 产品身份、Vite 开发与构建命令、主窗口属性、安全策略，以及默认 NSIS 打包目标和平台图标。"
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "nodes": [
+        "file:src-tauri/src/api/todos/mod.rs",
+        "file:src-tauri/src/api/state.rs",
+        "file:src-tauri/src/api/todos/handlers.rs",
+        "file:src-tauri/src/api/mod.rs",
+        "file:src-tauri/src/api/window_chrome.rs"
+      ],
+      "edgeCount": 8
+    },
+    {
+      "nodes": [
+        "file:src/app-shell.css",
+        "file:src/main.tsx"
+      ],
+      "edgeCount": 2
+    },
+    {
+      "nodes": [
+        "file:src/view-transitions.css",
+        "file:src/main.tsx"
+      ],
+      "edgeCount": 2
+    }
+  ],
+  "layers": {
+    "count": 8,
+    "list": [
+      {
+        "id": "layer:api",
+        "name": "后端 API 层",
+        "description": "组装 axum 唯一 Router，承载健康检查、待办 CRUD、窗口外观 endpoint、OpenAPI 描述与 appapi 协议适配。"
+      },
+      {
+        "id": "layer:data",
+        "name": "领域与数据层",
+        "description": "定义待办领域契约、SQLite CRUD 存储实现，以及应用数据目录和运行依赖状态。"
+      },
+      {
+        "id": "layer:runtime",
+        "name": "桌面运行时层",
+        "description": "提供 Tauri 桌面启动、单实例与自定义协议接线，并提供复用同一 Router 的本地开发 API 二进制。"
+      },
+      {
+        "id": "layer:ui",
+        "name": "React UI 层",
+        "description": "构成 Astryx 待办界面、应用 Providers、浏览器挂载入口、HTML 外壳及主题与 View Transitions 样式。"
+      },
+      {
+        "id": "layer:frontend-service",
+        "name": "前端服务与契约层",
+        "description": "封装 JSON API 调用，并集中维护国际化目录、locale 契约与 Vite 环境变量类型。"
+      },
+      {
+        "id": "layer:test",
+        "name": "测试层",
+        "description": "通过 Router oneshot 与临时 SQLite 数据库验证健康检查和待办 API 的完整行为。"
+      },
+      {
+        "id": "layer:config",
+        "name": "工程配置与构建资源",
+        "description": "管理 Bun、TypeScript、Vite、Cargo 与 Tauri 的构建打包配置、权限、图标及知识图谱扫描设置。"
+      },
+      {
+        "id": "layer:documentation",
+        "name": "项目文档",
+        "description": "说明模板架构、开发与发布流程，并约束 AI 协作者对通信、持久化和 Astryx UI 的修改方式。"
+      }
+    ]
+  },
+  "nodeSummaryIndex": {
+    "file:src-tauri/src/api/error.rs": {
+      "name": "error.rs",
+      "type": "file",
+      "summary": "定义 API 统一错误枚举与 JSON 错误响应，将业务失败映射为稳定的 HTTP 状态码和中文消息。"
+    },
+    "class:src-tauri/src/api/error.rs:ErrorBody": {
+      "name": "ErrorBody",
+      "type": "class",
+      "summary": "承载 API 错误消息的可序列化响应体。"
+    },
+    "class:src-tauri/src/api/error.rs:ApiError": {
+      "name": "ApiError",
+      "type": "class",
+      "summary": "枚举请求错误、资源不存在、服务不可用和内部错误，并负责生成 HTTP 响应。"
+    },
+    "file:src-tauri/src/api/openapi.rs": {
+      "name": "openapi.rs",
+      "type": "file",
+      "summary": "聚合健康检查和待办 API 的 utoipa 路径、数据模型与错误模型，生成开发侧 OpenAPI 文档。"
+    },
+    "class:src-tauri/src/api/openapi.rs:ApiDoc": {
+      "name": "ApiDoc",
+      "type": "class",
+      "summary": "作为 utoipa OpenApi derive 的标记类型，暴露完整 API 规范。"
+    },
+    "file:src-tauri/src/api/todos/handlers.rs": {
+      "name": "handlers.rs",
+      "type": "file",
+      "summary": "实现待办资源的 list、create、update、delete axum handlers，并统一处理 store 锁与领域错误转换。"
+    },
+    "function:src-tauri/src/api/todos/handlers.rs:list": {
+      "name": "list",
+      "type": "function",
+      "summary": "读取共享待办 store 并返回全部待办。"
+    },
+    "function:src-tauri/src/api/todos/handlers.rs:create": {
+      "name": "create",
+      "type": "function",
+      "summary": "解析创建请求并在 store 中新增待办，返回新记录。"
+    },
+    "function:src-tauri/src/api/todos/handlers.rs:update": {
+      "name": "update",
+      "type": "function",
+      "summary": "按路径 ID 应用待办标题或完成状态的部分更新。"
+    },
+    "function:src-tauri/src/api/todos/handlers.rs:delete": {
+      "name": "delete",
+      "type": "function",
+      "summary": "按 ID 删除待办并返回统一成功响应。"
+    },
+    "file:src-tauri/src/api/todos/mod.rs": {
+      "name": "mod.rs",
+      "type": "file",
+      "summary": "组织待办模块并构建 / 与 /{id} 的 CRUD Router，是待办业务挂入 app_router 的入口。"
+    },
+    "function:src-tauri/src/api/todos/mod.rs:routes": {
+      "name": "routes",
+      "type": "function",
+      "summary": "将待办集合和单项路径绑定到对应 CRUD handlers。"
+    },
+    "file:src-tauri/src/api/todos/model.rs": {
+      "name": "model.rs",
+      "type": "file",
+      "summary": "定义待办实体、创建与更新请求体以及通用成功响应，供 handlers、store 和 OpenAPI 共用。"
+    },
+    "class:src-tauri/src/api/todos/model.rs:Todo": {
+      "name": "Todo",
+      "type": "class",
+      "summary": "表示持久化并返回给客户端的待办实体。"
+    },
+    "class:src-tauri/src/api/todos/model.rs:CreateTodo": {
+      "name": "CreateTodo",
+      "type": "class",
+      "summary": "描述创建待办所需的标题字段。"
+    },
+    "class:src-tauri/src/api/todos/model.rs:UpdateTodo": {
+      "name": "UpdateTodo",
+      "type": "class",
+      "summary": "描述可选标题和完成状态组成的待办部分更新载荷。"
+    },
+    "class:src-tauri/src/api/todos/model.rs:OkResponse": {
+      "name": "OkResponse",
+      "type": "class",
+      "summary": "为无实体返回的成功操作提供统一布尔响应。"
+    },
+    "file:src-tauri/src/api/todos/store.rs": {
+      "name": "store.rs",
+      "type": "file",
+      "summary": "定义待办存储接口并以 rusqlite 实现 SQLite CRUD、建表、输入校验和错误归一化。"
+    },
+    "class:src-tauri/src/api/todos/store.rs:StoreError": {
+      "name": "StoreError",
+      "type": "class",
+      "summary": "统一表示记录不存在、输入无效和数据库错误。"
+    },
+    "class:src-tauri/src/api/todos/store.rs:TodoStore": {
+      "name": "TodoStore",
+      "type": "class",
+      "summary": "声明待办列表、创建、更新和删除的存储抽象。"
+    },
+    "class:src-tauri/src/api/todos/store.rs:SqliteTodoStore": {
+      "name": "SqliteTodoStore",
+      "type": "class",
+      "summary": "以单个 rusqlite Connection 实现 TodoStore 的 SQLite 存储。"
+    },
+    "function:src-tauri/src/api/todos/store.rs:open": {
+      "name": "open",
+      "type": "function",
+      "summary": "打开 SQLite 数据库并确保 todos 表存在。"
+    },
+    "function:src-tauri/src/api/todos/store.rs:get_by_id": {
+      "name": "get_by_id",
+      "type": "function",
+      "summary": "按 ID 查询并映射单个待办，不存在时返回领域错误。"
+    },
+    "function:src-tauri/src/api/todos/store.rs:list": {
+      "name": "list",
+      "type": "function",
+      "summary": "执行排序查询并将 SQLite 行收集为待办列表。"
+    },
+    "function:src-tauri/src/api/todos/store.rs:create": {
+      "name": "create",
+      "type": "function",
+      "summary": "校验并插入待办标题，再读取新生成的完整记录。"
+    },
+    "function:src-tauri/src/api/todos/store.rs:update": {
+      "name": "update",
+      "type": "function",
+      "summary": "合并可选字段、校验标题并持久化待办更新。"
+    },
+    "file:src-tauri/src/api/health.rs": {
+      "name": "health.rs",
+      "type": "file",
+      "summary": "提供健康检查 endpoint，报告应用状态、数据库路径以及启动失败代码和消息。"
+    },
+    "class:src-tauri/src/api/health.rs:HealthResponse": {
+      "name": "HealthResponse",
+      "type": "class",
+      "summary": "描述健康检查的成功标记、数据库路径和可选启动错误信息。"
+    },
+    "function:src-tauri/src/api/health.rs:health": {
+      "name": "health",
+      "type": "function",
+      "summary": "根据 AppState 的就绪或失败状态构造可观测的健康检查响应。"
+    },
+    "file:src-tauri/src/api/mod.rs": {
+      "name": "mod.rs",
+      "type": "file",
+      "summary": "作为 axum API 的唯一组装入口，挂载 health、todos 与 window chrome 路由，并复用同一 Router 支持 TCP 旁路和 appapi 协议。"
+    },
+    "function:src-tauri/src/api/mod.rs:shared_state": {
+      "name": "shared_state",
+      "type": "function",
+      "summary": "惰性返回进程级共享 AppState。"
+    },
+    "function:src-tauri/src/api/mod.rs:app_router": {
+      "name": "app_router",
+      "type": "function",
+      "summary": "将全部业务 routes 与共享状态组装为唯一 axum Router。"
+    },
+    "function:src-tauri/src/api/mod.rs:shared_router": {
+      "name": "shared_router",
+      "type": "function",
+      "summary": "以默认共享状态创建可复用的应用 Router。"
+    },
+    "function:src-tauri/src/api/mod.rs:dispatch_protocol": {
+      "name": "dispatch_protocol",
+      "type": "function",
+      "summary": "把 Tauri 自定义协议请求交给共享 Router 的进程内 dispatch。"
+    },
+    "file:src-tauri/src/api/protocol.rs": {
+      "name": "protocol.rs",
+      "type": "file",
+      "summary": "桥接 Tauri HTTP Request 与 axum Router oneshot，规范 appapi 请求 URI 并在失败时生成响应。"
+    },
+    "function:src-tauri/src/api/protocol.rs:dispatch": {
+      "name": "dispatch",
+      "type": "function",
+      "summary": "重写自定义协议 URI 后对 Router 执行 oneshot，并返回兼容 Tauri 的 HTTP 响应。"
+    },
+    "file:src-tauri/src/api/state.rs": {
+      "name": "state.rs",
+      "type": "file",
+      "summary": "解析应用数据目录和 SQLite 路径，初始化待办 store，并以 Ready/Failed 状态安全暴露运行依赖。"
+    },
+    "class:src-tauri/src/api/state.rs:StartupCode": {
+      "name": "StartupCode",
+      "type": "class",
+      "summary": "表示数据库初始化失败等稳定启动错误代码。"
+    },
+    "class:src-tauri/src/api/state.rs:AppState": {
+      "name": "AppState",
+      "type": "class",
+      "summary": "封装可共享的应用运行状态，并提供数据库路径、错误和待办 store 访问器。"
+    },
+    "function:src-tauri/src/api/state.rs:as_str": {
+      "name": "as_str",
+      "type": "function",
+      "summary": "把启动错误枚举转换为稳定字符串代码。"
+    },
+    "function:src-tauri/src/api/state.rs:resolve_app_home": {
+      "name": "resolve_app_home",
+      "type": "function",
+      "summary": "优先读取 TAURI_STARTER_HOME，否则按 Windows LocalAppData 与应用标识推导数据目录。"
+    },
+    "function:src-tauri/src/api/state.rs:resolve_db_path": {
+      "name": "resolve_db_path",
+      "type": "function",
+      "summary": "在应用数据目录下生成固定 app_data.db 路径。"
+    },
+    "function:src-tauri/src/api/state.rs:new": {
+      "name": "new",
+      "type": "function",
+      "summary": "按默认数据库路径创建 AppState。"
+    },
+    "function:src-tauri/src/api/state.rs:with_db_path": {
+      "name": "with_db_path",
+      "type": "function",
+      "summary": "使用指定数据库路径初始化目录与 SQLite store，并将成功或失败封装进 AppState。"
+    },
+    "function:src-tauri/src/api/state.rs:db_path": {
+      "name": "db_path",
+      "type": "function",
+      "summary": "返回当前状态对应的数据库路径。"
+    },
+    "function:src-tauri/src/api/state.rs:failure": {
+      "name": "failure",
+      "type": "function",
+      "summary": "从失败状态读取稳定错误代码与消息。"
+    },
+    "function:src-tauri/src/api/state.rs:todos": {
+      "name": "todos",
+      "type": "function",
+      "summary": "在就绪时返回共享 TodoStore，失败时传播启动错误消息。"
+    },
+    "file:src-tauri/src/api/window_chrome.rs": {
+      "name": "window_chrome.rs",
+      "type": "file",
+      "summary": "管理桌面窗口明暗模式持久化、系统主题解析、原生 chrome 应用和启动显示时序，并暴露设置 endpoint。"
+    },
+    "class:src-tauri/src/api/window_chrome.rs:ColorMode": {
+      "name": "ColorMode",
+      "type": "class",
+      "summary": "表示 system、light、dark 三种用户窗口颜色模式。"
+    },
+    "class:src-tauri/src/api/window_chrome.rs:WindowChromeRequest": {
+      "name": "WindowChromeRequest",
+      "type": "class",
+      "summary": "承载期望颜色模式与前端计算出的有效模式。"
+    },
+    "class:src-tauri/src/api/window_chrome.rs:EffectiveChrome": {
+      "name": "EffectiveChrome",
+      "type": "class",
+      "summary": "限定最终应用到原生窗口的 light 或 dark 模式。"
+    },
+    "class:src-tauri/src/api/window_chrome.rs:WindowChromeResponse": {
+      "name": "WindowChromeResponse",
+      "type": "class",
+      "summary": "报告窗口 chrome 设置请求是否成功应用。"
+    },
+    "function:src-tauri/src/api/window_chrome.rs:set_app_handle": {
+      "name": "set_app_handle",
+      "type": "function",
+      "summary": "将 Tauri AppHandle 注册到进程级 OnceLock。"
+    },
+    "function:src-tauri/src/api/window_chrome.rs:routes": {
+      "name": "routes",
+      "type": "function",
+      "summary": "构建窗口 chrome 设置 endpoint 的 Router。"
+    },
+    "function:src-tauri/src/api/window_chrome.rs:effective_for": {
+      "name": "effective_for",
+      "type": "function",
+      "summary": "结合用户模式与 Tauri 窗口系统主题确定最终 light/dark chrome。"
+    },
+    "function:src-tauri/src/api/window_chrome.rs:apply_chrome": {
+      "name": "apply_chrome",
+      "type": "function",
+      "summary": "向原生窗口应用主题和背景颜色，避免启动阶段视觉闪烁。"
+    },
+    "function:src-tauri/src/api/window_chrome.rs:apply_saved_chrome_and_show": {
+      "name": "apply_saved_chrome_and_show",
+      "type": "function",
+      "summary": "读取已保存模式，应用原生 chrome 后显示并聚焦主窗口。"
+    },
+    "function:src-tauri/src/api/window_chrome.rs:bootstrap_window_chrome": {
+      "name": "bootstrap_window_chrome",
+      "type": "function",
+      "summary": "启动时优先恢复已保存 chrome，否则异步等待前端设置并提供显示兜底。"
+    },
+    "function:src-tauri/src/api/window_chrome.rs:set_window_chrome": {
+      "name": "set_window_chrome",
+      "type": "function",
+      "summary": "持久化客户端颜色模式，通过全局 AppHandle 更新主窗口并返回应用结果。"
+    },
+    "file:src-tauri/src/lib.rs": {
+      "name": "lib.rs",
+      "type": "file",
+      "summary": "Tauri 库入口，注册单实例与 opener 插件、初始化窗口 chrome，并把 appapi 自定义协议接入 axum Router。"
+    },
+    "function:src-tauri/src/lib.rs:run": {
+      "name": "run",
+      "type": "function",
+      "summary": "构建并运行 Tauri 应用，处理重复启动窗口激活、setup 和 appapi 异步 dispatch。"
+    },
+    "file:src/App.tsx": {
+      "name": "App.tsx",
+      "type": "file",
+      "summary": "实现 Astryx 待办应用主界面，协调待办 CRUD、加载与错误状态、语言和主题切换，并通过 View Transitions API 动画化列表更新。"
+    },
+    "function:src/App.tsx:withListTransition": {
+      "name": "withListTransition",
+      "type": "function",
+      "summary": "在浏览器支持且用户未要求减少动态效果时，用 View Transitions API 和 flushSync 包装列表状态更新，否则直接执行更新。"
+    },
+    "function:src/App.tsx:TodoRow": {
+      "name": "TodoRow",
+      "type": "function",
+      "summary": "渲染单条待办的紧凑交互行，提供完成状态切换、忙碌态和删除操作，并使用本地化文案。"
+    },
+    "function:src/App.tsx:TodoApp": {
+      "name": "TodoApp",
+      "type": "function",
+      "summary": "管理待办页面的全部状态和异步 CRUD 流程，组织语言、主题、测试数据和待办列表等 Astryx UI 区域。"
+    },
+    "function:src/App.tsx:App": {
+      "name": "App",
+      "type": "function",
+      "summary": "作为默认导出的 React 根组件，将应用入口委托给 TodoApp。"
+    },
+    "file:src/api/client.ts": {
+      "name": "client.ts",
+      "type": "file",
+      "summary": "封装前端 JSON API 客户端，根据桌面自定义协议或浏览器开发环境选择 API base，并暴露待办 CRUD 与原生窗口外观同步操作。"
+    },
+    "function:src/api/client.ts:resolveApiBase": {
+      "name": "resolveApiBase",
+      "type": "function",
+      "summary": "优先采用 VITE_API_BASE，否则依据 Tauri 宿主标记在 appapi 自定义协议与本地开发 HTTP 地址之间选择。"
+    },
+    "function:src/api/client.ts:request": {
+      "name": "request",
+      "type": "function",
+      "summary": "执行统一的 JSON fetch 请求，合并请求头、解析成功响应，并将后端错误转换为带状态码的 Error。"
+    },
+    "function:src/api/client.ts:listTodos": {
+      "name": "listTodos",
+      "type": "function",
+      "summary": "请求并返回全部待办记录。"
+    },
+    "function:src/api/client.ts:createTodo": {
+      "name": "createTodo",
+      "type": "function",
+      "summary": "向待办集合发送 POST 请求并返回新建记录。"
+    },
+    "function:src/api/client.ts:updateTodo": {
+      "name": "updateTodo",
+      "type": "function",
+      "summary": "向指定待办发送 PATCH 请求，更新标题或完成状态。"
+    },
+    "function:src/api/client.ts:deleteTodo": {
+      "name": "deleteTodo",
+      "type": "function",
+      "summary": "删除指定待办并返回操作结果。"
+    },
+    "function:src/api/client.ts:setWindowChrome": {
+      "name": "setWindowChrome",
+      "type": "function",
+      "summary": "把主题偏好与实际明暗模式发送到桌面后端，用于同步原生窗口主题和背景。"
+    },
+    "file:src/main.tsx": {
+      "name": "main.tsx",
+      "type": "file",
+      "summary": "前端启动入口，加载 Astryx 与应用样式，并在 StrictMode 下用 Providers 包裹 App 后挂载到 root。"
+    },
+    "file:src/providers.tsx": {
+      "name": "providers.tsx",
+      "type": "file",
+      "summary": "集中提供颜色模式和 locale React Context，持久化用户偏好，同步 DOM 与原生窗口外观，并组合 Astryx Theme 和国际化 Provider。"
+    },
+    "function:src/providers.tsx:applyDocumentScheme": {
+      "name": "applyDocumentScheme",
+      "type": "function",
+      "summary": "把有效明暗模式应用到 document、应用根节点、CSS 变量和 color-scheme meta。"
+    },
+    "function:src/providers.tsx:useColorMode": {
+      "name": "useColorMode",
+      "type": "function",
+      "summary": "读取颜色模式 Context，并在脱离 Providers 使用时抛出明确错误。"
+    },
+    "function:src/providers.tsx:useLocale": {
+      "name": "useLocale",
+      "type": "function",
+      "summary": "读取 locale Context，向组件暴露当前语言、切换函数与类型安全翻译函数。"
+    },
+    "function:src/providers.tsx:Providers": {
+      "name": "Providers",
+      "type": "function",
+      "summary": "初始化并持久化主题和语言状态，响应系统主题变化，同步窗口外观与文档元数据，并装配应用级 Provider 树。"
+    },
+    "file:src/i18n/index.ts": {
+      "name": "index.ts",
+      "type": "file",
+      "summary": "汇总中英文消息目录和国际化类型，定义 locale 持久化、占位符插值及带默认语言回退的翻译入口。"
+    },
+    "function:src/i18n/index.ts:isAppLocale": {
+      "name": "isAppLocale",
+      "type": "function",
+      "summary": "校验字符串是否为应用支持的 zh-CN 或 en locale，并提供 TypeScript 类型收窄。"
+    },
+    "function:src/i18n/index.ts:readStoredLocale": {
+      "name": "readStoredLocale",
+      "type": "function",
+      "summary": "安全读取并验证 localStorage 中的语言偏好，失败或无效时回退到默认语言。"
+    },
+    "function:src/i18n/index.ts:formatMessage": {
+      "name": "formatMessage",
+      "type": "function",
+      "summary": "替换消息模板中的命名占位符，并保留缺少值的原始占位符。"
+    },
+    "function:src/i18n/index.ts:translate": {
+      "name": "translate",
+      "type": "function",
+      "summary": "按 locale 和类型安全消息键查找模板，逐级回退到默认目录或键名后执行插值。"
+    },
+    "file:src/i18n/messages/en.ts": {
+      "name": "en.ts",
+      "type": "file",
+      "summary": "定义待办界面、主题和语言控件所需的完整英文消息目录，包括计数与测试数据占位符。"
+    },
+    "file:src/i18n/messages/zh-CN.ts": {
+      "name": "zh-CN.ts",
+      "type": "file",
+      "summary": "定义待办界面、主题和语言控件所需的简体中文消息目录，与英文目录共享同一类型契约。"
+    },
+    "file:src/i18n/types.ts": {
+      "name": "types.ts",
+      "type": "file",
+      "summary": "声明支持的 locale、全部消息键、消息目录映射及插值值类型，为各语言目录和翻译调用提供编译期契约。"
+    },
+    "document:AGENTS.md": {
+      "name": "AGENTS.md",
+      "type": "document",
+      "summary": "面向 AI 与协作者的模板约定，规定 Tauri 2 桌面通信、axum 路由、SQLite 持久化、Astryx 前端和发布流程的硬性边界。还提供从模板派生产品、扩展 API 与处理 TSD 加密文件的操作指南。"
+    },
+    "document:README.md": {
+      "name": "README.md",
+      "type": "document",
+      "summary": "介绍 Windows 优先的 Tauri 2 + React/Astryx + axum/SQLite 模板，包括双通道 API 架构、快速开始、测试、打包和新产品派生流程。"
+    },
+    "file:index.html": {
+      "name": "index.html",
+      "type": "file",
+      "summary": "Vite 前端 HTML 入口，在 React 挂载前同步恢复语言和明暗模式，以避免启动阶段的标题、背景与主题闪烁。随后加载 src/main.tsx 挂载应用。"
+    },
+    "config:package.json": {
+      "name": "package.json",
+      "type": "config",
+      "summary": "定义前端与桌面项目的 Bun 脚本及 React、Astryx、Vite、TypeScript 和 Tauri CLI 依赖，覆盖开发、API 测试、便携版与 NSIS 打包。"
+    },
+    "config:tsconfig.json": {
+      "name": "tsconfig.json",
+      "type": "config",
+      "summary": "配置浏览器端 TypeScript 严格检查、React JSX 与 bundler 模块解析，并把 src 作为编译范围、引用 Node 侧 Vite 配置。"
+    },
+    "config:tsconfig.node.json": {
+      "name": "tsconfig.node.json",
+      "type": "config",
+      "summary": "为 vite.config.ts 提供独立的 TypeScript composite 配置，采用 ESNext 与 bundler 模块解析。"
+    },
+    "file:.ua/.understandignore": {
+      "name": ".understandignore",
+      "type": "file",
+      "summary": "Understand Anything 的扫描排除模板，列出默认忽略项以及各语言测试文件模式；当前建议项均保持注释，因此测试仍会纳入分析。"
+    },
+    "config:.ua/config.json": {
+      "name": "config.json",
+      "type": "config",
+      "summary": "指定 Understand Anything 知识图谱的文本输出语言为中文。"
+    },
+    "config:src-tauri/Cargo.toml": {
+      "name": "Cargo.toml",
+      "type": "config",
+      "summary": "定义 Tauri Rust crate、桌面库与开发 API 二进制，并配置 axum、SQLite、OpenAPI、单例插件和 devtools 等依赖与 feature。"
+    },
+    "file:src-tauri/build.rs": {
+      "name": "build.rs",
+      "type": "file",
+      "summary": "Rust 构建脚本入口，委托 tauri-build 生成 Tauri 编译期资源与配置。"
+    },
+    "config:src-tauri/capabilities/default.json": {
+      "name": "default.json",
+      "type": "config",
+      "summary": "授予主窗口 Tauri core 与 opener 的默认 capability 权限，限定权限作用于 main 窗口。"
+    },
+    "file:src-tauri/icons/icon.icns": {
+      "name": "icon.icns",
+      "type": "file",
+      "summary": "Tauri 应用的 macOS ICNS 打包图标二进制资源，由 bundle 配置引用。"
+    },
+    "file:src-tauri/src/bin/api.rs": {
+      "name": "api.rs",
+      "type": "file",
+      "summary": "面向浏览器联调的本地 HTTP API 二进制，复用桌面 app_router，并仅在该旁路挂载 Scalar 与 OpenAPI JSON。服务监听 127.0.0.1:8787。"
+    },
+    "function:src-tauri/src/bin/api.rs:main": {
+      "name": "main",
+      "type": "function",
+      "summary": "组装共享 axum Router、Scalar UI 与 OpenAPI JSON 路由，绑定本机 8787 端口并启动开发服务器。"
+    },
+    "file:src-tauri/src/main.rs": {
+      "name": "main.rs",
+      "type": "file",
+      "summary": "桌面二进制的最小入口，在 Windows release 下隐藏控制台并调用库 crate 的 run 启动 Tauri 应用。"
+    },
+    "config:src-tauri/tauri.conf.json": {
+      "name": "tauri.conf.json",
+      "type": "config",
+      "summary": "配置 Tauri 产品身份、Vite 开发与构建命令、主窗口属性、安全策略，以及默认 NSIS 打包目标和平台图标。"
+    },
+    "file:src-tauri/tests/todos_api.rs": {
+      "name": "todos_api.rs",
+      "type": "file",
+      "summary": "通过 axum Router oneshot 和临时 SQLite 文件集成测试 health 与 todos API，覆盖空列表、创建、校验、更新、删除和 404 行为。"
+    },
+    "function:src-tauri/tests/todos_api.rs:test_app": {
+      "name": "test_app",
+      "type": "function",
+      "summary": "创建临时数据库与就绪的 AppState，并返回绑定该状态的测试 Router。"
+    },
+    "function:src-tauri/tests/todos_api.rs:request": {
+      "name": "request",
+      "type": "function",
+      "summary": "构造可选 JSON body 的 HTTP 请求，通过 oneshot 执行 Router，并把响应归一化为状态码与 JSON 值。"
+    },
+    "function:src-tauri/tests/todos_api.rs:health_ok_when_ready": {
+      "name": "health_ok_when_ready",
+      "type": "function",
+      "summary": "验证就绪状态下 health 端点返回成功标记及当前临时数据库路径。"
+    },
+    "function:src-tauri/tests/todos_api.rs:create_and_list": {
+      "name": "create_and_list",
+      "type": "function",
+      "summary": "创建中文标题的待办并再次查询列表，验证默认完成状态、持久化 ID 与列表内容。"
+    },
+    "function:src-tauri/tests/todos_api.rs:update_and_delete": {
+      "name": "update_and_delete",
+      "type": "function",
+      "summary": "串联创建、PATCH 更新、DELETE 删除和最终空列表查询，验证待办完整生命周期。"
+    },
+    "function:src-tauri/tests/todos_api.rs:missing_todo_returns_404": {
+      "name": "missing_todo_returns_404",
+      "type": "function",
+      "summary": "验证更新或删除不存在的待办时均返回 404 与本地化错误信息。"
+    },
+    "file:src/app-shell.css": {
+      "name": "app-shell.css",
+      "type": "file",
+      "summary": "定义应用根节点的全视口尺寸、启动背景与 color-scheme，并防止密集页头中的 Astryx 分段控件标签换行。"
+    },
+    "file:src/view-transitions.css": {
+      "name": "view-transitions.css",
+      "type": "file",
+      "summary": "配置列表重排的 View Transitions 动画，禁用根页面交叉淡入淡出，并尊重 prefers-reduced-motion。"
+    },
+    "file:src/vite-env.d.ts": {
+      "name": "vite-env.d.ts",
+      "type": "file",
+      "summary": "扩展 Vite 的 ImportMetaEnv 类型，声明可选 VITE_API_BASE 环境变量供前端覆盖 API 基址。"
+    },
+    "file:vite.config.ts": {
+      "name": "vite.config.ts",
+      "type": "file",
+      "summary": "为 Tauri 开发定制 Vite React 服务：固定 1420 端口、支持 TAURI_DEV_HOST 的 HMR，并忽略 src-tauri 文件监听。"
+    }
+  },
+  "totalNodes": 115,
+  "totalEdges": 208
+}

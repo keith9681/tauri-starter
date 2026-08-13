@@ -1,0 +1,198 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 4,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 4,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/i18n/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 55,
+      "nonEmptyLines": 47,
+      "functions": [
+        {
+          "name": "isAppLocale",
+          "startLine": 21,
+          "endLine": 23,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "readStoredLocale",
+          "startLine": 25,
+          "endLine": 33,
+          "params": []
+        },
+        {
+          "name": "formatMessage",
+          "startLine": 36,
+          "endLine": 45,
+          "params": [
+            "template",
+            "values"
+          ]
+        },
+        {
+          "name": "translate",
+          "startLine": 47,
+          "endLine": 55,
+          "params": [
+            "locale",
+            "key",
+            "values"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "AppLocale",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "MessageKey",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "MessageValues",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "LOCALE_STORAGE_KEY",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "DEFAULT_LOCALE",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "catalogs",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "isAppLocale",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "readStoredLocale",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "formatMessage",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "translate",
+          "line": 47,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "readStoredLocale",
+          "callee": "localStorage.getItem",
+          "lineNumber": 27
+        },
+        {
+          "caller": "readStoredLocale",
+          "callee": "isAppLocale",
+          "lineNumber": 28
+        },
+        {
+          "caller": "formatMessage",
+          "callee": "template.replace",
+          "lineNumber": 41
+        },
+        {
+          "caller": "formatMessage",
+          "callee": "String",
+          "lineNumber": 43
+        },
+        {
+          "caller": "translate",
+          "callee": "formatMessage",
+          "lineNumber": 54
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 10,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/i18n/messages/en.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 23,
+      "nonEmptyLines": 22,
+      "exports": [
+        {
+          "name": "en",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/i18n/messages/zh-CN.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 23,
+      "nonEmptyLines": 22,
+      "exports": [
+        {
+          "name": "zhCN",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/i18n/types.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 26,
+      "nonEmptyLines": 23,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

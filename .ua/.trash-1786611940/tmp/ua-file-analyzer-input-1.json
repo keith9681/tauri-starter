@@ -1,0 +1,19 @@
+{
+  "projectRoot": "D:/Works/tauri-starter",
+  "batchFiles": [
+    {"path":"src-tauri/src/api/error.rs","language":"rust","sizeLines":34,"fileCategory":"code"},
+    {"path":"src-tauri/src/api/openapi.rs","language":"rust","sizeLines":27,"fileCategory":"code"},
+    {"path":"src-tauri/src/api/todos/handlers.rs","language":"rust","sizeLines":124,"fileCategory":"code"},
+    {"path":"src-tauri/src/api/todos/mod.rs","language":"rust","sizeLines":15,"fileCategory":"code"},
+    {"path":"src-tauri/src/api/todos/model.rs","language":"rust","sizeLines":44,"fileCategory":"code"},
+    {"path":"src-tauri/src/api/todos/store.rs","language":"rust","sizeLines":131,"fileCategory":"code"}
+  ],
+  "batchImportData": {
+    "src-tauri/src/api/error.rs": [],
+    "src-tauri/src/api/openapi.rs": ["src-tauri/src/api/error.rs","src-tauri/src/api/health.rs","src-tauri/src/api/todos/mod.rs","src-tauri/src/api/todos/model.rs"],
+    "src-tauri/src/api/todos/handlers.rs": ["src-tauri/src/api/error.rs","src-tauri/src/api/state.rs"],
+    "src-tauri/src/api/todos/mod.rs": ["src-tauri/src/api/state.rs","src-tauri/src/api/todos/handlers.rs","src-tauri/src/api/todos/model.rs","src-tauri/src/api/todos/store.rs"],
+    "src-tauri/src/api/todos/model.rs": [],
+    "src-tauri/src/api/todos/store.rs": []
+  }
+}

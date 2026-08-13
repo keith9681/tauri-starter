@@ -4,7 +4,7 @@ use crate::api::error::{ApiError, ErrorBody};
 use crate::api::state::AppState;
 use axum::extract::{Path, State};
 use axum::Json;
-use std::sync::MutexGuard;
+use parking_lot::MutexGuard;
 
 type ApiResult<T> = Result<T, ApiError>;
 
@@ -22,7 +22,7 @@ fn lock_store(state: &AppState) -> ApiResult<MutexGuard<'_, super::store::Sqlite
     let todos = state
         .todos()
         .map_err(|(_code, message)| ApiError::ServiceUnavailable(message))?;
-    Ok(todos.lock().expect("todos lock"))
+    Ok(todos.lock())
 }
 
 /// 获取全部待办列表。

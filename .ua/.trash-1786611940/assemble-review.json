@@ -1,0 +1,13 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "合并报告未列出 Fixed 或 Could not fix 问题；115 个节点与 208 条边均通过完整性检查。",
+    "importMap 包含 40 个文件条目，其中 35 个明确的文件间导入关系均已有对应 imports 边，无需补充。",
+    "未发现缺失 ID、悬空边、重复节点、重复边、未知节点类型或未知复杂度值。"
+  ]
+}

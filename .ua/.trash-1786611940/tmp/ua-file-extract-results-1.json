@@ -1,0 +1,832 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 6,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 6,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src-tauri/src/api/error.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 34,
+      "nonEmptyLines": 30,
+      "functions": [
+        {
+          "name": "into_response",
+          "startLine": 24,
+          "endLine": 33,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ErrorBody",
+          "startLine": 10,
+          "endLine": 13,
+          "methods": [],
+          "properties": [
+            "error"
+          ]
+        },
+        {
+          "name": "ApiError",
+          "startLine": 16,
+          "endLine": 21,
+          "methods": [
+            "into_response"
+          ],
+          "properties": [
+            "BadRequest",
+            "NotFound",
+            "ServiceUnavailable",
+            "Internal"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ErrorBody",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "ApiError",
+          "line": 16,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "into_response",
+          "callee": "(status, Json(ErrorBody { error: message })).into_response",
+          "lineNumber": 32
+        },
+        {
+          "caller": "into_response",
+          "callee": "Json",
+          "lineNumber": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "src-tauri/src/api/openapi.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 26,
+      "classes": [
+        {
+          "name": "ApiDoc",
+          "startLine": 27,
+          "endLine": 27,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ApiDoc",
+          "line": 27,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src-tauri/src/api/todos/handlers.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 124,
+      "nonEmptyLines": 117,
+      "functions": [
+        {
+          "name": "from",
+          "startLine": 12,
+          "endLine": 18,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "lock_store",
+          "startLine": 21,
+          "endLine": 26,
+          "params": [
+            "state"
+          ]
+        },
+        {
+          "name": "list",
+          "startLine": 40,
+          "endLine": 43,
+          "params": [
+            "State(state)"
+          ]
+        },
+        {
+          "name": "create",
+          "startLine": 63,
+          "endLine": 70,
+          "params": [
+            "State(state)",
+            "Json(body)"
+          ]
+        },
+        {
+          "name": "update",
+          "startLine": 94,
+          "endLine": 102,
+          "params": [
+            "State(state)",
+            "Path(id)",
+            "Json(body)"
+          ]
+        },
+        {
+          "name": "delete",
+          "startLine": 120,
+          "endLine": 124,
+          "params": [
+            "State(state)",
+            "Path(id)"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "list",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "create",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "update",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "delete",
+          "line": 120,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "from",
+          "callee": "ApiError::NotFound",
+          "lineNumber": 14
+        },
+        {
+          "caller": "from",
+          "callee": "\"待办不存在\".into",
+          "lineNumber": 14
+        },
+        {
+          "caller": "from",
+          "callee": "ApiError::BadRequest",
+          "lineNumber": 15
+        },
+        {
+          "caller": "from",
+          "callee": "ApiError::Internal",
+          "lineNumber": 16
+        },
+        {
+          "caller": "lock_store",
+          "callee": "state\r\n        .todos().map_err",
+          "lineNumber": 22
+        },
+        {
+          "caller": "lock_store",
+          "callee": "state.todos",
+          "lineNumber": 22
+        },
+        {
+          "caller": "lock_store",
+          "callee": "ApiError::ServiceUnavailable",
+          "lineNumber": 24
+        },
+        {
+          "caller": "lock_store",
+          "callee": "Ok",
+          "lineNumber": 25
+        },
+        {
+          "caller": "lock_store",
+          "callee": "todos.lock().expect",
+          "lineNumber": 25
+        },
+        {
+          "caller": "lock_store",
+          "callee": "todos.lock",
+          "lineNumber": 25
+        },
+        {
+          "caller": "list",
+          "callee": "lock_store",
+          "lineNumber": 41
+        },
+        {
+          "caller": "list",
+          "callee": "Ok",
+          "lineNumber": 42
+        },
+        {
+          "caller": "list",
+          "callee": "Json",
+          "lineNumber": 42
+        },
+        {
+          "caller": "list",
+          "callee": "store.list",
+          "lineNumber": 42
+        },
+        {
+          "caller": "create",
+          "callee": "lock_store",
+          "lineNumber": 67
+        },
+        {
+          "caller": "create",
+          "callee": "store.create",
+          "lineNumber": 68
+        },
+        {
+          "caller": "create",
+          "callee": "Ok",
+          "lineNumber": 69
+        },
+        {
+          "caller": "create",
+          "callee": "Json",
+          "lineNumber": 69
+        },
+        {
+          "caller": "update",
+          "callee": "lock_store",
+          "lineNumber": 99
+        },
+        {
+          "caller": "update",
+          "callee": "store.update",
+          "lineNumber": 100
+        },
+        {
+          "caller": "update",
+          "callee": "Ok",
+          "lineNumber": 101
+        },
+        {
+          "caller": "update",
+          "callee": "Json",
+          "lineNumber": 101
+        },
+        {
+          "caller": "delete",
+          "callee": "lock_store",
+          "lineNumber": 121
+        },
+        {
+          "caller": "delete",
+          "callee": "store.delete",
+          "lineNumber": 122
+        },
+        {
+          "caller": "delete",
+          "callee": "Ok",
+          "lineNumber": 123
+        },
+        {
+          "caller": "delete",
+          "callee": "Json",
+          "lineNumber": 123
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 4,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src-tauri/src/api/todos/mod.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 12,
+      "functions": [
+        {
+          "name": "routes",
+          "startLine": 11,
+          "endLine": 15,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "routes",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "routes",
+          "callee": "Router::new()\r\n        .route(\"/\", get(handlers::list).post(handlers::create)).route",
+          "lineNumber": 12
+        },
+        {
+          "caller": "routes",
+          "callee": "Router::new().route",
+          "lineNumber": 12
+        },
+        {
+          "caller": "routes",
+          "callee": "Router::new",
+          "lineNumber": 12
+        },
+        {
+          "caller": "routes",
+          "callee": "get(handlers::list).post",
+          "lineNumber": 13
+        },
+        {
+          "caller": "routes",
+          "callee": "get",
+          "lineNumber": 13
+        },
+        {
+          "caller": "routes",
+          "callee": "patch(handlers::update).delete",
+          "lineNumber": 14
+        },
+        {
+          "caller": "routes",
+          "callee": "patch",
+          "lineNumber": 14
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src-tauri/src/api/todos/model.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 44,
+      "nonEmptyLines": 40,
+      "classes": [
+        {
+          "name": "Todo",
+          "startLine": 11,
+          "endLine": 18,
+          "methods": [],
+          "properties": [
+            "id",
+            "title",
+            "done"
+          ]
+        },
+        {
+          "name": "CreateTodo",
+          "startLine": 23,
+          "endLine": 26,
+          "methods": [],
+          "properties": [
+            "title"
+          ]
+        },
+        {
+          "name": "UpdateTodo",
+          "startLine": 31,
+          "endLine": 36,
+          "methods": [],
+          "properties": [
+            "title",
+            "done"
+          ]
+        },
+        {
+          "name": "OkResponse",
+          "startLine": 41,
+          "endLine": 44,
+          "methods": [],
+          "properties": [
+            "ok"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Todo",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "CreateTodo",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "UpdateTodo",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "OkResponse",
+          "line": 41,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 4
+      }
+    },
+    {
+      "path": "src-tauri/src/api/todos/store.rs",
+      "language": "rust",
+      "fileCategory": "code",
+      "totalLines": 131,
+      "nonEmptyLines": 117,
+      "functions": [
+        {
+          "name": "from",
+          "startLine": 12,
+          "endLine": 14,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "open",
+          "startLine": 34,
+          "endLine": 44,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "get_by_id",
+          "startLine": 46,
+          "endLine": 61,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "list",
+          "startLine": 65,
+          "endLine": 82,
+          "params": []
+        },
+        {
+          "name": "create",
+          "startLine": 84,
+          "endLine": 94,
+          "params": [
+            "title"
+          ]
+        },
+        {
+          "name": "update",
+          "startLine": 96,
+          "endLine": 120,
+          "params": [
+            "id",
+            "title",
+            "done"
+          ]
+        },
+        {
+          "name": "delete",
+          "startLine": 122,
+          "endLine": 130,
+          "params": [
+            "id"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "StoreError",
+          "startLine": 5,
+          "endLine": 9,
+          "methods": [
+            "from"
+          ],
+          "properties": [
+            "NotFound",
+            "Invalid",
+            "Db"
+          ]
+        },
+        {
+          "name": "TodoStore",
+          "startLine": 17,
+          "endLine": 27,
+          "methods": [
+            "list",
+            "create",
+            "update",
+            "delete"
+          ],
+          "properties": []
+        },
+        {
+          "name": "SqliteTodoStore",
+          "startLine": 29,
+          "endLine": 31,
+          "methods": [
+            "open",
+            "get_by_id",
+            "list",
+            "create",
+            "update",
+            "delete"
+          ],
+          "properties": [
+            "conn"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "StoreError",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "TodoStore",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "SqliteTodoStore",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "open",
+          "line": 34,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "from",
+          "callee": "StoreError::Db",
+          "lineNumber": 13
+        },
+        {
+          "caller": "from",
+          "callee": "value.to_string",
+          "lineNumber": 13
+        },
+        {
+          "caller": "open",
+          "callee": "Connection::open",
+          "lineNumber": 35
+        },
+        {
+          "caller": "open",
+          "callee": "path.as_ref",
+          "lineNumber": 35
+        },
+        {
+          "caller": "open",
+          "callee": "conn.execute_batch",
+          "lineNumber": 36
+        },
+        {
+          "caller": "open",
+          "callee": "Ok",
+          "lineNumber": 43
+        },
+        {
+          "caller": "get_by_id",
+          "callee": "self.conn\r\n            .query_row(\r\n                \"SELECT id, title, done FROM todos WHERE id = ?1\",\r\n                params![id as i64],\r\n                |row| {\r\n                    Ok(Todo {\r\n                        id: row.get::<_, i64>(0)? as u64,\r\n                        title: row.get(1)?,\r\n                        done: row.get::<_, i64>(2)? != 0,\r\n                    })\r\n                },\r\n            )\r\n            .optional()?.ok_or",
+          "lineNumber": 47
+        },
+        {
+          "caller": "get_by_id",
+          "callee": "self.conn\r\n            .query_row(\r\n                \"SELECT id, title, done FROM todos WHERE id = ?1\",\r\n                params![id as i64],\r\n                |row| {\r\n                    Ok(Todo {\r\n                        id: row.get::<_, i64>(0)? as u64,\r\n                        title: row.get(1)?,\r\n                        done: row.get::<_, i64>(2)? != 0,\r\n                    })\r\n                },\r\n            ).optional",
+          "lineNumber": 47
+        },
+        {
+          "caller": "get_by_id",
+          "callee": "self.conn.query_row",
+          "lineNumber": 47
+        },
+        {
+          "caller": "get_by_id",
+          "callee": "Ok",
+          "lineNumber": 52
+        },
+        {
+          "caller": "get_by_id",
+          "callee": "row.get::<_, i64>",
+          "lineNumber": 53
+        },
+        {
+          "caller": "get_by_id",
+          "callee": "row.get",
+          "lineNumber": 54
+        },
+        {
+          "caller": "get_by_id",
+          "callee": "row.get::<_, i64>",
+          "lineNumber": 55
+        },
+        {
+          "caller": "list",
+          "callee": "self\r\n            .conn.prepare",
+          "lineNumber": 66
+        },
+        {
+          "caller": "list",
+          "callee": "stmt.query_map",
+          "lineNumber": 69
+        },
+        {
+          "caller": "list",
+          "callee": "Ok",
+          "lineNumber": 70
+        },
+        {
+          "caller": "list",
+          "callee": "row.get::<_, i64>",
+          "lineNumber": 71
+        },
+        {
+          "caller": "list",
+          "callee": "row.get",
+          "lineNumber": 72
+        },
+        {
+          "caller": "list",
+          "callee": "row.get::<_, i64>",
+          "lineNumber": 73
+        },
+        {
+          "caller": "list",
+          "callee": "Vec::new",
+          "lineNumber": 77
+        },
+        {
+          "caller": "list",
+          "callee": "items.push",
+          "lineNumber": 79
+        },
+        {
+          "caller": "list",
+          "callee": "Ok",
+          "lineNumber": 81
+        },
+        {
+          "caller": "create",
+          "callee": "title.trim().to_string",
+          "lineNumber": 85
+        },
+        {
+          "caller": "create",
+          "callee": "title.trim",
+          "lineNumber": 85
+        },
+        {
+          "caller": "create",
+          "callee": "title.is_empty",
+          "lineNumber": 86
+        },
+        {
+          "caller": "create",
+          "callee": "Err",
+          "lineNumber": 87
+        },
+        {
+          "caller": "create",
+          "callee": "StoreError::Invalid",
+          "lineNumber": 87
+        },
+        {
+          "caller": "create",
+          "callee": "\"标题不能为空\".into",
+          "lineNumber": 87
+        },
+        {
+          "caller": "create",
+          "callee": "self.conn.execute",
+          "lineNumber": 90
+        },
+        {
+          "caller": "create",
+          "callee": "self.conn.last_insert_rowid",
+          "lineNumber": 92
+        },
+        {
+          "caller": "create",
+          "callee": "self.get_by_id",
+          "lineNumber": 93
+        },
+        {
+          "caller": "update",
+          "callee": "self.get_by_id",
+          "lineNumber": 102
+        },
+        {
+          "caller": "update",
+          "callee": "title.trim().to_string",
+          "lineNumber": 105
+        },
+        {
+          "caller": "update",
+          "callee": "title.trim",
+          "lineNumber": 105
+        },
+        {
+          "caller": "update",
+          "callee": "title.is_empty",
+          "lineNumber": 106
+        },
+        {
+          "caller": "update",
+          "callee": "Err",
+          "lineNumber": 107
+        },
+        {
+          "caller": "update",
+          "callee": "StoreError::Invalid",
+          "lineNumber": 107
+        },
+        {
+          "caller": "update",
+          "callee": "\"标题不能为空\".into",
+          "lineNumber": 107
+        },
+        {
+          "caller": "update",
+          "callee": "self.conn.execute",
+          "lineNumber": 115
+        },
+        {
+          "caller": "update",
+          "callee": "Ok",
+          "lineNumber": 119
+        },
+        {
+          "caller": "delete",
+          "callee": "self\r\n            .conn.execute",
+          "lineNumber": 123
+        },
+        {
+          "caller": "delete",
+          "callee": "Err",
+          "lineNumber": 127
+        },
+        {
+          "caller": "delete",
+          "callee": "Ok",
+          "lineNumber": 129
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 7,
+        "classCount": 3
+      }
+    }
+  ]
+}

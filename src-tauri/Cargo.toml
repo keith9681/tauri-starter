@@ -38,6 +38,7 @@ http-body-util = "0.1"
 utoipa = { version = "5", features = ["axum_extras"] }
 utoipa-scalar = { version = "0.3", features = ["axum"] }
 rusqlite = { version = "0.40", features = ["bundled"] }
+parking_lot = "0.12"
 
 [dev-dependencies]
 tempfile = "3"

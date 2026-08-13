@@ -1,0 +1,2065 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "a13ef1100d385da0abc2c992f12485b8e2d40a17",
+  "generatedAt": "2026-08-13T09:05:12.681Z",
+  "files": {
+    ".ua/.understandignore": {
+      "filePath": ".ua/.understandignore",
+      "contentHash": "225921f32ca37a5c17f1634a283bf919268d3923b2c35fc9efc8aa8296c209e3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 82,
+      "hasStructuralAnalysis": false
+    },
+    ".ua/config.json": {
+      "filePath": ".ua/config.json",
+      "contentHash": "5d2ff006cff22c68edd4776249d562ea8c73915a61c6214eb85933865a9402e7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": true
+    },
+    "AGENTS.md": {
+      "filePath": "AGENTS.md",
+      "contentHash": "ee5a78cde386ecec6807283b03ad238a891145c6229bb7471ebfdf2814ddc443",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 143,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "3ec3c75e37f0c89cef70da01d1734bcba46e9a1d3dc7d4917e64098becda03c5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 180,
+      "hasStructuralAnalysis": true
+    },
+    "index.html": {
+      "filePath": "index.html",
+      "contentHash": "f2463ea5a80befbe7e92f2138a66aeba404ccc70210e96805a1e2e21e217c8a8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 52,
+      "hasStructuralAnalysis": false
+    },
+    "package.json": {
+      "filePath": "package.json",
+      "contentHash": "5cdd43a5af18e6d9ff8bcc5867f3eb8f19a41c6ea435cf4b4eef2ef0a6ebb941",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/Cargo.toml": {
+      "filePath": "src-tauri/Cargo.toml",
+      "contentHash": "ea75474cd22e92f206a97a994c27500c8358a3f4176660eb1db0b55aa97376e7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 48,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/build.rs": {
+      "filePath": "src-tauri/build.rs",
+      "contentHash": "4ae2333b11623039cc115e29b696e7ff5cdfcd5b7d628280ddf48fa733e6418d",
+      "functions": [
+        {
+          "name": "main",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/capabilities/default.json": {
+      "filePath": "src-tauri/capabilities/default.json",
+      "contentHash": "f4e450983bbc94f2c2b0aa05513923a00af47d2b62d272177b48315d46719807",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/icons/icon.icns": {
+      "filePath": "src-tauri/icons/icon.icns",
+      "contentHash": "e0dcec888d74d60be74dbd652ba3b29b75c8d1499af18a5c28296282f7e50a2c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 463,
+      "hasStructuralAnalysis": false
+    },
+    "src-tauri/src/api/error.rs": {
+      "filePath": "src-tauri/src/api/error.rs",
+      "contentHash": "9e6ed1fd917b80fc3d0764e9ada789b2044816b86638e2b925de9c92eacdf9f8",
+      "functions": [
+        {
+          "name": "into_response",
+          "params": [],
+          "returnType": "Response",
+          "exported": false,
+          "lineCount": 10
+        }
+      ],
+      "classes": [
+        {
+          "name": "ErrorBody",
+          "methods": [],
+          "properties": [
+            "error"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "ApiError",
+          "methods": [
+            "into_response"
+          ],
+          "properties": [
+            "BadRequest",
+            "NotFound",
+            "ServiceUnavailable",
+            "Internal"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "axum::http",
+          "specifiers": [
+            "StatusCode"
+          ]
+        },
+        {
+          "source": "axum::response",
+          "specifiers": [
+            "IntoResponse",
+            "Response"
+          ]
+        },
+        {
+          "source": "axum",
+          "specifiers": [
+            "Json"
+          ]
+        },
+        {
+          "source": "serde",
+          "specifiers": [
+            "Serialize"
+          ]
+        },
+        {
+          "source": "utoipa",
+          "specifiers": [
+            "ToSchema"
+          ]
+        }
+      ],
+      "exports": [
+        "ErrorBody",
+        "ApiError"
+      ],
+      "totalLines": 35,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/api/health.rs": {
+      "filePath": "src-tauri/src/api/health.rs",
+      "contentHash": "8869a00f048b9bdbcf9b3b57bca47003242e024c47102e6ededf25315935fcdc",
+      "functions": [
+        {
+          "name": "health",
+          "params": [
+            "State(state)"
+          ],
+          "returnType": "Response",
+          "exported": true,
+          "lineCount": 30
+        }
+      ],
+      "classes": [
+        {
+          "name": "HealthResponse",
+          "methods": [],
+          "properties": [
+            "ok",
+            "db_path",
+            "code",
+            "error"
+          ],
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "imports": [
+        {
+          "source": "crate::api::state",
+          "specifiers": [
+            "AppState",
+            "StartupCode"
+          ]
+        },
+        {
+          "source": "axum::extract",
+          "specifiers": [
+            "State"
+          ]
+        },
+        {
+          "source": "axum::http",
+          "specifiers": [
+            "StatusCode"
+          ]
+        },
+        {
+          "source": "axum::response",
+          "specifiers": [
+            "IntoResponse",
+            "Response"
+          ]
+        },
+        {
+          "source": "axum",
+          "specifiers": [
+            "Json"
+          ]
+        },
+        {
+          "source": "serde",
+          "specifiers": [
+            "Serialize"
+          ]
+        },
+        {
+          "source": "utoipa",
+          "specifiers": [
+            "ToSchema"
+          ]
+        }
+      ],
+      "exports": [
+        "HealthResponse",
+        "health"
+      ],
+      "totalLines": 67,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/api/mod.rs": {
+      "filePath": "src-tauri/src/api/mod.rs",
+      "contentHash": "a8636cdebf653c80f87ae8adda9227c27fd7d35e949a989a41472fd2a5a25061",
+      "functions": [
+        {
+          "name": "shared_state",
+          "params": [],
+          "returnType": "AppState",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "app_router",
+          "params": [
+            "state"
+          ],
+          "returnType": "Router",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "shared_router",
+          "params": [],
+          "returnType": "Router",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "dispatch_protocol",
+          "params": [
+            "request"
+          ],
+          "returnType": "http::Response<Vec<u8>>",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "openapi",
+          "specifiers": [
+            "ApiDoc"
+          ]
+        },
+        {
+          "source": "state",
+          "specifiers": [
+            "AppState",
+            "StartupCode"
+          ]
+        },
+        {
+          "source": "window_chrome",
+          "specifiers": [
+            "bootstrap_window_chrome",
+            "set_app_handle"
+          ]
+        },
+        {
+          "source": "axum::routing",
+          "specifiers": [
+            "get"
+          ]
+        },
+        {
+          "source": "axum",
+          "specifiers": [
+            "Router"
+          ]
+        },
+        {
+          "source": "std::sync",
+          "specifiers": [
+            "LazyLock"
+          ]
+        },
+        {
+          "source": "tower_http::cors",
+          "specifiers": [
+            "Any",
+            "CorsLayer"
+          ]
+        }
+      ],
+      "exports": [
+        "shared_state",
+        "app_router",
+        "shared_router",
+        "dispatch_protocol"
+      ],
+      "totalLines": 48,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/api/openapi.rs": {
+      "filePath": "src-tauri/src/api/openapi.rs",
+      "contentHash": "27aadf149986c83d8af2ee772bf77d2399c4cbf41c33b6fb0a0cd5501a4bd686",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ApiDoc",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "crate::api::error",
+          "specifiers": [
+            "ErrorBody"
+          ]
+        },
+        {
+          "source": "crate::api::health",
+          "specifiers": [
+            "self",
+            "HealthResponse"
+          ]
+        },
+        {
+          "source": "crate::api::todos",
+          "specifiers": [
+            "handlers"
+          ]
+        },
+        {
+          "source": "crate::api::todos::model",
+          "specifiers": [
+            "CreateTodo",
+            "OkResponse",
+            "Todo",
+            "UpdateTodo"
+          ]
+        },
+        {
+          "source": "utoipa",
+          "specifiers": [
+            "OpenApi"
+          ]
+        }
+      ],
+      "exports": [
+        "ApiDoc"
+      ],
+      "totalLines": 28,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/api/protocol.rs": {
+      "filePath": "src-tauri/src/api/protocol.rs",
+      "contentHash": "59e4e7b145b23352c002d47dbf9fdaf037e914b8fd9baae003830f6152a6609f",
+      "functions": [
+        {
+          "name": "dispatch",
+          "params": [
+            "router",
+            "request"
+          ],
+          "returnType": "Response<Vec<u8>>",
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "axum::body",
+          "specifiers": [
+            "Body"
+          ]
+        },
+        {
+          "source": "axum::http",
+          "specifiers": [
+            "Request",
+            "Response"
+          ]
+        },
+        {
+          "source": "axum",
+          "specifiers": [
+            "Router"
+          ]
+        },
+        {
+          "source": "http_body_util",
+          "specifiers": [
+            "BodyExt"
+          ]
+        },
+        {
+          "source": "tower",
+          "specifiers": [
+            "ServiceExt"
+          ]
+        }
+      ],
+      "exports": [
+        "dispatch"
+      ],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/api/state.rs": {
+      "filePath": "src-tauri/src/api/state.rs",
+      "contentHash": "87add69e420c1a793b72a06b22c47d7dbcc3fc82e9f230edfd9640ba5e8c6973",
+      "functions": [
+        {
+          "name": "as_str",
+          "params": [],
+          "returnType": "&'static str",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "resolve_app_home",
+          "params": [],
+          "returnType": "PathBuf",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "resolve_db_path",
+          "params": [],
+          "returnType": "PathBuf",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "new",
+          "params": [],
+          "returnType": "Self",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "with_db_path",
+          "params": [
+            "path"
+          ],
+          "returnType": "Self",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "db_path",
+          "params": [],
+          "returnType": "&Path",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "failure",
+          "params": [],
+          "returnType": "Option<(StartupCode, &str)>",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "todos",
+          "params": [],
+          "returnType": "Result<&Mutex<SqliteTodoStore>, (StartupCode, String)>",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "default",
+          "params": [],
+          "returnType": "Self",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [
+        {
+          "name": "StartupCode",
+          "methods": [
+            "as_str"
+          ],
+          "properties": [
+            "DbError"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "AppState",
+          "methods": [
+            "new",
+            "with_db_path",
+            "db_path",
+            "failure",
+            "todos",
+            "default"
+          ],
+          "properties": [
+            "inner"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "AppStateInner",
+          "methods": [],
+          "properties": [
+            "Ready",
+            "Failed"
+          ],
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "imports": [
+        {
+          "source": "crate::api::todos",
+          "specifiers": [
+            "SqliteTodoStore"
+          ]
+        },
+        {
+          "source": "std",
+          "specifiers": [
+            "fs"
+          ]
+        },
+        {
+          "source": "std::path",
+          "specifiers": [
+            "Path",
+            "PathBuf"
+          ]
+        },
+        {
+          "source": "std::sync",
+          "specifiers": [
+            "Arc",
+            "Mutex"
+          ]
+        }
+      ],
+      "exports": [
+        "StartupCode",
+        "as_str",
+        "AppState",
+        "resolve_app_home",
+        "resolve_db_path",
+        "new",
+        "with_db_path",
+        "db_path",
+        "failure",
+        "todos"
+      ],
+      "totalLines": 125,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/api/todos/handlers.rs": {
+      "filePath": "src-tauri/src/api/todos/handlers.rs",
+      "contentHash": "ce20cc2eba0bb853125f2dd9e8f238683eb5e1e9f985078e6286a09027ecf45e",
+      "functions": [
+        {
+          "name": "from",
+          "params": [
+            "value"
+          ],
+          "returnType": "Self",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "lock_store",
+          "params": [
+            "state"
+          ],
+          "returnType": "ApiResult<MutexGuard<'_, super::store::SqliteTodoStore>>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "list",
+          "params": [
+            "State(state)"
+          ],
+          "returnType": "ApiResult<Json<Vec<Todo>>>",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "create",
+          "params": [
+            "State(state)",
+            "Json(body)"
+          ],
+          "returnType": "ApiResult<Json<Todo>>",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "update",
+          "params": [
+            "State(state)",
+            "Path(id)",
+            "Json(body)"
+          ],
+          "returnType": "ApiResult<Json<Todo>>",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "delete",
+          "params": [
+            "State(state)",
+            "Path(id)"
+          ],
+          "returnType": "ApiResult<Json<OkResponse>>",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "super::model",
+          "specifiers": [
+            "CreateTodo",
+            "OkResponse",
+            "Todo",
+            "UpdateTodo"
+          ]
+        },
+        {
+          "source": "super::store",
+          "specifiers": [
+            "StoreError",
+            "TodoStore"
+          ]
+        },
+        {
+          "source": "crate::api::error",
+          "specifiers": [
+            "ApiError",
+            "ErrorBody"
+          ]
+        },
+        {
+          "source": "crate::api::state",
+          "specifiers": [
+            "AppState"
+          ]
+        },
+        {
+          "source": "axum::extract",
+          "specifiers": [
+            "Path",
+            "State"
+          ]
+        },
+        {
+          "source": "axum",
+          "specifiers": [
+            "Json"
+          ]
+        },
+        {
+          "source": "std::sync",
+          "specifiers": [
+            "MutexGuard"
+          ]
+        }
+      ],
+      "exports": [
+        "list",
+        "create",
+        "update",
+        "delete"
+      ],
+      "totalLines": 125,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/api/todos/mod.rs": {
+      "filePath": "src-tauri/src/api/todos/mod.rs",
+      "contentHash": "7b5f12f8dc76abff3d100f73fb551d191ae4c6c315656adc8f6f0e1c22c5d561",
+      "functions": [
+        {
+          "name": "routes",
+          "params": [],
+          "returnType": "Router<AppState>",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "store",
+          "specifiers": [
+            "SqliteTodoStore",
+            "TodoStore"
+          ]
+        },
+        {
+          "source": "crate::api::state",
+          "specifiers": [
+            "AppState"
+          ]
+        },
+        {
+          "source": "axum::routing",
+          "specifiers": [
+            "get",
+            "patch"
+          ]
+        },
+        {
+          "source": "axum",
+          "specifiers": [
+            "Router"
+          ]
+        }
+      ],
+      "exports": [
+        "routes"
+      ],
+      "totalLines": 16,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/api/todos/model.rs": {
+      "filePath": "src-tauri/src/api/todos/model.rs",
+      "contentHash": "ff6066868e58c60b24e9206a1e2f364f93bd17a249afa21e993ca0d06f47b060",
+      "functions": [],
+      "classes": [
+        {
+          "name": "Todo",
+          "methods": [],
+          "properties": [
+            "id",
+            "title",
+            "done"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "CreateTodo",
+          "methods": [],
+          "properties": [
+            "title"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "UpdateTodo",
+          "methods": [],
+          "properties": [
+            "title",
+            "done"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "OkResponse",
+          "methods": [],
+          "properties": [
+            "ok"
+          ],
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "imports": [
+        {
+          "source": "serde",
+          "specifiers": [
+            "Deserialize",
+            "Serialize"
+          ]
+        },
+        {
+          "source": "utoipa",
+          "specifiers": [
+            "ToSchema"
+          ]
+        }
+      ],
+      "exports": [
+        "Todo",
+        "CreateTodo",
+        "UpdateTodo",
+        "OkResponse"
+      ],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/api/todos/store.rs": {
+      "filePath": "src-tauri/src/api/todos/store.rs",
+      "contentHash": "723ce4705dc1c9a9bd5cf8bcd218b4624e9de35e31c45389d829c50d6f6e3c94",
+      "functions": [
+        {
+          "name": "from",
+          "params": [
+            "value"
+          ],
+          "returnType": "Self",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "open",
+          "params": [
+            "path"
+          ],
+          "returnType": "Result<Self, StoreError>",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "get_by_id",
+          "params": [
+            "id"
+          ],
+          "returnType": "Result<Todo, StoreError>",
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "list",
+          "params": [],
+          "returnType": "Result<Vec<Todo>, StoreError>",
+          "exported": false,
+          "lineCount": 18
+        },
+        {
+          "name": "create",
+          "params": [
+            "title"
+          ],
+          "returnType": "Result<Todo, StoreError>",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "update",
+          "params": [
+            "id",
+            "title",
+            "done"
+          ],
+          "returnType": "Result<Todo, StoreError>",
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "delete",
+          "params": [
+            "id"
+          ],
+          "returnType": "Result<(), StoreError>",
+          "exported": false,
+          "lineCount": 9
+        }
+      ],
+      "classes": [
+        {
+          "name": "StoreError",
+          "methods": [
+            "from"
+          ],
+          "properties": [
+            "NotFound",
+            "Invalid",
+            "Db"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "TodoStore",
+          "methods": [
+            "list",
+            "create",
+            "update",
+            "delete"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "SqliteTodoStore",
+          "methods": [
+            "open",
+            "get_by_id",
+            "list",
+            "create",
+            "update",
+            "delete"
+          ],
+          "properties": [
+            "conn"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "super::model",
+          "specifiers": [
+            "Todo"
+          ]
+        },
+        {
+          "source": "rusqlite",
+          "specifiers": [
+            "params",
+            "Connection",
+            "OptionalExtension"
+          ]
+        }
+      ],
+      "exports": [
+        "StoreError",
+        "TodoStore",
+        "SqliteTodoStore",
+        "open"
+      ],
+      "totalLines": 132,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/api/window_chrome.rs": {
+      "filePath": "src-tauri/src/api/window_chrome.rs",
+      "contentHash": "bea9faf5322ddfc42656e2cf38dbef59dd85adf42aca92ce9b1368ee86cda737",
+      "functions": [
+        {
+          "name": "set_app_handle",
+          "params": [
+            "app"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "as_str",
+          "params": [],
+          "returnType": "&'static str",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "parse",
+          "params": [
+            "raw"
+          ],
+          "returnType": "Option<Self>",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "routes",
+          "params": [],
+          "returnType": "Router<AppState>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "color_mode_path",
+          "params": [],
+          "returnType": "std::path::PathBuf",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "has_saved_mode",
+          "params": [],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "read_saved_mode",
+          "params": [],
+          "returnType": "ColorMode",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "persist_mode",
+          "params": [
+            "mode"
+          ],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "effective_for",
+          "params": [
+            "window",
+            "mode"
+          ],
+          "returnType": "EffectiveChrome",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "apply_chrome",
+          "params": [
+            "window",
+            "mode",
+            "effective"
+          ],
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "show_main",
+          "params": [
+            "window"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "apply_saved_chrome_and_show",
+          "params": [
+            "app"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "bootstrap_window_chrome",
+          "params": [
+            "app"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "set_window_chrome",
+          "params": [
+            "Json(body)"
+          ],
+          "returnType": "Json<WindowChromeResponse>",
+          "exported": false,
+          "lineCount": 27
+        }
+      ],
+      "classes": [
+        {
+          "name": "ColorMode",
+          "methods": [
+            "as_str",
+            "parse"
+          ],
+          "properties": [
+            "System",
+            "Light",
+            "Dark"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "WindowChromeRequest",
+          "methods": [],
+          "properties": [
+            "mode",
+            "effective"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "EffectiveChrome",
+          "methods": [],
+          "properties": [
+            "Light",
+            "Dark"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "WindowChromeResponse",
+          "methods": [],
+          "properties": [
+            "ok",
+            "applied"
+          ],
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "imports": [
+        {
+          "source": "crate::api::state",
+          "specifiers": [
+            "resolve_app_home",
+            "AppState"
+          ]
+        },
+        {
+          "source": "axum::routing",
+          "specifiers": [
+            "post"
+          ]
+        },
+        {
+          "source": "axum",
+          "specifiers": [
+            "Json",
+            "Router"
+          ]
+        },
+        {
+          "source": "serde",
+          "specifiers": [
+            "Deserialize",
+            "Serialize"
+          ]
+        },
+        {
+          "source": "std",
+          "specifiers": [
+            "fs"
+          ]
+        },
+        {
+          "source": "std::sync",
+          "specifiers": [
+            "OnceLock"
+          ]
+        },
+        {
+          "source": "std::time",
+          "specifiers": [
+            "Duration"
+          ]
+        },
+        {
+          "source": "tauri",
+          "specifiers": [
+            "AppHandle",
+            "Manager",
+            "Theme",
+            "WebviewWindow"
+          ]
+        }
+      ],
+      "exports": [
+        "set_app_handle",
+        "ColorMode",
+        "WindowChromeRequest",
+        "EffectiveChrome",
+        "WindowChromeResponse",
+        "routes",
+        "apply_saved_chrome_and_show",
+        "bootstrap_window_chrome"
+      ],
+      "totalLines": 190,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/bin/api.rs": {
+      "filePath": "src-tauri/src/bin/api.rs",
+      "contentHash": "20d5635d028558cf51fa159c1689370e0c0d81eddcf193983fe518db2e6c6c6a",
+      "functions": [
+        {
+          "name": "main",
+          "params": [],
+          "exported": false,
+          "lineCount": 17
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "axum::routing",
+          "specifiers": [
+            "get"
+          ]
+        },
+        {
+          "source": "axum",
+          "specifiers": [
+            "Json"
+          ]
+        },
+        {
+          "source": "std::net",
+          "specifiers": [
+            "SocketAddr"
+          ]
+        },
+        {
+          "source": "tauri_app_lib::api",
+          "specifiers": [
+            "app_router",
+            "shared_state",
+            "ApiDoc"
+          ]
+        },
+        {
+          "source": "utoipa",
+          "specifiers": [
+            "OpenApi"
+          ]
+        },
+        {
+          "source": "utoipa_scalar",
+          "specifiers": [
+            "Scalar",
+            "Servable"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 30,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/lib.rs": {
+      "filePath": "src-tauri/src/lib.rs",
+      "contentHash": "355f08aca1984f9641e26a93305550b77c9b8eaf4ff691b72b8ace5dfcda23ff",
+      "functions": [
+        {
+          "name": "run",
+          "params": [],
+          "exported": true,
+          "lineCount": 28
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "tauri",
+          "specifiers": [
+            "Manager"
+          ]
+        }
+      ],
+      "exports": [
+        "run"
+      ],
+      "totalLines": 34,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/src/main.rs": {
+      "filePath": "src-tauri/src/main.rs",
+      "contentHash": "23d120cfd07eb7dc987d2240b6508fc7c9de4a382bf058a8908188581873fc68",
+      "functions": [
+        {
+          "name": "main",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 7,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/tauri.conf.json": {
+      "filePath": "src-tauri/tauri.conf.json",
+      "contentHash": "301d20824c357c1c7fd89462f2eb0503cb41dd161a91aa2dbfd77649fe740ef9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 46,
+      "hasStructuralAnalysis": true
+    },
+    "src-tauri/tests/todos_api.rs": {
+      "filePath": "src-tauri/tests/todos_api.rs",
+      "contentHash": "aef3732019d52f4583eb30682da9e814ac4527be994024e0e3f6c3dd3b4e0a19",
+      "functions": [
+        {
+          "name": "test_app",
+          "params": [],
+          "returnType": "(axum::Router, NamedTempFile)",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "request",
+          "params": [
+            "app",
+            "method",
+            "uri",
+            "body"
+          ],
+          "returnType": "(u16, Value)",
+          "exported": false,
+          "lineCount": 35
+        },
+        {
+          "name": "health_ok_when_ready",
+          "params": [],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "list_empty",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "create_and_list",
+          "params": [],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "create_rejects_empty_title",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "update_and_delete",
+          "params": [],
+          "exported": false,
+          "lineCount": 30
+        },
+        {
+          "name": "missing_todo_returns_404",
+          "params": [],
+          "exported": false,
+          "lineCount": 17
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "axum::body",
+          "specifiers": [
+            "Body"
+          ]
+        },
+        {
+          "source": "http_body_util",
+          "specifiers": [
+            "BodyExt"
+          ]
+        },
+        {
+          "source": "serde_json",
+          "specifiers": [
+            "json",
+            "Value"
+          ]
+        },
+        {
+          "source": "tauri_app_lib::api",
+          "specifiers": [
+            "app_router",
+            "AppState"
+          ]
+        },
+        {
+          "source": "tempfile",
+          "specifiers": [
+            "NamedTempFile"
+          ]
+        },
+        {
+          "source": "tower",
+          "specifiers": [
+            "ServiceExt"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 155,
+      "hasStructuralAnalysis": true
+    },
+    "src/App.tsx": {
+      "filePath": "src/App.tsx",
+      "contentHash": "71e002b8d16457df4d025ece4d5b5de6a324161ab7d5ef460262a57afcb87bb8",
+      "functions": [
+        {
+          "name": "prefersReducedMotion",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "withListTransition",
+          "params": [
+            "update"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "TodoRow",
+          "params": [
+            "{\r\n  todo,\r\n  busy,\r\n  onToggle,\r\n  onRemove,\r\n}"
+          ],
+          "exported": false,
+          "lineCount": 58
+        },
+        {
+          "name": "TodoApp",
+          "params": [],
+          "exported": false,
+          "lineCount": 210
+        },
+        {
+          "name": "App",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useCallback",
+            "useEffect",
+            "useRef",
+            "useState"
+          ]
+        },
+        {
+          "source": "react-dom",
+          "specifiers": [
+            "flushSync"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/Banner",
+          "specifiers": [
+            "Banner"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/Button",
+          "specifiers": [
+            "Button"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/CheckboxInput",
+          "specifiers": [
+            "CheckboxInput"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/EmptyState",
+          "specifiers": [
+            "EmptyState"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/Heading",
+          "specifiers": [
+            "Heading"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/Icon",
+          "specifiers": [
+            "Icon"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/IconButton",
+          "specifiers": [
+            "IconButton"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/Item",
+          "specifiers": [
+            "Item"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/Layout",
+          "specifiers": [
+            "Layout",
+            "LayoutContent",
+            "LayoutHeader",
+            "HStack",
+            "VStack"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/SegmentedControl",
+          "specifiers": [
+            "SegmentedControl",
+            "SegmentedControlItem"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/Text",
+          "specifiers": [
+            "Text"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/TextInput",
+          "specifiers": [
+            "TextInput"
+          ]
+        },
+        {
+          "source": "./api/client",
+          "specifiers": [
+            "createTodo",
+            "deleteTodo",
+            "listTodos",
+            "Todo",
+            "updateTodo"
+          ]
+        },
+        {
+          "source": "./i18n",
+          "specifiers": [
+            "AppLocale"
+          ]
+        },
+        {
+          "source": "./providers",
+          "specifiers": [
+            "useColorMode",
+            "useLocale",
+            "ColorMode"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 328,
+      "hasStructuralAnalysis": true
+    },
+    "src/api/client.ts": {
+      "filePath": "src/api/client.ts",
+      "contentHash": "a0219905a4f06fe1e36e81f3187e447e579e67f21a92693a949219db2b976f88",
+      "functions": [
+        {
+          "name": "resolveApiBase",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "request",
+          "params": [
+            "path",
+            "init"
+          ],
+          "returnType": "Promise<T>",
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "listTodos",
+          "params": [],
+          "returnType": "Promise<Todo[]>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "createTodo",
+          "params": [
+            "title"
+          ],
+          "returnType": "Promise<Todo>",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "updateTodo",
+          "params": [
+            "id",
+            "patch"
+          ],
+          "returnType": "Promise<Todo>",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "deleteTodo",
+          "params": [
+            "id"
+          ],
+          "returnType": "Promise<{ ok: boolean }>",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "setWindowChrome",
+          "params": [
+            "mode",
+            "effective"
+          ],
+          "returnType": "Promise<{ ok: boolean; applied: boolean }>",
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "listTodos",
+        "createTodo",
+        "updateTodo",
+        "deleteTodo",
+        "setWindowChrome"
+      ],
+      "totalLines": 86,
+      "hasStructuralAnalysis": true
+    },
+    "src/app-shell.css": {
+      "filePath": "src/app-shell.css",
+      "contentHash": "a3e9d038908123db4cce912bccac13fd1beb78182c33cc5b864b8bb45ec5adce",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 25,
+      "hasStructuralAnalysis": false
+    },
+    "src/i18n/index.ts": {
+      "filePath": "src/i18n/index.ts",
+      "contentHash": "9667168d70c401bf78d418afec612477cf5cb94bbe935dbe8c315c7a3eda34c6",
+      "functions": [
+        {
+          "name": "isAppLocale",
+          "params": [
+            "value"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "readStoredLocale",
+          "params": [],
+          "returnType": "AppLocale",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "formatMessage",
+          "params": [
+            "template",
+            "values"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "translate",
+          "params": [
+            "locale",
+            "key",
+            "values"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./messages/en",
+          "specifiers": [
+            "en"
+          ]
+        },
+        {
+          "source": "./messages/zh-CN",
+          "specifiers": [
+            "zhCN"
+          ]
+        },
+        {
+          "source": "./types",
+          "specifiers": [
+            "AppLocale",
+            "MessageCatalog",
+            "MessageKey",
+            "MessageValues"
+          ]
+        }
+      ],
+      "exports": [
+        "AppLocale",
+        "MessageKey",
+        "MessageValues",
+        "LOCALE_STORAGE_KEY",
+        "DEFAULT_LOCALE",
+        "catalogs",
+        "isAppLocale",
+        "readStoredLocale",
+        "formatMessage",
+        "translate"
+      ],
+      "totalLines": 56,
+      "hasStructuralAnalysis": true
+    },
+    "src/i18n/messages/en.ts": {
+      "filePath": "src/i18n/messages/en.ts",
+      "contentHash": "a9a8c0d6f16f27fd64c605bd6863cc8244194f2c99d9dfd5d70da2f916185a19",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../types",
+          "specifiers": [
+            "MessageCatalog"
+          ]
+        }
+      ],
+      "exports": [
+        "en"
+      ],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "src/i18n/messages/zh-CN.ts": {
+      "filePath": "src/i18n/messages/zh-CN.ts",
+      "contentHash": "7ccdf8ae86c69a3f0d85dbc8d09421f228afd389da1dfc8dc88c315a968054b7",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../types",
+          "specifiers": [
+            "MessageCatalog"
+          ]
+        }
+      ],
+      "exports": [
+        "zhCN"
+      ],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "src/i18n/types.ts": {
+      "filePath": "src/i18n/types.ts",
+      "contentHash": "2389246d4b313f3bb53de14acd19b02fc3fb5647f6ac5d89c565ed1e9fa1579f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "src/main.tsx": {
+      "filePath": "src/main.tsx",
+      "contentHash": "fb6d11c8a51df060ee30404e9c63c3dc05444bbd4c3d7c44927ca358b162e09f",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "React"
+          ]
+        },
+        {
+          "source": "react-dom/client",
+          "specifiers": [
+            "ReactDOM"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/reset.css",
+          "specifiers": []
+        },
+        {
+          "source": "@astryxdesign/core/astryx.css",
+          "specifiers": []
+        },
+        {
+          "source": "@astryxdesign/theme-neutral/theme.css",
+          "specifiers": []
+        },
+        {
+          "source": "./app-shell.css",
+          "specifiers": []
+        },
+        {
+          "source": "./view-transitions.css",
+          "specifiers": []
+        },
+        {
+          "source": "./providers",
+          "specifiers": [
+            "Providers"
+          ]
+        },
+        {
+          "source": "./App",
+          "specifiers": [
+            "App"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 18,
+      "hasStructuralAnalysis": true
+    },
+    "src/providers.tsx": {
+      "filePath": "src/providers.tsx",
+      "contentHash": "72d22c090ba470f54a720c7fec60fbdadf8c9ebc24cceee45ad509ec287318cf",
+      "functions": [
+        {
+          "name": "isColorMode",
+          "params": [
+            "value"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "readStoredMode",
+          "params": [],
+          "returnType": "ColorMode",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "resolveEffective",
+          "params": [
+            "mode"
+          ],
+          "returnType": "\"light\" | \"dark\"",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "applyDocumentScheme",
+          "params": [
+            "effective"
+          ],
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "useColorMode",
+          "params": [],
+          "returnType": "ColorModeContextValue",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "useLocale",
+          "params": [],
+          "returnType": "LocaleContextValue",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "Providers",
+          "params": [
+            "{ children }"
+          ],
+          "exported": true,
+          "lineCount": 70
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "createContext",
+            "useCallback",
+            "useContext",
+            "useEffect",
+            "useMemo",
+            "useState",
+            "ReactNode"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/i18n",
+          "specifiers": [
+            "InternationalizationProvider"
+          ]
+        },
+        {
+          "source": "@astryxdesign/core/theme",
+          "specifiers": [
+            "Theme"
+          ]
+        },
+        {
+          "source": "@astryxdesign/theme-neutral/built",
+          "specifiers": [
+            "neutralTheme"
+          ]
+        },
+        {
+          "source": "./api/client",
+          "specifiers": [
+            "setWindowChrome"
+          ]
+        },
+        {
+          "source": "./i18n",
+          "specifiers": [
+            "LOCALE_STORAGE_KEY",
+            "readStoredLocale",
+            "translate",
+            "AppLocale",
+            "MessageKey",
+            "MessageValues"
+          ]
+        }
+      ],
+      "exports": [
+        "useColorMode",
+        "useLocale",
+        "Providers"
+      ],
+      "totalLines": 171,
+      "hasStructuralAnalysis": true
+    },
+    "src/view-transitions.css": {
+      "filePath": "src/view-transitions.css",
+      "contentHash": "06e1769d4901e13371f9575fbb7b2901a4d86591adc33db4bd4e3fcd16f370ed",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 19,
+      "hasStructuralAnalysis": false
+    },
+    "src/vite-env.d.ts": {
+      "filePath": "src/vite-env.d.ts",
+      "contentHash": "380bfe138bab2c06c8f14ddb1a0f0d6823c5a4b47eed5a916666de61d9c86e08",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 10,
+      "hasStructuralAnalysis": true
+    },
+    "tsconfig.json": {
+      "filePath": "tsconfig.json",
+      "contentHash": "cb4dd1777bc7f478cb417906c32099ae5e661865b3181df116ac70790e9a1a7e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": true
+    },
+    "tsconfig.node.json": {
+      "filePath": "tsconfig.node.json",
+      "contentHash": "6ec602b8aa146888c76f0b41ca3515f91f95919f6e6417a4670decaba8fcb982",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    "vite.config.ts": {
+      "filePath": "vite.config.ts",
+      "contentHash": "d0c7e96eb844636ee7e73113ff6d194eb942d15398a00989d36335400ac8a86d",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vite",
+          "specifiers": [
+            "defineConfig"
+          ]
+        },
+        {
+          "source": "@vitejs/plugin-react",
+          "specifiers": [
+            "react"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    }
+  }
+}
