@@ -42,14 +42,6 @@ pub(crate) fn cors_layer() -> CorsLayer {
         .allow_headers(Any)
 }
 
-pub fn shared_router() -> Router {
-    app_router(shared_state())
-}
-
-pub async fn dispatch_protocol(request: http::Request<Vec<u8>>) -> http::Response<Vec<u8>> {
-    dispatch_router(shared_router(), request).await
-}
-
 /// Dispatch a protocol request through an arbitrary router (desktop or shared).
 pub async fn dispatch_router(
     router: Router,
